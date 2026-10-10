@@ -1,6 +1,7 @@
 import { useEffect, useReducer, useRef, useState, type FormEvent, type CSSProperties } from 'react'
-import { Brand, Icon } from './components'
-import { LifeArt } from './LifeArt'
+import { Icon } from './components'
+import Brand from './components/Brand'
+import { IllustratedLifeArt as LifeArt } from './IllustratedLifeArt'
 import { chaptersFor, dreams, emptyLife, endingFor, LIFE_KEY, lifeReducer, qualities, qualitiesFor, restoreLife, type Dream, type LifeAction } from './careerStory'
 import './WorkComic.css'
 import { ChoicePreview, Discoveries, Notebook, StoryNotebook } from './WorkExtras'
@@ -93,7 +94,7 @@ export default function WorkComic({ active, onPlay }: {active:boolean;onPlay:()=
       <section className="life-baggage" aria-label="What you carry forward"><div><h2>What you carry forward</h2><p>Story signals, not a score for your life.</p></div><div className="life-quality-list">{qualities.map(q=><div key={q.id}><span>{q.label}<b>{scores[q.id]}<small>/12</small></b></span><div className="life-quality-track"><i style={{'--quality':scores[q.id]/12} as CSSProperties}/></div></div>)}</div></section>
       {!finished&&<div className="life-bottom-note"><p><Icon name="map" size={16}/> Your first wish: {dreams.find(d=>d.id===state.dream)?.title.toLowerCase()}.</p><button onClick={()=>act({type:'restart'})}><Icon name="reset" size={15}/> Start a new story</button></div>}
     </>}
-    <footer className="life-footer"><Brand small/><span>Read. Decide. Become.</span><button onClick={onPlay}>A different universe? <Icon name="arrow" size={16}/></button></footer>
+    <footer className="life-footer"><Brand/><span>Read. Decide. Become.</span><button onClick={onPlay}>A different universe? <Icon name="arrow" size={16}/></button></footer>
     <dialog className="work-rewrite-dialog" ref={rewriteDialog} onCancel={()=>setRewrite(null)} aria-labelledby="work-rewrite-title">
       <h2 id="work-rewrite-title">Try a different future?</h2><p>Rewriting page {rewrite===null?'':rewrite+1} replaces its choice and everything after it, including later field notes and discoveries. Earlier pages stay unchanged.</p><div><button className="life-secondary" onClick={()=>setRewrite(null)}>Keep my story</button><button className="life-primary" onClick={()=>{if(rewrite!==null) act({type:'rewind',chapter:rewrite}); setRewrite(null)}}>Rewrite from here <Icon name="reset" size={17}/></button></div>
     </dialog>

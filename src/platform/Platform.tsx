@@ -8,8 +8,8 @@ import {
 } from "./content";
 import "./Platform.css";
 import Brand from "../components/Brand";
-import { LifeArt } from "../LifeArt";
-import "../Cinematic.css";
+import WorkEntrance from "../WorkEntrance";
+import UtopiaScene from "../components/UtopiaScene";
 
 type IconName = "arrow" | "spark" | "orbit" | "signal" | "play" | "check";
 function Icon({
@@ -288,8 +288,9 @@ export default function Platform({ onStart, onResume, onWork, savedName }: Props
               </span>
             </h1>
             <p>
-              One choice can change the whole story.
-              <br className="plot-desktop-break" /> Explore another world—or find your way in this one.
+              Enter extraordinary worlds. Build real-world skills.
+              <br className="plot-desktop-break" /> One place to play, learn,
+              and become a little more you.
             </p>
             <div className="plot-hero-actions">
               <a className="plot-button plot-button-lime" href="#play">
@@ -437,29 +438,20 @@ export default function Platform({ onStart, onResume, onWork, savedName }: Props
                 <span>02</span> WORK / GROW INTO WHAT’S NEXT
               </p>
               <h2>
-                An ordinary life.
+                Big ambitions.
                 <br />
-                <em>Extraordinary what-ifs.</em>
+                <em>Small, powerful steps.</em>
               </h2>
             </div>
             <p>
-              The same imagination. A more personal story.
-              <br />Choose a direction. Face the trade-offs.
-              <br />See how small decisions become a life.
+              Step into a real-world scenario.
+              <br />
+              Decide what happens next. Learn a skill
+              <br />
+              you can take into your next project.
             </p>
           </div>
-          <article className="cinema-work-feature">
-            <div className="cinema-work-art"><LifeArt scene="crossroads" /><span className="cinema-art-caption">The city can keep you alive.<br />What makes a life yours?</span></div>
-            <div className="cinema-work-copy">
-              <span className="cinema-genre">INTERACTIVE LIFE COMIC</span>
-              <h3>The life<br />you make.</h3>
-              <p>An impossible sky. A city that has everything. And one person still searching for a reason to begin.</p>
-              <p className="cinema-work-paths">Study. Build a business. Take a job.<br />No certain path. One next move.</p>
-              <button className="plot-button plot-button-lime" onClick={onWork}>Enter your next chapter <Icon name="arrow" /></button>
-              <span className="cinema-work-meta">3 career paths · 10 interactive pages · Rewind your choices</span>
-            </div>
-          </article>
-          <div className="cinema-labs-heading"><h3>More ways to explore Work</h3><p>Short, decision-led skill stories. Pick a scenario and try a different approach.</p></div>
+          <WorkEntrance onEnter={onWork} />
           <div className="plot-course-grid">
             {courses.map((c, i) => {
               const done = c.lessons.filter((l) =>
@@ -535,13 +527,18 @@ export default function Platform({ onStart, onResume, onWork, savedName }: Props
         </section>
       </main>
       <footer className="plot-footer">
+        <UtopiaScene />
+        <div className="plot-footer-invitation">
+          <div><p className="plot-section-label">YOUR NEXT CHAPTER IS STILL UNWRITTEN</p><h2>Build a world<br /><em>worth stepping into.</em></h2></div>
+          <div className="plot-footer-actions"><a className="plot-button plot-button-lime" href="#play">Direct a story<Icon name="arrow" /></a><a className="plot-button plot-button-glass" href="#work">Learn something new<Icon name="arrow" /></a></div>
+        </div>
         <div>
           <a className="plot-logo" href="#top">
             <Brand />
           </a>
           <p>Stay curious. Keep becoming.</p>
         </div>
-        <div>
+        <div className="plot-footer-links">
           <a href="#play">Play</a>
           <a href="#work">Work</a>
           <a href="#how">The idea</a>

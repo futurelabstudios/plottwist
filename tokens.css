@@ -1,4 +1,4 @@
-:root {
+.cinematic-work, .cinema-work-feature {
   --color-cinema-bg: oklch(14% .012 290);
   --color-cinema-surface: oklch(19% .015 290);
   --color-cinema-ink: oklch(96% .008 95);

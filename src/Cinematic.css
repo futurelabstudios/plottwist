@@ -3,8 +3,7 @@
  * pre-emit critique: P4 H4 E4 S5 R4 V4 */
 @import '../tokens.css';
 
-html, body { overflow-x: clip; }
-.plot-platform, .cinematic-work {
+.cinema-work-feature, .cinematic-work {
   --plot-bg: var(--color-cinema-bg);
   --plot-ink: var(--color-cinema-ink);
   --plot-muted: var(--color-cinema-muted);
@@ -12,37 +11,10 @@ html, body { overflow-x: clip; }
   --plot-violet: var(--color-cinema-violet);
   font-family: var(--font-body);
 }
-.plot-platform h1, .plot-platform h2, .plot-platform h3,
+.cinema-work-feature h3,
 .cinematic-work h1, .cinematic-work h2, .cinematic-work h3 {
   font-family: var(--font-display); font-style: normal; overflow-wrap: anywhere; min-width: 0;
 }
-.pt-brand { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-display); font-size: 27px; letter-spacing: -1.3px; font-weight: 700; white-space: nowrap; line-height: 1; }
-.pt-brand > svg { width: 28px; height: 30px; }
-.pt-brand sup { font-size: 9px; align-self: start; letter-spacing: 0; }
-.pt-brand.small-brand { font-size: 19px; }
-.reader-work-link { display: inline-flex; align-items: center; gap: 8px; font-size: .75rem; white-space: nowrap; padding: 10px 14px; }
-.plot-platform .plot-logo { letter-spacing: normal; }
-.plot-platform .plot-nav { border-bottom: 1px solid var(--color-cinema-rule); }
-.plot-platform .plot-nav-cta { white-space: nowrap; }
-.plot-platform .plot-hero { height: auto; min-height: 760px; padding-top: 176px; align-items: flex-start; justify-content: flex-start; padding-left: max(48px, calc((100vw - 1144px) / 2)); }
-.plot-platform .plot-hero-copy { text-align: left; max-width: 850px; }
-.plot-platform .plot-hero h1 { font-size: clamp(3.2rem, 7vw, 6.3rem); letter-spacing: -.065em; color: var(--color-cinema-ink); text-shadow: none; }
-.plot-platform .plot-hero-actions { justify-content: flex-start; }
-.plot-platform .plot-hero-scene { inset: 70px 0 0; transform: none; opacity: .55; background-position: 70% 58%; }
-.plot-platform .plot-float-label, .plot-platform .plot-orbit, .plot-platform .plot-how-orb, .plot-platform .plot-stars, .plot-platform .plot-title-star { display: none; }
-.plot-platform .plot-live-dot, .plot-platform .plot-scroll span { animation: none; box-shadow: none; }
-.plot-platform [data-reveal] { opacity: 1; transform: none; transition: none; }
-.plot-platform .plot-ticker > div { animation: none; }
-.plot-platform .plot-ticker { padding-block: 16px; }
-.plot-platform .plot-section-heading { display: block; }
-.plot-platform .plot-section-heading > p { margin-top: 20px; max-width: 55ch; color: var(--color-cinema-muted); }
-.plot-platform .plot-section-heading .plot-section-label, .plot-platform .plot-how > .plot-section-label { display: none; }
-.plot-platform .plot-stories { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.plot-platform .plot-story-card:hover { box-shadow: none; }
-.plot-platform .plot-story-card:hover .plot-story-art { transform: none; }
-.plot-platform .plot-button { white-space: nowrap; border-radius: var(--radius-sm); transition: transform var(--dur-micro) var(--ease-out); }
-.plot-platform .plot-button:active { transform: translateY(1px); }
-.plot-platform :focus-visible { outline: 3px solid var(--color-lime); outline-offset: 5px; }
 .cinema-work-feature { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 0; border: 1px solid var(--color-cinema-rule); border-radius: 12px; overflow: clip; background: var(--color-cinema-surface); }
 .cinema-work-art { min-width: 0; position: relative; min-height: 520px; }
 .cinema-work-art > .life-art { width: 100%; height: 100%; position: absolute; inset: 0; }
@@ -53,13 +25,8 @@ html, body { overflow-x: clip; }
 .cinema-work-copy > p { font-size: .9rem; color: var(--color-cinema-muted); max-width: 42ch; }
 .cinema-work-copy .cinema-work-paths { color: var(--color-cinema-ink); margin: 24px 0; }
 .cinema-work-meta { display: block; font-size: .65rem; color: var(--color-cinema-muted); margin-top: 20px; line-height: 1.6; }
-.cinema-labs-heading { margin-top: 56px; padding-top: 32px; border-top: 1px solid var(--color-cinema-rule); }
-.cinema-labs-heading h3 { font-size: 1.35rem; margin: 0 0 8px; }
-.cinema-labs-heading p { font-size: .8rem; color: var(--color-cinema-muted); margin-bottom: 28px; }
-.plot-platform .plot-course-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.plot-platform .plot-course-visual { height: 150px; }
-.plot-platform .plot-course-ring { animation: none; }
-.plot-platform .plot-footer-word { font-family: var(--font-display); }
+.cinema-work-feature { margin-bottom: 40px; color: var(--color-cinema-ink); }
+.cinema-work-feature button:focus-visible { outline: 3px solid var(--color-lime); outline-offset: 5px; }
 
 .cinematic-work {
   --color-paper: var(--color-cinema-bg);
@@ -109,33 +76,21 @@ html, body { overflow-x: clip; }
 .cinematic-work .life-ending-tag { background: var(--color-paper); border-color: var(--color-rule); }
 
 @media (max-width: 63.99rem) {
-  .plot-platform .plot-nav-cta { display: none; }
   .cinema-work-copy { padding: 32px 24px; }
   .cinema-work-art { min-height: 440px; }
 }
 @media (max-width: 47.99rem) {
-  .plot-platform .plot-hero { min-height: 680px; padding: 140px 24px 120px; }
-  .plot-platform .plot-hero h1 { font-size: clamp(3.2rem, 10vw, 5rem); }
-  .plot-platform .plot-hero-copy > p { font-size: .95rem; }
-  .plot-platform .plot-section { padding-inline: 24px; }
-  .plot-platform .plot-stories, .plot-platform .plot-course-grid, .cinema-work-feature { grid-template-columns: minmax(0, 1fr); }
+  .cinema-work-feature { grid-template-columns: minmax(0, 1fr); }
   .cinema-work-art { min-height: 360px; }
   .cinema-work-copy { padding: 32px 24px; }
   .cinema-work-copy h3 { font-size: 3.5rem; }
-  .plot-platform .plot-button { gap: 12px; font-size: .75rem; padding-inline: 16px; }
-  .plot-platform .plot-nav { padding: 20px 24px; gap: 16px; }
-  .plot-platform .plot-nav nav { gap: 20px; }
-  .plot-platform .plot-nav nav a:last-child { display: none; }
-  .plot-platform .plot-nav .pt-brand { font-size: 22px; gap: 6px; }
-  .plot-platform .plot-nav .pt-brand > svg { width: 23px; }
   .cinema-header { padding: 16px; gap: 12px; flex-wrap: wrap; }
   .cinema-header .cinema-home { display: none; }
-  .cinema-header .pt-brand { font-size: 22px; gap: 6px; }
-  .cinema-header .pt-brand > svg { width: 23px; }
+  .cinema-header .pt-brand { gap: 6px; }
+  .cinema-header .pt-brand img { width: 32px; height: 32px; }
   .cinema-header nav button { padding-inline: 12px; font-size: .75rem; }
   .cinematic-work .life-cover-art { padding-right: 8px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .plot-platform *, .plot-platform *::before, .plot-platform *::after { animation: none !important; transition: none !important; }
-  .plot-platform [data-reveal] { opacity: 1 !important; transform: none !important; }
+  .cinema-work-feature *, .cinema-work-feature *::before, .cinema-work-feature *::after { animation: none !important; transition: none !important; }
 }

@@ -1,6 +1,6 @@
 import "./Brand.css";
 
-/** The same folded-page / branching-path emblem is used by the favicon. */
+/** The same branching-tile emblem is used by the favicon. */
 export default function Brand() {
   return (
     <span className="pt-brand">

@@ -1,9 +1,0 @@
-{
-  "date": "2026-10-10",
-  "framework": "React 19 + Vite 8 + TypeScript",
-  "fonts": ["Space Grotesk", "DM Sans"],
-  "palette": "tokens.css plus upstream scoped cinematic platform",
-  "motion": "CSS panel entrances, camera drift and button presses; reduced-motion supported",
-  "scope": "Preserve upstream platform and Play APIs; connect existing Work comic using Cinematic.css",
-  "designSystem": "design.md"
-}
