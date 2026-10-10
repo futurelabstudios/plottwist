@@ -1,0 +1,39 @@
+.signal-reader { min-height:100vh; background:#09090f; color:#f2edf7; padding:0 clamp(16px,3vw,48px); overflow-x:clip; }
+.signal-reader header { display:flex; align-items:center; justify-content:space-between; gap:16px; border-bottom:1px solid #ffffff16; padding:24px 0; }
+.signal-reader button { cursor:pointer; font:inherit; color:inherit; }
+.signal-reader header > button:first-child { border:0; background:none; padding:0; }
+.signal-reader header > span,.signal-label { font-size:10px; letter-spacing:.16em; color:#b9a7d5; }
+.signal-reader main { width:100%; max-width:1500px; margin:auto; }
+.signal-progress { display:flex; justify-content:space-between; color:#39e4d2; padding:28px 0 12px; font-size:13px; }
+.signal-reader h1 { font-size:clamp(36px,5vw,76px); letter-spacing:-.05em; line-height:1.05; margin:16px 0 28px; }
+.signal-reader h1:focus { outline:none; }
+.signal-panels { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; background:#09090f; }
+.signal-panels article { position:relative; border:1px solid #69517f; border-radius:14px; overflow:hidden; background:#191324; box-shadow:0 5px 0 #030205; }
+.signal-panels svg { display:block; width:100%; max-height:300px; }
+.signal-panels article > div { padding:18px 22px; }
+.signal-panel-number { position:absolute; top:14px; left:14px; border:1px solid #39e4d2; border-radius:50%; width:26px; height:26px; display:grid; place-items:center; color:#39e4d2; font-size:11px; }
+.signal-caption { font-size:14px; line-height:1.65; color:#c5bad6; margin:0 0 14px; }
+.signal-speech { background:#e7dcf4; color:#21172d; border-radius:14px 14px 14px 3px; padding:14px 16px; font-size:15px; line-height:1.55; margin:0; }
+.signal-page-nav { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:26px 0; }
+.signal-small { background:linear-gradient(#30243e,#1e1529); border:1px solid #78608d; border-radius:30px; padding:12px 18px; box-shadow:0 4px 0 #09050e,inset 0 1px 0 #ffffff20; font-size:12px; }
+.signal-primary { background:linear-gradient(#ecffc1,#c5ed77); color:#171f0f!important; border:1px solid #efffcc; border-radius:30px; padding:16px 24px; box-shadow:0 5px 0 #52682e,inset 0 1px 0 #fff8; font-weight:700!important; }
+.signal-reader button:disabled { opacity:.4; cursor:default; }
+.signal-reader button:focus-visible,.signal-reader input:focus-visible { outline:2px solid #39e4d2; outline-offset:5px; }
+.signal-reader button:not(:disabled):active { transform:translateY(3px); }
+.signal-decision,.signal-ending { text-align:center; padding:30px 0 50px; }
+.signal-decision h2,.signal-ending h2 { font-size:clamp(24px,3vw,40px); letter-spacing:-.03em; }
+.signal-choices { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; margin:30px 0; }
+.signal-choices button { border:1px solid #66517d; border-radius:16px; background:linear-gradient(#32243f,#1c1428); padding:24px 16px; box-shadow:0 6px 0 #050308,inset 0 1px 0 #ffffff25; }
+.signal-choices strong,.signal-choices span { display:block; }
+.signal-choices span { color:#b9a7d5; font-size:12px; line-height:1.6; margin-top:12px; }
+.signal-choices button[aria-pressed=true] { border-color:#d8fb8d; box-shadow:0 6px 0 #45542b,inset 0 1px 0 #fff3; }
+.signal-ending .signal-small { margin:18px; }
+.signal-cover { max-width:800px; margin:auto; padding:60px 0; }
+.signal-cover em { color:#d8fb8d; font-style:normal; }
+.signal-cover p { line-height:1.8; }
+.signal-cover svg { width:100%; max-height:380px; margin:20px 0; }
+.signal-cover form { display:grid; gap:14px; }
+.signal-cover input { background:#191324; color:#f2edf7; border:1px solid #66517d; border-radius:12px; padding:16px; font:inherit; }
+.signal-reader footer { border-top:1px solid #ffffff16; padding:25px 0; font-size:9px; color:#9384a7; text-align:center; letter-spacing:.12em; }
+@media(max-width:720px) { .signal-panels { gap:10px; } .signal-panels article > div { padding:14px; } .signal-choices { grid-template-columns:repeat(2,minmax(0,1fr)); } .signal-reader header > span { display:none; } }
+@media(max-width:480px) { .signal-panels { grid-template-columns:1fr; } .signal-reader .pt-brand-name { font-size:24px; } .signal-page-nav .signal-small { font-size:10px; padding:12px; } }

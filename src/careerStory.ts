@@ -1,3 +1,4 @@
+import { careerScenarios } from './careerScenarios'
 /** Original existential science fiction; thematic influence, not a book adaptation. */
 export type Dream = 'understand' | 'build' | 'steady'
 export type Quality = 'craft' | 'courage' | 'purpose' | 'energy'
@@ -13,7 +14,7 @@ export const dreams: { id: Dream; title: string; note: string; icon: string }[] 
   { id: 'steady', title: 'Find solid ground', note: 'Structure. Stability. Room to become myself.', icon: 'star' },
 ]
 export interface LifeChoice { title: string; note: string; effects: Partial<Record<Quality, number>>; result: string; dialogue: string; cost: string }
-export interface LifeChapter { title: string; time: string; place: string; scene: Scene; caption: string; thought: string; speaker: string; dialogue: string; question: string; choices: LifeChoice[] }
+export interface LifeChapter { title: string; time: string; place: string; scene: Scene; caption: string; thought: string; speaker: string; dialogue: string; question: string; turningPoint?: string; lesson?: string; choices: LifeChoice[] }
 export const PAGE_COUNT = 10
 export interface LifeState { version: 2; name: string; dream: Dream; started: boolean; choices: number[]; revealed: boolean; notes: Record<number, string>; discoveries: Record<number, number[]> }
 // Separate save slot: do not reinterpret or erase the earlier student-life story.
@@ -51,7 +52,7 @@ export function chaptersFor(choices: number[]): LifeChapter[] {
     founder: { caption: 'Your first potential customer walks away. The city’s free guides are easier. The workshop rent is still due.', thought: 'What if nobody needs the thing that finally made me feel needed?', feedback: 'You ask why they declined. The answer changes the device from a general guide into a tool for an overlooked accessibility need.' },
     professional: { caption: 'You miss a warning during a supervised shift. The system catches it. Your confidence does not recover as quickly.', thought: 'Did I choose stability because I was afraid to try something bigger?', feedback: 'You review the incident with your supervisor and practise the response. Responsibility starts to mean checking, not pretending.' },
   }[route]
-  return [opening, {
+  const chapters: LifeChapter[] = [opening, {
     title: 'A door is not a destination.', time: 'TWO WEEKS LATER', place: `Your first evening at ${routeNames[route]}`, scene,
     caption: firstTask.caption, thought: firstTask.thought, speaker: 'The city, beyond the window', dialogue: 'Above the towers, the ring remains silent. You still have to decide what to do with this evening.',
     question: 'The first step is less glamorous than the dream. How do you begin?',
@@ -165,6 +166,12 @@ export function chaptersFor(choices: number[]): LifeChapter[] {
       { title: 'Something worth passing forward', note: 'Let one useful thing outlive your need to prove yourself.', effects: { purpose: 2, courage: 1, energy: -1 }, result: 'You leave a method, a device or a clear set of instructions where someone else can use it. Your story reaches past the edge of the page.', dialogue: 'I want what I learned to become someone else’s beginning.', cost: 'Contribution asks for time and care. You choose an impact that is not measured only by how far you personally advance.' },
     ],
   }]
+  const times = ['GRADUATION WEEK', 'TWO WEEKS LATER', 'MONTH THREE', 'MONTH SIX', 'MONTH TWELVE', 'MONTH FOURTEEN', 'MONTH EIGHTEEN', 'MONTH TWENTY', 'MONTH TWENTY-TWO', 'TWO YEARS LATER']
+  return chapters.map((chapter, index) => {
+    const [context, turningPoint, lesson] = careerScenarios[route][index]
+    const prior = index > 0 ? chapters[index - 1].choices[choices[index - 1]] : undefined
+    return { ...chapter, time: times[index], caption: `${chapter.caption} ${context}`, turningPoint: `${turningPoint}${prior ? ` You arrive here after choosing to ${prior.title.toLowerCase()}.` : ''}`, lesson }
+  })
 }
 
 export type LifeAction = { type: 'start'; name: string; dream: Dream } | { type: 'choose'; choice: number } | { type: 'next' } | { type: 'rewind'; chapter: number } | { type: 'restart' } | { type: 'note'; page: number; text: string } | { type: 'discover'; page: number; panel: number }

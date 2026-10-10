@@ -241,3 +241,10 @@ See [the comic’s visual direction](docs/visual-direction.md) and [the platform
     <img src="./public/art/plottwist-portal.webp" alt="A traveler stands before a glowing portal between a futuristic space station and a fantasy castle" width="100%" />
   </a>
 </p>
+
+### The expanded comic library
+
+- **Play — The Last Signal:** a five-page sci-fi comic with four panels per page. Four approaches branch into a shared transmitter crisis, then diverge into four endings. Earlier decisions leave resources and costs that remain visible after the paths merge. The reader’s captain name follows the entire journey, and progress is saved on the device.
+- **Work — The Life You Make:** ten four-panel pages following a young graduate through a master’s, a startup or a first job. Thirty route-specific scenarios cover funding, customer validation, family expectations, setbacks, collaboration, evidence, mentoring and changing direction. Each page pairs a decision with its consequences and a practical learning prompt. Rewriting a choice replaces its dependent future.
+
+These authored comics use small inline SVG illustrations and folding page transitions. They work without an API key; the existing OpenAI features remain available in The Borrowed Stars.

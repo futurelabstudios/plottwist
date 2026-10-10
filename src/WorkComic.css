@@ -281,3 +281,21 @@
 }
 .motion-off *, .motion-off *::before, .motion-off *::after { animation: none !important; transition: none !important; }
 @media (prefers-reduced-motion:reduce) { .work-comic *, .work-comic *::before, .work-comic *::after { animation:none !important; transition:none !important; } .work-comic button:hover, .work-comic button:active { transform:none !important; } }
+.work-comic .life-four-panels { grid-template-columns: repeat(2,minmax(0,1fr)); }
+.work-comic .life-four-panels > .life-panel { grid-column:auto; min-height: 320px; }
+.work-comic .life-four-panels > .life-establishing { grid-column:auto; }
+.work-comic .life-four-panels .minimal-story-art { width:100%; height:auto; aspect-ratio: 480/270; }
+.work-comic .life-turning-point { display:flex; flex-direction:column; background:var(--color-paper); }
+.life-turning-point-copy { padding:20px; }
+.life-turning-point-copy > span { font-size:.6rem; letter-spacing:.1em; color:var(--color-muted); }
+.life-turning-point-copy p { font-size:.9rem; margin-bottom:0; }
+.life-page-lesson { padding:16px 20px; border-left:3px solid var(--color-lime); background:var(--color-surface); font-size:.8rem; }
+@media(max-width:640px) { .work-comic .life-four-panels { grid-template-columns:1fr; } .work-comic .life-four-panels > .life-panel { min-height:260px; } }
+.work-comic .life-four-panels > .life-panel { display:flex; flex-direction:column; aspect-ratio:auto; }
+.work-comic .life-four-panels .life-panel-caption { position:relative; max-width:100%; }
+.work-comic .life-four-panels .life-narration { position:relative; max-width:100%; margin-top:auto; }
+.work-comic .life-four-panels .life-thought { position:relative; inset:auto; margin:14px; border-radius:16px; font-size:.95rem; }
+.work-comic .life-four-panels .life-thought::after { display:none; }
+.work-comic .life-four-panels .life-panel-signature { position:relative; margin-top:auto; }
+.work-comic .life-four-panels .life-dialogue { position:relative; inset:auto; margin:14px; }
+.work-comic .life-four-panels .life-dialogue p { font-size:.95rem; }

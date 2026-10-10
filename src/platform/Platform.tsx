@@ -9,6 +9,7 @@ import {
 import "./Platform.css";
 import Brand from "../components/Brand";
 import WorkEntrance from "../WorkEntrance";
+import SignalComic from "./SignalComic";
 
 type IconName = "arrow" | "spark" | "orbit" | "signal" | "play" | "check";
 function Icon({
@@ -94,6 +95,8 @@ interface Props {
   savedName?: string;
 }
 export default function Platform({ onStart, onResume, onWork, savedName }: Props) {
+  const [copyrightYear] = useState(() => new Date().getFullYear());
+  const [signalOpen, setSignalOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
   const root = useRef<HTMLDivElement>(null);
   const hero = useRef<HTMLElement>(null);
@@ -130,7 +133,7 @@ export default function Platform({ onStart, onResume, onWork, savedName }: Props
       ?.querySelectorAll("[data-reveal]")
       .forEach((el) => observer.observe(el));
     return () => observer.disconnect();
-  }, []);
+  }, [signalOpen]);
   useEffect(() => {
     const sections = new IntersectionObserver((entries) => {
       for (const entry of entries) {
@@ -139,7 +142,7 @@ export default function Platform({ onStart, onResume, onWork, savedName }: Props
     }, { rootMargin: "-20% 0px -60% 0px" });
     root.current?.querySelectorAll("main > section[id]").forEach((section) => sections.observe(section));
     return () => sections.disconnect();
-  }, []);
+  }, [signalOpen]);
   useEffect(() => {
     if (selection) dialog.current?.showModal();
     else dialog.current?.close();
@@ -223,6 +226,7 @@ export default function Platform({ onStart, onResume, onWork, savedName }: Props
     }));
     setChecked(true);
   }
+  if (signalOpen) return <SignalComic onExit={() => { setSignalOpen(false); requestAnimationFrame(() => document.getElementById("play")?.scrollIntoView()); }} />;
   return (
     <div className="plot-platform" ref={root}>
       <a className="plot-skip" href="#play">
@@ -390,11 +394,17 @@ export default function Platform({ onStart, onResume, onWork, savedName }: Props
               </div>
               <div className="plot-card-orbit" aria-hidden="true" />
             </article>
+            <article className="plot-story-card plot-scifi plot-signal-card" data-reveal>
+              <div className="plot-story-art" aria-hidden="true" />
+              <div className="plot-card-top"><span className="plot-tag">SCI-FI</span><span className="plot-card-number">002</span></div>
+              <div className="plot-story-content"><p className="plot-story-meta">5 PAGES · 4 ENDINGS · MERGING PATHS</p><h3>The Last<br />Signal</h3><p>A distress call from tomorrow.<br />A warning only you can change.</p><button className="plot-story-button" onClick={() => setSignalOpen(true)}>Follow the signal<Icon name="arrow" /></button></div>
+              <div className="plot-card-orbit" aria-hidden="true" />
+            </article>
             <article className="plot-story-card plot-fantasy" data-reveal>
               <div className="plot-story-art" aria-hidden="true" />
               <div className="plot-card-top">
                 <span className="plot-tag">FANTASY</span>
-                <span className="plot-card-number">002</span>
+                <span className="plot-card-number">003</span>
               </div>
               <div className="plot-story-content">
                 <p className="plot-story-meta">
@@ -536,7 +546,7 @@ export default function Platform({ onStart, onResume, onWork, savedName }: Props
           <a href="#work">Work</a>
           <a href="https://futurelabstudios.com/" target="_blank" rel="noopener noreferrer">Visit the studio ↗</a>
         </nav>
-        <div className="plot-footer-bottom"><span>© {new Date().getFullYear()} Futurelab Studios</span><span>You control the plot.</span></div>
+        <div className="plot-footer-bottom"><span>© {copyrightYear} Futurelab Studios</span><span>You control the plot.</span></div>
       </footer>
       <dialog
         className={`plot-dialog ${fantasy ? "plot-dialog-comic" : ""}`}
