@@ -1,0 +1,96 @@
+/* Hallmark · macrostructure: Graphic narrative · tone: cinematic · anchor hue: lime
+ * System-managed integration: shared PlotTwist identity, cinematic shell, readable comic panels.
+ * pre-emit critique: P4 H4 E4 S5 R4 V4 */
+@import '../tokens.css';
+
+.cinema-work-feature, .cinematic-work {
+  --plot-bg: var(--color-cinema-bg);
+  --plot-ink: var(--color-cinema-ink);
+  --plot-muted: var(--color-cinema-muted);
+  --plot-lime: var(--color-lime);
+  --plot-violet: var(--color-cinema-violet);
+  font-family: var(--font-body);
+}
+.cinema-work-feature h3,
+.cinematic-work h1, .cinematic-work h2, .cinematic-work h3 {
+  font-family: var(--font-display); font-style: normal; overflow-wrap: anywhere; min-width: 0;
+}
+.cinema-work-feature { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 0; border: 1px solid var(--color-cinema-rule); border-radius: 12px; overflow: clip; background: var(--color-cinema-surface); }
+.cinema-work-art { min-width: 0; position: relative; min-height: 520px; }
+.cinema-work-art > .life-art { width: 100%; height: 100%; position: absolute; inset: 0; }
+.cinema-art-caption { position: absolute; bottom: 24px; left: 24px; right: 24px; padding: 16px 20px; background: var(--color-cinema-bg); color: var(--color-cinema-ink); border: 1px solid var(--color-cinema-rule); font-family: var(--font-display); font-size: 1.05rem; line-height: 1.45; }
+.cinema-work-copy { padding: 44px 40px; align-self: center; min-width: 0; }
+.cinema-genre { font-size: .65rem; letter-spacing: .13em; color: var(--color-cinema-violet); }
+.cinema-work-copy h3 { font-size: clamp(3.2rem, 5.2vw, 5rem); line-height: .98; letter-spacing: -.06em; margin: 24px 0; }
+.cinema-work-copy > p { font-size: .9rem; color: var(--color-cinema-muted); max-width: 42ch; }
+.cinema-work-copy .cinema-work-paths { color: var(--color-cinema-ink); margin: 24px 0; }
+.cinema-work-meta { display: block; font-size: .65rem; color: var(--color-cinema-muted); margin-top: 20px; line-height: 1.6; }
+.cinema-work-feature { margin-bottom: 40px; color: var(--color-cinema-ink); }
+.cinema-work-feature button:focus-visible { outline: 3px solid var(--color-lime); outline-offset: 5px; }
+
+.cinematic-work {
+  --color-paper: var(--color-cinema-bg);
+  --color-surface: var(--color-cinema-surface);
+  --color-paper-2: var(--color-cinema-surface);
+  --color-ink: var(--color-cinema-ink);
+  --color-muted: var(--color-cinema-muted);
+  --color-rule: var(--color-cinema-rule);
+  --color-lime-soft: var(--color-cinema-olive);
+  --color-accent-ink: var(--color-cinema-bg);
+  --color-success: var(--color-lime);
+  --color-error: var(--color-cinema-coral);
+  --color-focus: var(--color-lime);
+  --color-lilac: var(--color-cinema-violet-surface);
+  min-height: 100dvh; background: var(--color-paper); color: var(--color-ink);
+}
+.cinema-header { max-width: 1280px; margin: auto; display: flex; gap: 32px; align-items: center; padding: 24px 32px; border-bottom: 1px solid var(--color-rule); }
+.cinema-header button { border: 0; background: none; color: var(--color-ink); padding: 0; border-radius: 6px; min-height: 44px; font-size: .8rem; font-weight: 500; }
+.cinema-header nav { display: flex; gap: 4px; margin-left: auto; padding: 4px; border: 1px solid var(--color-rule); border-radius: 8px; }
+.cinema-header nav button { display: inline-flex; align-items: center; gap: 8px; padding: 0 20px; }
+.cinema-header nav button[aria-current] { background: var(--color-lime); color: var(--color-accent-ink); font-weight: 700; }
+.cinema-header .cinema-home { display: flex; align-items: center; gap: 8px; color: var(--color-muted); white-space: nowrap; }
+.cinematic-work :focus-visible { outline: 3px solid var(--color-focus); outline-offset: 5px; }
+.cinematic-work button:hover { filter: none; }
+.cinematic-work .life-cover-main, .cinematic-work .life-cover-inset { transform: none; box-shadow: none; border-color: var(--color-rule); border-radius: 8px; }
+.cinematic-work .life-cover-main > .life-art { aspect-ratio: 1; }
+.cinematic-work .life-cover-art { padding: 0 20px 56px 0; }
+.cinematic-work .life-cover-stamp { color: var(--color-accent-ink); left: 16px; bottom: 12px; border-color: var(--color-rule); }
+.cinematic-work .life-cover h1 { font-size: clamp(3.8rem, 8.5vw, 7.6rem); }
+.cinematic-work .life-cover h1 span::after { height: 5%; bottom: -3%; }
+.cinematic-work .life-speech { border-color: var(--color-rule); }
+.cinematic-work .life-casting { border-color: var(--color-rule); }
+.cinematic-work .life-dream.is-picked { border-color: var(--color-lime); }
+.cinematic-work .life-dream input { accent-color: var(--color-lime); }
+.cinematic-work .life-primary { border: 1px solid var(--color-lime); box-shadow: none; }
+.cinematic-work .life-panel, .cinematic-work .life-result-art, .cinematic-work .life-consequence, .cinematic-work .life-ending-scene, .cinematic-work .life-ending-caption { border-color: var(--color-rule); }
+.cinematic-work .life-dialogue, .cinematic-work .life-thought, .cinematic-work .life-panel-signature, .cinematic-work .life-narration { border-color: var(--color-rule); }
+.cinematic-work .life-choice { border-color: var(--color-rule); }
+.cinematic-work .life-choice-letter { border-color: var(--color-rule); }
+.cinematic-work .life-choice.is-chosen { border-color: var(--color-lime); box-shadow: none; }
+.cinematic-work .life-choice.is-chosen .life-choice-letter, .cinematic-work .life-chapters .is-written > span:first-child { color: var(--color-accent-ink); }
+.cinematic-work .life-quality-track > i { background: var(--color-lime); }
+.cinematic-work .life-footer { border-color: var(--color-rule); }
+.cinematic-work .life-footer button { min-height: 44px; }
+.cinematic-work .life-casting input::placeholder { color: var(--color-muted); }
+.cinematic-work .life-character-chip > span { color: var(--color-ink); }
+.cinematic-work .life-ending-tag { background: var(--color-paper); border-color: var(--color-rule); }
+
+@media (max-width: 63.99rem) {
+  .cinema-work-copy { padding: 32px 24px; }
+  .cinema-work-art { min-height: 440px; }
+}
+@media (max-width: 47.99rem) {
+  .cinema-work-feature { grid-template-columns: minmax(0, 1fr); }
+  .cinema-work-art { min-height: 360px; }
+  .cinema-work-copy { padding: 32px 24px; }
+  .cinema-work-copy h3 { font-size: 3.5rem; }
+  .cinema-header { padding: 16px; gap: 12px; flex-wrap: wrap; }
+  .cinema-header .cinema-home { display: none; }
+  .cinema-header .pt-brand { gap: 6px; }
+  .cinema-header .pt-brand img { width: 32px; height: 32px; }
+  .cinema-header nav button { padding-inline: 12px; font-size: .75rem; }
+  .cinematic-work .life-cover-art { padding-right: 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cinema-work-feature *, .cinema-work-feature *::before, .cinema-work-feature *::after { animation: none !important; transition: none !important; }
+}

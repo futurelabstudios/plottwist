@@ -1,0 +1,82 @@
+/* Hallmark · macrostructure: Graphic narrative · tone: cinematic · anchor hue: lime
+ * Ten-page reading trail, panel discoveries, deliberate choices and private field notes.
+ * pre-emit critique: P5 H4 E4 S5 R4 V4 */
+.work-comic .life-chapters { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; }
+.work-comic .life-chapters button > span:last-child { display: none; }
+.work-comic .life-chapters button { min-height: 44px; }
+.work-comic .life-chapters button > span:first-child { width: 32px; height: 32px; }
+.work-page-status { display: flex; align-items: center; gap: 20px; padding-top: 24px; font-size: .75rem; color: var(--color-muted); }
+.work-page-status > span { white-space: nowrap; }
+.work-page-status progress { appearance: none; width: 100%; height: 4px; border: 0; background: var(--color-rule); border-radius: 4px; color: var(--color-lime); }
+.work-page-status progress::-webkit-progress-bar { background: var(--color-rule); border-radius: 4px; }
+.work-page-status progress::-webkit-progress-value { background: var(--color-lime); border-radius: 4px; }
+.work-page-status progress::-moz-progress-bar { background: var(--color-lime); }
+.work-comic .work-panel-inspect { position: absolute; right: 12px; bottom: 48px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; background: var(--color-paper); color: var(--color-ink); border: 1px solid var(--color-lime); border-radius: 50%; width: 46px; min-height: 46px; z-index: 2; font-size: .7rem; }
+.work-comic .life-establishing .work-panel-inspect { bottom: auto; top: 64px; }
+.work-comic .work-panel-inspect[aria-expanded='true'] { background: var(--color-lime); color: var(--color-accent-ink); }
+.work-discoveries { padding: 24px 0; border-bottom: 1px solid var(--color-rule); }
+.work-discovery-heading { display: flex; align-items: center; gap: 12px; }
+.work-discovery-heading > p { margin: 0; font-size: .85rem; }
+.work-discovery-heading > p span { display: block; font-size: .72rem; color: var(--color-muted); margin-top: 4px; }
+.work-discovery-heading > small { margin-left: auto; flex-shrink: 0; font-size: .65rem; color: var(--color-muted); }
+.work-discovery-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.work-comic .work-discovery-tabs button { display: inline-flex; align-items: center; gap: 8px; padding: 0 12px; min-height: 44px; font-size: .72rem; border: 1px solid var(--color-rule); color: var(--color-muted); white-space: nowrap; }
+.work-comic .work-discovery-tabs button[aria-expanded='true'] { border-color: var(--color-lime); color: var(--color-ink); }
+.work-discovery-number { display: inline-grid; place-items: center; width: 18px; height: 18px; border: 1px solid var(--color-rule); border-radius: 50%; font-size: .6rem; }
+.work-discovery-detail { padding: 20px 0 0; max-width: 75ch; }
+.work-discovery-detail > span { font-size: .7rem; font-weight: 700; color: var(--color-lime); }
+.work-discovery-detail > p { color: var(--color-ink); font-size: .9rem; margin: 8px 0 0; }
+.work-choice-instruction { display: flex; align-items: flex-start; gap: 8px; color: var(--color-muted); font-size: .75rem; margin: 0 0 16px; }
+.work-choice-instruction > svg { margin-top: 3px; }
+.work-comic .life-choice.is-previewed { border-color: var(--color-lime); background: var(--color-lime-soft); }
+.work-preview { position: relative; padding: 28px; margin-top: 20px; border: 1px solid var(--color-lime); background: var(--color-surface); border-radius: 8px; }
+.work-preview h3 { font-size: clamp(1.35rem, 2.4vw, 2rem); line-height: 1.2; margin: 12px 0; letter-spacing: -.03em; }
+.work-preview h3:focus { outline: none; }
+.work-comic button:active:not(:disabled) { transform: translateY(1px); }
+.work-comic button:disabled { cursor: not-allowed; }
+.work-comic textarea:disabled { opacity: .55; cursor: not-allowed; }
+.work-preview > div:first-child > p { color: var(--color-muted); font-size: .9rem; max-width: 75ch; margin: 0; }
+.work-preview-signals { display: flex; gap: 28px; flex-wrap: wrap; padding: 24px 0 16px; }
+.work-preview-signals > span { display: grid; gap: 5px; font-size: .7rem; color: var(--color-muted); }
+.work-preview-signals strong { font-family: var(--font-display); color: var(--color-ink); font-size: 1.2rem; font-weight: 500; font-variant-numeric: tabular-nums; }
+.work-preview-signals strong > span { color: var(--color-lime); }
+.work-preview-signals small { font-family: var(--font-body); color: var(--color-muted); font-size: .6rem; margin-left: 4px; }
+.work-preview-note { font-size: .7rem; color: var(--color-muted); max-width: 80ch; }
+.work-preview-actions { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; margin-top: 20px; }
+.work-preview-page { position: absolute; top: 16px; right: 20px; color: var(--color-muted); font-size: .55rem; letter-spacing: .05em; }
+.work-notebook { margin: 0 0 28px; border-block: 1px solid var(--color-rule); }
+.work-notebook summary { display: flex; gap: 10px; align-items: center; min-height: 64px; cursor: pointer; font-size: .85rem; list-style: none; }
+.work-notebook summary::-webkit-details-marker { display: none; }
+.work-notebook summary > small { margin-left: auto; color: var(--color-muted); font-size: .65rem; }
+.work-notebook summary > span:last-child { font-size: 1.4rem; padding: 0 8px; }
+.work-notebook[open] summary > span:last-child { transform: rotate(45deg); }
+.work-notebook > div { padding-bottom: 20px; }
+.work-notebook label { display: block; font-size: .8rem; margin-bottom: 12px; }
+.work-notebook textarea { resize: vertical; min-height: 120px; width: 100%; padding: 16px; border: 1px solid var(--color-rule); border-radius: 6px; background: var(--color-surface); color: var(--color-ink); font-family: var(--font-body); font-size: .9rem; line-height: 1.6; }
+.work-notebook textarea::placeholder { color: var(--color-muted); }
+.work-notebook > div > p { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; color: var(--color-muted); font-size: .65rem; margin: 8px 0 0; }
+.work-notebook > div > p > span { font-variant-numeric: tabular-nums; }
+.work-notebook-ending { display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between; padding: 24px 0; border-block: 1px solid var(--color-rule); margin-bottom: 40px; }
+.work-notebook-ending h2 { font-size: 1.25rem; margin: 0 0 8px; }
+.work-notebook-ending p { color: var(--color-muted); font-size: .8rem; margin: 0; }
+.work-notebook-ending > p:empty { display: none; }
+.work-notebook-ending > p { width: 100%; }
+.work-comic .work-rewrite-dialog { position: fixed; inset: 0; margin: auto; width: min(520px, calc(100% - 32px)); height: fit-content; max-height: 85dvh; padding: 28px; border: 1px solid var(--color-rule); border-radius: 12px; background: var(--color-surface); color: var(--color-ink); }
+.work-rewrite-dialog::backdrop { background: var(--color-cinema-bg); opacity: .8; }
+.work-rewrite-dialog h2 { font-size: 1.8rem; line-height: 1.1; margin: 0 0 16px; }
+.work-rewrite-dialog p { font-size: .9rem; color: var(--color-muted); }
+.work-rewrite-dialog > div { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 24px; }
+.life-history-note { border: 1px dashed var(--color-rule); padding: 12px; margin-top: 12px !important; }
+.motion-on .work-preview, .motion-on .work-discovery-detail { animation: life-panel-in var(--dur-short) var(--ease-out) both; }
+@media (min-width: 40rem) { .work-comic .life-chapters { grid-template-columns: repeat(10, minmax(0, 1fr)); } }
+@media (max-width: 39.99rem) {
+  .work-discovery-heading { flex-wrap: wrap; }
+  .work-discovery-heading > p { flex: 1; min-width: 180px; }
+  .work-discovery-heading > small { margin-left: 30px; }
+  .work-preview { padding: 24px 16px; }
+  .work-preview-signals { gap: 24px; }
+  .work-preview .life-issue { margin-top: 12px; }
+  .work-notebook summary { flex-wrap: wrap; gap: 6px 10px; padding-block: 12px; }
+  .work-notebook summary > small { font-size: .6rem; }
+}
+@media (prefers-reduced-motion: reduce) { .work-preview, .work-discovery-detail { animation: none !important; } }

@@ -24,6 +24,7 @@ import { readArt, saveArt } from "./lib/art-cache";
 import "./App.css";
 import Platform from "./platform/Platform";
 import Brand from "./components/Brand";
+import WorkScreen from "./WorkScreen";
 
 const SAVE_KEY = "plottwist-book-v2";
 function loadBook(): Book | null {
@@ -81,7 +82,9 @@ function ComicPage({ page, art }: { page: Page; art?: string }) {
 }
 export default function App() {
   const [book, setBook] = useState<Book | null>(loadBook);
-  const [screen, setScreen] = useState<"platform" | "comic">("platform");
+  const [screen, setScreen] = useState<"platform" | "comic" | "work">(() =>
+    ["work", "learn"].includes(new URLSearchParams(window.location.search).get("mode") ?? "") ? "work" : "platform",
+  );
   const [view, setView] = useState(() =>
     Math.max(0, (loadBook()?.pages.length ?? 1) - 1),
   );
@@ -409,9 +412,25 @@ export default function App() {
     a.click();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
+  if (screen === "work") return <WorkScreen onExit={() => {
+    const url = new URL(window.location.href);
+    url.searchParams.delete("mode");
+    url.hash = "play";
+    window.history.replaceState({}, "", url);
+    setScreen("platform");
+    requestAnimationFrame(() => document.getElementById("play")?.scrollIntoView());
+  }} />;
   if (screen === "platform" || !book)
     return (
       <Platform
+        onWork={() => {
+          const url = new URL(window.location.href);
+          url.searchParams.set("mode", "work");
+          url.hash = "";
+          window.history.replaceState({}, "", url);
+          setScreen("work");
+          window.scrollTo({ top: 0 });
+        }}
         savedName={book?.name}
         onResume={() => {
           clearDecision();

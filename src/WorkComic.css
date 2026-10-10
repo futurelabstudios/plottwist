@@ -1,0 +1,283 @@
+/* Hallmark · genre: playful · macrostructure: Graphic narrative · design-system: design.md · designed-as-app
+ * Animated SVG ensemble, consequential decisions and a rewindable life story.
+ * pre-emit critique: P5 H4 E4 S5 R4 V5 */
+.work-comic { max-width: 1280px; padding: 0 var(--space-lg); margin: auto; font-family: var(--font-body); color: var(--color-ink); }
+.work-comic button { border: 0; background: none; color: inherit; border-radius: 4px; padding: 0; font-size: .85rem; min-height: 44px; }
+.work-comic button:disabled { cursor: default; }
+.work-comic button:focus-visible, .work-comic input:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 5px; }
+.work-comic h1:focus, .work-comic h2:focus { outline: none; }
+.work-comic p { line-height: 1.6; }
+.work-comic svg { flex-shrink: 0; }
+.life-toolbar { display: flex; justify-content: space-between; flex-wrap: wrap; align-items: center; gap: var(--space-md); padding: var(--space-lg) 0; border-bottom: 1px solid var(--color-rule); }
+.life-series { display: flex; align-items: center; gap: 8px; font-size: .65rem; font-weight: 700; letter-spacing: .07em; }
+.life-toolbar > div { display: flex; align-items: center; gap: var(--space-lg); }
+.life-edition { color: var(--color-muted); font-size: .75rem; display: none; }
+.work-comic .life-motion { display: flex; align-items: center; gap: 8px; font-size: .7rem; min-height: 36px; border: 1px solid var(--color-rule); padding: 0 10px; border-radius: 5px; }
+.life-cover { display: grid; gap: var(--space-xl); padding: var(--space-2xl) 0; }
+.life-issue { display: block; font-size: .62rem; letter-spacing: .1em; font-weight: 700; }
+.life-cover h1 { font-size: clamp(4.3rem, 9vw, 8rem); letter-spacing: -.075em; line-height: .94; font-weight: 700; margin: 24px 0; }
+.life-cover h1 span { display: inline-block; position: relative; z-index: 0; }
+.life-cover h1 span::after { content: ''; position: absolute; left: -4%; right: -3%; height: 33%; bottom: 3%; background: var(--color-lime); z-index: -1; transform: rotate(-3deg); }
+.life-lede { font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 500; margin: 0 0 16px; }
+.life-premise { font-size: .9rem; max-width: 45ch; color: var(--color-muted); }
+.life-cover-meta { display: flex; flex-wrap: wrap; gap: 12px 20px; margin-top: var(--space-lg); font-size: .7rem; color: var(--color-muted); }
+.life-cover-meta > span { display: flex; align-items: center; gap: 6px; }
+.life-cover-art { position: relative; min-width: 0; padding-bottom: 48px; padding-right: 12px; align-self: center; }
+.life-cover-main { border: 2px solid var(--color-ink); position: relative; border-radius: 6px; background: var(--color-sky); transform: rotate(-2deg); box-shadow: 6px 6px 0 var(--color-ink); overflow: hidden; }
+.life-cover-main > .life-art { display: block; width: 100%; aspect-ratio: 1.35; object-fit: cover; }
+.life-cover-caption { position: absolute; left: 0; bottom: 0; background: var(--color-paper); border-top: 2px solid var(--color-ink); border-right: 2px solid var(--color-ink); padding: 9px 12px; font-size: .65rem; font-weight: 600; max-width: 85%; }
+.life-cover-inset { position: absolute; width: 42%; bottom: 0; right: 0; border: 2px solid var(--color-ink); box-shadow: 4px 4px 0 var(--color-ink); transform: rotate(5deg); background: var(--color-clay); }
+.life-cover-inset > .life-art { display: block; width: 100%; }
+.life-cover-inset > span { background: var(--color-paper); display: block; border-top: 2px solid var(--color-ink); font-size: .75rem; font-weight: 700; padding: 8px; text-align: center; }
+.life-cover-stamp { position: absolute; left: 0; bottom: -2px; background: var(--color-lime); color: var(--color-accent-ink); border: 1.5px solid var(--color-ink); border-radius: 50%; padding: 22px 16px; transform: rotate(-9deg); font-size: .63rem; font-weight: 700; text-align: center; line-height: 1.4; }
+.life-speech { background: var(--color-paper); color: var(--color-ink); border: 2px solid var(--color-ink); border-radius: 45% 45% 40% 40%; padding: 18px 26px; font-family: var(--font-display); font-weight: 600; line-height: 1.3 !important; text-align: center; position: absolute; margin: 0; }
+.life-speech::after { content: ''; position: absolute; width: 18px; height: 18px; background: var(--color-paper); border-right: 2px solid var(--color-ink); border-bottom: 2px solid var(--color-ink); transform: skewY(25deg) rotate(32deg); bottom: -10px; left: 48%; }
+.cover-speech { top: 16px; left: 16px; font-size: clamp(.8rem, 1.7vw, 1.2rem); transform: rotate(2deg); }
+.life-casting { display: grid; gap: var(--space-xl); border-top: 2px solid var(--color-ink); padding-top: var(--space-xl); margin: 16px 0 64px; }
+.life-handnote { display: block; font-family: var(--font-display); font-size: 1rem; transform: rotate(-3deg); width: fit-content; }
+.life-handnote > span { font-size: 28px; margin-left: 12px; }
+.life-casting h2 { font-size: 1.7rem; letter-spacing: -.04em; margin: 16px 0 20px; }
+.life-casting label[for] { display: block; font-size: .8rem; font-weight: 600; margin-bottom: 8px; }
+.life-casting input[type='text'], .life-casting input:not([type]) { display: block; width: 100%; border: 1.5px solid var(--color-ink); background: var(--color-surface); color: var(--color-ink); padding: 14px; border-radius: 6px; font-size: 1rem; font-family: var(--font-body); font-weight: 500; }
+.life-casting-intro > p { font-size: .73rem; color: var(--color-muted); margin-top: 8px; }
+.life-dreams { border: 0; padding: 0; min-width: 0; margin: 0; }
+.life-dreams legend { font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; letter-spacing: -.03em; }
+.life-dream-hint { font-size: .75rem; color: var(--color-muted); margin: 8px 0 16px; }
+.life-dream-options { display: grid; gap: 8px; }
+.life-dream { display: flex; gap: 12px; align-items: center; border: 1px solid var(--color-rule); padding: 14px; border-radius: 6px; cursor: pointer; background: var(--color-surface); }
+.life-dream.is-picked { background: var(--color-lime-soft); border-color: var(--color-ink); }
+.life-dream input { width: 16px; height: 16px; padding: 0; margin: 0; accent-color: var(--color-success); flex-shrink: 0; }
+.life-dream strong { font-size: .85rem; display: block; font-weight: 600; }
+.life-dream small { display: block; margin-top: 4px; font-size: .72rem; color: var(--color-muted); }
+.life-start-row { display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; align-items: center; grid-column: 1/-1; padding-top: var(--space-lg); border-top: 1px solid var(--color-rule); }
+.life-start-row p { margin: 0; font-size: .85rem; }
+.life-start-row p span { display: block; color: var(--color-muted); font-size: .75rem; margin-top: 4px; }
+.work-comic .life-primary { background: var(--color-lime); color: var(--color-accent-ink); border: 2px solid var(--color-ink); border-radius: 6px; box-shadow: 4px 4px 0 var(--color-ink); padding: 14px 20px; min-height: 50px; display: inline-flex; align-items: center; justify-content: space-between; gap: 24px; font-size: .85rem; font-weight: 700; white-space: nowrap; }
+.work-comic .life-secondary { border: 1px solid var(--color-ink); background: var(--color-paper); padding: 12px 18px; display: inline-flex; align-items: center; gap: 18px; font-size: .85rem; white-space: nowrap; }
+.life-chapters { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); padding: 24px 0; gap: 4px; border-bottom: 1px solid var(--color-rule); }
+.life-chapters button { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: .68rem; color: var(--color-muted); position: relative; }
+.life-chapters button > span:first-child { width: 28px; height: 28px; display: grid; place-items: center; border: 1px solid var(--color-rule); border-radius: 50%; font-size: .65rem; flex-shrink: 0; }
+.life-chapters button > span:last-child { display: none; }
+.life-chapters .is-written { color: var(--color-ink); }
+.life-chapters .is-written > span:first-child { background: var(--color-lime); color: var(--color-ink); border-color: var(--color-ink); }
+.life-chapters button[aria-current] { color: var(--color-ink); opacity: 1; }
+.life-chapters button[aria-current] > span:first-child { background: var(--color-ink); color: var(--color-paper); border-color: var(--color-ink); }
+.life-chapter-heading { display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; padding: var(--space-xl) 0 var(--space-lg); }
+.life-chapter-heading h1 { font-size: clamp(2.5rem, 5.1vw, 4.7rem); letter-spacing: -.06em; line-height: 1.05; margin: 16px 0 0; font-weight: 700; }
+.life-character-chip { display: grid; grid-template-columns: 36px minmax(0,1fr); column-gap: 10px; font-size: .8rem; font-weight: 600; max-width: 230px; overflow-wrap: anywhere; }
+.life-character-chip > span { grid-row: 1/3; width: 36px; height: 36px; border: 1px solid var(--color-ink); border-radius: 50%; display: grid; place-items: center; background: var(--color-lilac); }
+.life-character-chip small { font-size: .5rem; color: var(--color-muted); letter-spacing: .08em; margin-top: 4px; }
+.life-callback { display: flex; gap: 8px; align-items: flex-start; color: var(--color-muted); font-size: .75rem; margin: 0 0 24px; max-width: 90ch; }
+.life-callback svg { margin-top: 3px; }
+.life-comic-page { display: grid; grid-template-columns: minmax(0,1fr); gap: 12px; }
+.life-panel { border: 2px solid var(--color-ink); border-radius: 4px; overflow: hidden; position: relative; background: var(--color-sky); }
+.life-panel > .life-art { display: block; width: 100%; height: 100%; object-fit: cover; }
+.life-establishing { min-height: 250px; }
+.life-establishing > .life-art { aspect-ratio: 1.6; }
+.life-panel-caption { position: absolute; top: 0; left: 0; max-width: 90%; background: var(--color-lime); color: var(--color-accent-ink); border-right: 2px solid var(--color-ink); border-bottom: 2px solid var(--color-ink); padding: 9px 14px; font-family: var(--font-display); font-size: .7rem; font-weight: 600; z-index: 1; }
+.life-narration { position: absolute; bottom: 0; left: 0; margin: 0; padding: 12px 16px; background: var(--color-paper); border-top: 2px solid var(--color-ink); font-size: .8rem; font-weight: 500; max-width: 92%; }
+.life-thought-panel { background: var(--color-lilac); aspect-ratio: 1.15; }
+.life-thought { position: absolute; top: 12px; left: 12px; right: 12px; margin: 0; padding: 16px 22px; background: var(--color-paper); border: 2px solid var(--color-ink); border-radius: 40%; font-family: var(--font-display); font-size: 1rem; text-align: center; font-weight: 500; line-height: 1.35 !important; }
+.life-thought::after { content: ''; position: absolute; bottom: -18px; right: 30%; width: 12px; height: 12px; background: var(--color-paper); border: 1.5px solid var(--color-ink); border-radius: 50%; }
+.life-panel-signature { position: absolute; bottom: 0; left: 0; right: 0; padding: 10px; border-top: 2px solid var(--color-ink); background: var(--color-lilac); font-size: .55rem; letter-spacing: .08em; font-weight: 700; }
+.life-dialogue-panel { min-height: 240px; }
+.life-dialogue-panel > .life-art { aspect-ratio: 1.7; opacity: .9; }
+.life-dialogue { position: absolute; top: 16px; left: 16px; right: 16px; border: 2px solid var(--color-ink); border-radius: 10px 10px 10px 0; padding: 16px; background: var(--color-paper); }
+.life-dialogue > span { font-size: .58rem; letter-spacing: .07em; text-transform: uppercase; font-weight: 700; }
+.life-dialogue p { font-family: var(--font-display); font-size: clamp(1rem,1.9vw,1.35rem); line-height: 1.3; margin: 8px 0 0; font-weight: 600; }
+.life-panel-corner { position: absolute; bottom: 8px; right: 16px; font-size: 60px; line-height: 1; }
+.life-decision { padding: var(--space-xl) 0; }
+.life-your-move { display: inline-flex; align-items: center; gap: 8px; font-size: .65rem; font-weight: 700; letter-spacing: .07em; overflow-wrap: anywhere; max-width: 100%; min-width: 0; }
+.life-decision h2 { font-size: clamp(1.65rem,2.9vw,2.7rem); letter-spacing: -.04em; margin: 12px 0; line-height: 1.15; max-width: 30ch; }
+.life-decision-heading > p { color: var(--color-muted); font-size: .8rem; margin-bottom: 24px; }
+.life-decisions { display: grid; grid-template-columns: minmax(0,1fr); gap: 12px; }
+.work-comic .life-choice { display: grid; position: relative; grid-template-columns: 32px minmax(0,1fr) 20px; gap: 8px 12px; text-align: left; border: 1.5px solid var(--color-ink); border-radius: 6px; padding: 20px 16px; background: var(--color-surface); min-height: 120px; transition: transform var(--dur-micro) var(--ease-out); }
+.life-choice-letter { grid-row: 1/3; background: var(--color-paper-2); border: 1px solid var(--color-ink); border-radius: 50%; width: 28px; height: 28px; display: grid; place-items: center; font-family: var(--font-display); font-size: .8rem; }
+.life-choice > strong { font-family: var(--font-display); font-size: 1.08rem; letter-spacing: -.025em; line-height: 1.3; font-weight: 600; }
+.life-choice-note { font-size: .77rem; line-height: 1.5; color: var(--color-muted); grid-column: 2; }
+.life-choice-arrow { grid-column: 3; grid-row: 1; font-size: 20px; }
+.work-comic .life-choice.is-chosen { background: var(--color-lime-soft); border-width: 1.5px; box-shadow: 3px 3px 0 var(--color-ink); }
+.life-choice.is-chosen .life-choice-letter { background: var(--color-lime); }
+.decision-made .life-choice:not(.is-chosen) { opacity: .55; }
+.life-consequence { display: grid; gap: var(--space-lg); padding: var(--space-lg); background: var(--color-lime-soft); border: 2px solid var(--color-ink); border-radius: 6px; margin: 0 0 var(--space-xl); }
+.life-result-art { position: relative; border: 2px solid var(--color-ink); border-radius: 4px; overflow: hidden; background: var(--color-clay); min-width: 0; }
+.life-result-art > .life-art { display: block; width: 100%; aspect-ratio: 1.2; }
+.life-result-art .life-speech { top: 16px; left: 12px; right: 12px; font-size: clamp(.95rem,1.8vw,1.2rem); padding: 18px; }
+.life-result-copy { align-self: center; }
+.life-result-copy h2 { font-size: clamp(1.3rem,2.3vw,2rem); line-height: 1.25; letter-spacing: -.035em; margin: 16px 0; font-weight: 600; }
+.life-result-copy > p { font-size: .85rem; color: var(--color-muted); }
+.life-effects { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0; }
+.life-effects > span { padding: 5px 8px; font-size: .7rem; border: 1px solid var(--color-rule); border-radius: 4px; background: var(--color-paper); }
+.life-effects .effect-gain { color: var(--color-success); border-color: var(--color-success); }
+.life-effects .effect-cost { color: var(--color-error); border-color: var(--color-error); }
+.life-result-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.work-comic .life-rewrite { display: inline-flex; align-items: center; gap: 6px; font-size: .73rem; white-space: nowrap; }
+.life-baggage { padding: var(--space-lg) 0; border-top: 1px solid var(--color-rule); display: grid; gap: 24px; }
+.life-baggage h2 { font-size: 1rem; font-weight: 600; margin: 0; letter-spacing: -.02em; }
+.life-baggage p { font-size: .68rem; color: var(--color-muted); margin: 5px 0 0; }
+.life-quality-list { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 20px; }
+.life-quality-list > div > span { display: flex; justify-content: space-between; align-items: center; font-size: .72rem; }
+.life-quality-list b { font-weight: 600; }
+.life-quality-list small { color: var(--color-muted); font-size: .58rem; font-weight: 400; margin-left: 2px; }
+.life-quality-track { height: 7px; border: 1px solid var(--color-ink); background: var(--color-paper-2); border-radius: 2px; margin-top: 8px; overflow: hidden; }
+.life-quality-track > i { display: block; width: 100%; height: 100%; background: var(--color-success); transform: scaleX(var(--quality)); transform-origin: left; transition: transform var(--dur-long) var(--ease-out); }
+.life-bottom-note { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; font-size: .72rem; color: var(--color-muted); padding: 16px 0; }
+.life-bottom-note > p, .life-bottom-note > button { display: flex; align-items: center; gap: 8px; }
+.work-comic .life-bottom-note > button { font-size: .7rem; }
+.life-footer { border-top: 2px solid var(--color-ink); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-top: 40px; padding: 24px 0; color: var(--color-muted); letter-spacing: 0; font-size: .7rem; }
+.life-footer .pt-brand { color: var(--color-ink); }
+.work-comic .life-footer button { display: flex; align-items: center; gap: 8px; font-size: .72rem; white-space: nowrap; }
+.life-ending { padding: var(--space-xl) 0; }
+.life-ending-heading h1 { font-size: clamp(2.8rem,6vw,5.7rem); line-height: 1; letter-spacing: -.06em; margin: 20px 0; font-weight: 700; }
+.life-ending-heading > p { font-size: 1rem; color: var(--color-muted); }
+.life-ending-scene { position: relative; border: 2px solid var(--color-ink); border-radius: 5px; background: var(--color-clay); margin: 32px 0; overflow: hidden; }
+.life-ending-scene > .life-art { display: block; width: 100%; }
+.life-ending-caption { padding: var(--space-lg); border-top: 2px solid var(--color-ink); background: var(--color-paper); }
+.life-ending-caption > span { font-size: .6rem; letter-spacing: .08em; font-weight: 700; }
+.life-ending-caption h2 { font-size: clamp(1.6rem,2.6vw,2.3rem); letter-spacing: -.035em; line-height: 1.15; margin: 12px 0; }
+.life-ending-caption p { font-size: .9rem; color: var(--color-muted); max-width: 60ch; }
+.life-ending-tag { position: absolute; top: 16px; right: 16px; background: var(--color-paper); border: 2px solid var(--color-ink); border-radius: 50%; padding: 20px; font-family: var(--font-display); font-size: .9rem; text-align: center; transform: rotate(8deg); }
+.life-reflection { display: flex; gap: 16px; align-items: flex-start; padding: 24px 0 32px; }
+.life-reflection h2 { font-size: 1.1rem; margin: 0 0 8px; }
+.life-reflection p { font-size: .9rem; color: var(--color-muted); max-width: 70ch; margin: 0; }
+.life-section-heading h2 { font-size: clamp(1.7rem,3vw,2.6rem); letter-spacing: -.04em; margin: 0; }
+.life-section-heading > p { color: var(--color-muted); font-size: .85rem; }
+.life-choice-history ol { list-style: none; padding: 0; margin: 24px 0; }
+.life-choice-history li { display: flex; align-items: flex-start; flex-wrap: wrap; gap: 16px; padding: 24px 0; border-top: 1px solid var(--color-rule); }
+.life-history-number { display: grid; place-items: center; border: 1px solid var(--color-ink); border-radius: 50%; width: 32px; height: 32px; font-family: var(--font-display); background: var(--color-lilac); font-size: .75rem; flex-shrink: 0; }
+.life-choice-history li > div { flex: 1; min-width: 160px; }
+.life-choice-history li > div > span { font-size: .65rem; color: var(--color-muted); }
+.life-choice-history h3 { font-size: 1.1rem; margin: 6px 0 10px; letter-spacing: -.025em; }
+.life-choice-history li p { font-size: .8rem; color: var(--color-muted); max-width: 65ch; margin: 0; }
+.work-comic .life-choice-history li button { display: flex; align-items: center; gap: 6px; font-size: .72rem; white-space: nowrap; }
+.life-ending-actions { display: flex; flex-wrap: wrap; gap: 20px; margin: 32px 0 24px; }
+.life-fiction-note { font-size: .72rem; color: var(--color-muted); max-width: 75ch; }
+.life-save-error { padding: 12px; background: var(--color-error-surface); color: var(--color-error); border: 1px solid var(--color-error); font-size: .8rem; border-radius: 4px; }
+
+/* The cast is live SVG: consistent faces and clothes, with articulated motion. */
+.life-art { --scene-sky:var(--color-sky); --scene-ground:var(--color-lime-soft); fill: none; stroke: var(--color-ink); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.life-art .art-background { fill: var(--scene-sky); stroke: none; }
+.life-art .art-dot { fill: var(--color-ink); stroke: none; opacity: .25; }
+.life-art .art-ground { fill: var(--scene-ground); }
+.life-art .art-building { fill: var(--color-paper); }
+.life-art .art-roof { fill: var(--color-clay); }
+.life-art .art-window { fill: var(--color-sky); }
+.life-art .art-door { fill: var(--color-ink); }
+.life-art .art-board { fill: var(--color-paper); stroke-width: 3; }
+.life-art .art-cork { fill: var(--color-clay); }
+.life-art .art-papers { fill: var(--color-paper); }
+.life-art .art-pot { fill: var(--color-life-coral); }
+.life-art .art-leaf { fill: var(--color-life-teal); }
+.life-art .art-sun { fill: var(--color-life-sun); stroke: none; }
+.life-art .art-skin { fill: var(--color-life-skin); }
+.life-art .art-shirt { fill: var(--color-life-teal); stroke-width: 2.5; }
+.life-art .art-shirt-friend { fill: var(--color-lilac); stroke-width: 2.5; }
+.life-art .art-hair, .life-art .art-trousers { fill: var(--color-ink); }
+.life-art .art-shoes { fill: var(--color-paper); }
+.life-art .art-bag { fill: var(--color-life-coral); }
+.life-art .art-strap { stroke-width: 5; }
+.life-art .art-eyes { stroke-width: 5; }
+.life-art .art-shadow { fill: var(--color-ink); stroke: none; opacity: .12; }
+.life-art .art-halo { fill: var(--color-clay); stroke: none; }
+.life-art .art-speed { stroke-width: 3; }
+.life-art .art-window-night { fill: var(--color-dark); }
+.life-art .art-moon { fill: var(--color-paper); stroke: none; }
+.life-art .art-skyline { fill: var(--color-lilac); }
+.life-art .art-table { fill: var(--color-clay); stroke-width: 3; }
+.life-art .art-laptop { fill: var(--color-ink); }
+.life-art .art-screen-line { stroke: var(--color-lime); stroke-width: 3; }
+.life-art .art-lamp { fill: var(--color-life-sun); }
+.life-art .art-banner { fill: var(--color-lime); }
+.life-art .art-wet-ground { fill: var(--color-sky); }
+.life-art .art-puddle { fill: var(--color-lilac); stroke-width: 1; }
+.life-art .art-umbrella { fill: var(--color-life-coral); stroke-width: 3; }
+.life-art .art-rain { stroke: var(--color-muted); stroke-width: 2; opacity: .6; }
+.life-art .art-railing { fill: var(--color-paper); stroke-width: 3; }
+.life-art .art-glasses { fill: none; }
+.life-art.scene-bedroom { --scene-sky: var(--color-lilac); }
+.life-art.scene-studio { --scene-sky: var(--color-paper-2); }
+.life-art.scene-rain { --scene-sky: var(--color-paper-2); }
+.life-art.scene-rooftop, .life-art.scene-future { --scene-sky: var(--color-clay); --scene-ground:var(--color-paper-2); }
+.life-art.art-close { --scene-sky: var(--color-lilac); }
+.life-result-art .life-art.art-close { --scene-sky: var(--color-clay); }
+.life-result-art .art-halo { fill: var(--color-life-sun); }
+.home-life-art > .life-art { width: 100%; height: 100%; }
+.home-life-art { background: var(--color-sky); }
+.life-mini-caption { position: absolute; right: 20px; top: 72px; background: var(--color-paper); border: 1px solid var(--color-ink); border-radius: 50%; padding: 12px 18px; font-family: var(--font-display); font-size: .85rem; transform: rotate(7deg); }
+
+/* Three motion primitives: panel entrances, character gestures, choice feedback. */
+.motion-on .life-panel { animation: life-panel-in 500ms var(--ease-out) both; }
+.motion-on .life-thought-panel { animation-delay: 100ms; }
+.motion-on .life-dialogue-panel { animation-delay: 200ms; }
+.motion-on .life-cover-main, .motion-on .life-consequence { animation: life-panel-in 500ms var(--ease-out) both; }
+.motion-on .person-arrive { animation: life-person-in 900ms var(--ease-out) both; }
+.motion-on .life-friend .person-arrive { animation-delay: 120ms; }
+.motion-on .person-wave { transform-origin: 38px 42px; animation: life-wave 1100ms var(--ease-in-out) both; }
+.motion-on .life-speech, .motion-on .life-thought, .motion-on .life-dialogue { animation: life-panel-in 400ms var(--ease-out) 180ms both; }
+@keyframes life-panel-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes life-person-in { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes life-wave { 0%,100% { transform: rotate(0); } 30% { transform: rotate(-12deg); } 65% { transform: rotate(9deg); } }
+@media (hover:hover) and (pointer:fine) { .work-comic .life-choice:not(:disabled):hover { transform: translateY(-3px); background: var(--color-lime-soft); } .work-comic .life-primary:hover { transform: translateY(-2px); } .work-comic .life-rewrite:hover, .work-comic .life-footer button:hover, .life-choice-history button:hover { text-decoration: underline; text-underline-offset: 4px; } }
+@media (min-width:40rem) {
+  .work-comic { padding-inline: var(--space-xl); }
+  .life-edition { display: inline; }
+  .life-cover { grid-template-columns: minmax(0,1fr) minmax(0,1.15fr); gap: 40px; align-items: center; padding-block: 56px; }
+  .life-casting { grid-template-columns: minmax(0,.8fr) minmax(0,1.2fr); gap: 40px; }
+  .life-comic-page { grid-template-columns: minmax(0,1.35fr) minmax(0,1fr); }
+  .life-establishing { grid-row: 1/3; }
+  .life-establishing > .life-art { min-height: 100%; aspect-ratio: .9; }
+  .life-thought-panel { aspect-ratio: 1.65; }
+  .life-dialogue-panel { min-height: 210px; }
+  .life-consequence { grid-template-columns: minmax(0,.7fr) minmax(0,1fr); padding: 24px; gap: 32px; }
+  .life-quality-list { grid-template-columns: repeat(4,minmax(0,1fr)); }
+  .life-chapters button > span:last-child { display: inline; white-space: nowrap; }
+  .life-character-chip { display: grid; }
+}
+@media (min-width:64rem) {
+  .life-comic-page { grid-template-columns: minmax(0,1.6fr) minmax(0,1fr) minmax(0,1fr); }
+  .life-establishing { grid-row: auto; }
+  .life-establishing > .life-art { aspect-ratio: 1.4; }
+  .life-thought-panel { aspect-ratio: auto; }
+  .life-dialogue-panel > .life-art { transform: scale(1.25); transform-origin: bottom; }
+  .life-dialogue { top: 12px; left: 10px; right: 10px; padding: 14px; }
+  .life-dialogue p { font-size: 1.1rem; }
+  .life-thought { font-size: .95rem; padding: 16px; }
+  .life-decisions { grid-template-columns: repeat(3,minmax(0,1fr)); }
+  .work-comic .life-choice { grid-template-columns: 32px minmax(0,1fr); padding: 24px 20px; min-height: 160px; }
+  .life-choice-arrow { position: absolute; bottom: 12px; right: 16px; }
+  .life-choice-note { padding-right: 16px; }
+  .life-baggage { grid-template-columns: 240px minmax(0,1fr); align-items: center; gap: 40px; }
+  .life-ending-scene > .life-art { width: 68%; margin-left: auto; }
+  .life-ending-caption { position: absolute; left: 24px; top: 50%; transform: translateY(-50%); width: 40%; border: 2px solid var(--color-ink); padding: 24px; }
+  .life-ending-caption h2 { font-size: 1.9rem; }
+  .life-ending-caption p { font-size: .85rem; }
+  .life-ending-tag { font-size: .8rem; }
+}
+@media (max-width:39.99rem) {
+  .work-comic { padding-inline:16px; }
+  .life-toolbar { gap: 8px; padding-block: 16px; }
+  .life-series { font-size: .55rem; letter-spacing: .03em; }
+  .work-comic .life-motion { font-size: .6rem; gap: 5px; padding-inline: 7px; }
+  .life-cover { padding-block: 32px; }
+  .life-cover-copy .life-issue { font-size: .55rem; }
+  .life-cover-meta { gap: 10px 14px; font-size: .65rem; }
+  .life-cover-art { margin: 0 8px 12px; }
+  .life-cover-caption { font-size: .55rem; padding: 7px; }
+  .life-cover-stamp { font-size: .52rem; padding: 18px 12px; }
+  .cover-speech { font-size: .78rem; padding: 12px 16px; }
+  .life-character-chip { display: none; }
+  .life-start-row .life-primary { width: 100%; }
+  .life-casting { margin-bottom:40px; }
+  .life-dialogue p { font-size: 1.05rem; }
+  .life-result-copy .life-issue { font-size: .55rem; }
+  .life-consequence { padding: 16px; }
+  .life-result-actions .life-primary { width: 100%; font-size: .78rem; padding: 12px; gap: 12px; }
+  .life-ending-tag { font-size: .65rem; padding: 12px; top: 10px; right: 10px; }
+  .life-ending-caption { padding: 20px; }
+  .life-choice-history li { gap: 12px; }
+  .life-choice-history li > button { margin-left: 44px; }
+  .life-ending-actions .life-primary { font-size: .8rem; gap: 16px; }
+  .life-footer { margin-top:24px; }
+}
+.motion-off *, .motion-off *::before, .motion-off *::after { animation: none !important; transition: none !important; }
+@media (prefers-reduced-motion:reduce) { .work-comic *, .work-comic *::before, .work-comic *::after { animation:none !important; transition:none !important; } .work-comic button:hover, .work-comic button:active { transform:none !important; } }

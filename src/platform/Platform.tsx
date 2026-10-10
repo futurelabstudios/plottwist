@@ -8,6 +8,7 @@ import {
 } from "./content";
 import "./Platform.css";
 import Brand from "../components/Brand";
+import WorkEntrance from "../WorkEntrance";
 import UtopiaScene from "../components/UtopiaScene";
 
 type IconName = "arrow" | "spark" | "orbit" | "signal" | "play" | "check";
@@ -88,11 +89,12 @@ function loadLearning(): LearningSave {
   return { completed: [], notes: {} };
 }
 interface Props {
+  onWork: () => void;
   onStart: (name: string) => void;
   onResume: () => void;
   savedName?: string;
 }
-export default function Platform({ onStart, onResume, savedName }: Props) {
+export default function Platform({ onStart, onResume, onWork, savedName }: Props) {
   const [activeSection, setActiveSection] = useState("");
   const root = useRef<HTMLDivElement>(null);
   const hero = useRef<HTMLElement>(null);
@@ -449,6 +451,7 @@ export default function Platform({ onStart, onResume, savedName }: Props) {
               you can take into your next project.
             </p>
           </div>
+          <WorkEntrance onEnter={onWork} />
           <div className="plot-course-grid">
             {courses.map((c, i) => {
               const done = c.lessons.filter((l) =>
