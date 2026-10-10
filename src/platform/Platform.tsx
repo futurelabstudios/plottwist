@@ -8,6 +8,8 @@ import {
 } from "./content";
 import "./Platform.css";
 import Brand from "../components/Brand";
+import { LifeArt } from "../LifeArt";
+import "../Cinematic.css";
 
 type IconName = "arrow" | "spark" | "orbit" | "signal" | "play" | "check";
 function Icon({
@@ -87,11 +89,12 @@ function loadLearning(): LearningSave {
   return { completed: [], notes: {} };
 }
 interface Props {
+  onWork: () => void;
   onStart: (name: string) => void;
   onResume: () => void;
   savedName?: string;
 }
-export default function Platform({ onStart, onResume, savedName }: Props) {
+export default function Platform({ onStart, onResume, onWork, savedName }: Props) {
   const [activeSection, setActiveSection] = useState("");
   const root = useRef<HTMLDivElement>(null);
   const hero = useRef<HTMLElement>(null);
@@ -285,9 +288,8 @@ export default function Platform({ onStart, onResume, savedName }: Props) {
               </span>
             </h1>
             <p>
-              Enter extraordinary worlds. Build real-world skills.
-              <br className="plot-desktop-break" /> One place to play, learn,
-              and become a little more you.
+              One choice can change the whole story.
+              <br className="plot-desktop-break" /> Explore another world—or find your way in this one.
             </p>
             <div className="plot-hero-actions">
               <a className="plot-button plot-button-lime" href="#play">
@@ -435,19 +437,29 @@ export default function Platform({ onStart, onResume, savedName }: Props) {
                 <span>02</span> WORK / GROW INTO WHAT’S NEXT
               </p>
               <h2>
-                Big ambitions.
+                An ordinary life.
                 <br />
-                <em>Small, powerful steps.</em>
+                <em>Extraordinary what-ifs.</em>
               </h2>
             </div>
             <p>
-              Step into a real-world scenario.
-              <br />
-              Decide what happens next. Learn a skill
-              <br />
-              you can take into your next project.
+              The same imagination. A more personal story.
+              <br />Choose a direction. Face the trade-offs.
+              <br />See how small decisions become a life.
             </p>
           </div>
+          <article className="cinema-work-feature">
+            <div className="cinema-work-art"><LifeArt scene="crossroads" /><span className="cinema-art-caption">The city can keep you alive.<br />What makes a life yours?</span></div>
+            <div className="cinema-work-copy">
+              <span className="cinema-genre">INTERACTIVE LIFE COMIC</span>
+              <h3>The life<br />you make.</h3>
+              <p>An impossible sky. A city that has everything. And one person still searching for a reason to begin.</p>
+              <p className="cinema-work-paths">Study. Build a business. Take a job.<br />No certain path. One next move.</p>
+              <button className="plot-button plot-button-lime" onClick={onWork}>Enter your next chapter <Icon name="arrow" /></button>
+              <span className="cinema-work-meta">3 career paths · 10 interactive pages · Rewind your choices</span>
+            </div>
+          </article>
+          <div className="cinema-labs-heading"><h3>More ways to explore Work</h3><p>Short, decision-led skill stories. Pick a scenario and try a different approach.</p></div>
           <div className="plot-course-grid">
             {courses.map((c, i) => {
               const done = c.lessons.filter((l) =>

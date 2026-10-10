@@ -24,6 +24,15 @@ import { readArt, saveArt } from "./lib/art-cache";
 import "./App.css";
 import Platform from "./platform/Platform";
 import Brand from "./components/Brand";
+import WorkComic from "./WorkComic";
+import { Icon } from "./components";
+import "./Cinematic.css";
+
+type Screen = "platform" | "comic" | "work";
+function initialScreen(): Screen {
+  const mode = new URLSearchParams(window.location.search).get("mode");
+  return mode === "work" || mode === "learn" ? "work" : mode === "play" ? "comic" : "platform";
+}
 
 const SAVE_KEY = "plottwist-book-v2";
 function loadBook(): Book | null {
@@ -81,7 +90,23 @@ function ComicPage({ page, art }: { page: Page; art?: string }) {
 }
 export default function App() {
   const [book, setBook] = useState<Book | null>(loadBook);
-  const [screen, setScreen] = useState<"platform" | "comic">("platform");
+  const [screen, setScreen] = useState<Screen>(initialScreen);
+  function navigate(next: Screen, anchor = "") {
+    const url = new URL(window.location.href);
+    if (next === "work") url.searchParams.set("mode", "work");
+    else if (next === "comic") url.searchParams.set("mode", "play");
+    else url.searchParams.delete("mode");
+    url.hash = anchor;
+    window.history.pushState({}, "", url);
+    setScreen(next);
+    window.scrollTo({ top: 0, behavior: "instant" });
+    if (anchor) requestAnimationFrame(() => document.getElementById(anchor)?.scrollIntoView());
+  }
+  useEffect(() => {
+    const back = () => setScreen(initialScreen());
+    window.addEventListener("popstate", back);
+    return () => window.removeEventListener("popstate", back);
+  }, []);
   const [view, setView] = useState(() =>
     Math.max(0, (loadBook()?.pages.length ?? 1) - 1),
   );
@@ -394,14 +419,28 @@ export default function App() {
     a.click();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
+  if (screen === "work") return (
+    <div className="cinematic-work">
+      <header className="cinema-header">
+        <button className="cinema-brand" onClick={() => navigate("platform")} aria-label="PlotTwist home"><Brand /></button>
+        <nav aria-label="Story modes">
+          <button onClick={() => navigate("platform", "play")}><Icon name="play" size={16} /> Play</button>
+          <button aria-current="page"><Icon name="bolt" size={16} /> Work</button>
+        </nav>
+        <button className="cinema-home" onClick={() => navigate("platform")}><Icon name="back" size={16} /> All stories</button>
+      </header>
+      <WorkComic active onPlay={() => navigate("platform", "play")} />
+    </div>
+  );
   if (screen === "platform" || !book)
     return (
       <Platform
+        onWork={() => navigate("work")}
         savedName={book?.name}
         onResume={() => {
           clearDecision();
           setView(Math.max(0, (book?.pages.length ?? 1) - 1));
-          setScreen("comic");
+          navigate("comic");
           window.scrollTo({ top: 0 });
         }}
         onStart={(captain) => {
@@ -410,7 +449,7 @@ export default function App() {
           clearTimeout(turnTimer.current);
           setBook(createBook(captain));
           setView(0);
-          setScreen("comic");
+          navigate("comic");
         }}
       />
     );
@@ -423,12 +462,13 @@ export default function App() {
           onClick={(event) => {
             event.preventDefault();
             clearDecision();
-            setScreen("platform");
+            navigate("platform");
           }}
         >
           <Brand />
         </a>
         <div className="mode">
+          <button className="reader-work-link" onClick={() => { clearDecision(); navigate("work"); }}><Icon name="bolt" size={15} /> Explore Work</button>
           <span className="badge">
             <span />
             {live ? "OpenAI edition" : "Offline edition"}

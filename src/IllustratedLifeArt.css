@@ -1,0 +1,26 @@
+/* Detailed illustrated cast, with a single restrained cinematic entrance.
+ * All motion stops with the existing Animation off control or system preference. */
+.life-art.life-illustrated { display: block; overflow: hidden; isolation: isolate; }
+.life-illustrated .life-camera { transform: scale(1.035); }
+.life-illustrated .life-weather { fill: none; stroke: var(--color-paper); stroke-width: 1.4; opacity: .25; }
+.life-illustrated .life-motes { fill: var(--color-life-sun); stroke: none; opacity: .35; }
+/* Let dialogue breathe above the drawing rather than covering the cast's faces. */
+.work-comic .life-dialogue-panel:has(> .life-illustrated) { display: flex; flex-direction: column; background: var(--color-paper); }
+.work-comic .life-dialogue-panel > .life-art.life-illustrated { order: 2; height: auto; aspect-ratio: 1.35; transform: none; opacity: 1; margin-top: auto; }
+.work-comic .life-dialogue-panel:has(> .life-illustrated) > .life-dialogue { position: relative; inset: auto; margin: 12px; flex-shrink: 0; }
+.work-comic .life-result-art:has(> .life-illustrated) { background: var(--color-paper); }
+.work-comic .life-result-art:has(> .life-illustrated) > .life-speech { position: relative; inset: auto; margin: 12px; font-size: .95rem; }
+.work-comic .life-result-art:has(> .life-illustrated) > .life-speech::after { display: none; }
+.motion-on .life-illustrated .life-camera,
+.home-life-art .life-illustrated .life-camera { animation: life-cinematic-drift 8s var(--ease-out) both; }
+.motion-on .life-illustrated .life-weather { animation: life-rain-drift 2.5s linear 3 both; }
+.motion-on .life-illustrated .life-motes { animation: life-mote-drift 7s var(--ease-out) both; }
+@keyframes life-cinematic-drift { from { transform: scale(1.035); } to { transform: scale(1.09); } }
+@keyframes life-rain-drift { from { transform: translateY(-16px); opacity: .12; } to { transform: translate(-8px, 30px); opacity: .3; } }
+@keyframes life-mote-drift { from { transform: translateY(8px); opacity: 0; } to { transform: translateY(-10px); opacity: .35; } }
+.motion-off .life-illustrated .life-camera,
+.motion-off .life-illustrated .life-weather,
+.motion-off .life-illustrated .life-motes { animation: none !important; }
+@media (prefers-reduced-motion: reduce) {
+  .life-illustrated .life-camera, .life-illustrated .life-weather, .life-illustrated .life-motes { animation: none !important; }
+}

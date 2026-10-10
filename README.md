@@ -206,6 +206,23 @@ Both hosts are manually published. GitHub Actions validates pushes; it does not 
 
 ## 🧪 Development and checks
 
+### Local cinematic Work integration
+
+The latest platform and ten-page Play reader are preserved. Work now also opens
+**The Life You Make**, an illustrated branching career comic with three paths,
+ten full story pages, route-specific consequences, rewind, and browser-saved progress.
+Each page includes three optional panel discoveries, a trade-off preview before
+committing a choice, and private field notes. A finished journey can be downloaded
+as a text notebook. Original five-page career saves continue into page six without
+rewriting the earlier choices.
+Open `?mode=work` directly; `?mode=learn` remains an alias. The original student
+story and earlier learning prototypes remain in the source tree.
+
+`src/Cinematic.css` connects the platform and Work reader through shared fonts,
+dark surfaces, lime actions, responsive layouts, and reduced-motion support.
+Play's server-backed story, voice, image, and authored fallback features are unchanged.
+
+
 ```sh
 npm run typecheck
 npm run lint
