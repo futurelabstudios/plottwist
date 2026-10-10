@@ -3,6 +3,7 @@ import { resolve } from "node:path";
 const root = resolve(import.meta.dirname, "..");
 const destination = resolve(root, "hosting/chatgpt");
 await mkdir(destination, { recursive: true });
+await cp(resolve(root, "tokens.css"), resolve(destination, "tokens.css"));
 for (const folder of ["src", "server", "public"])
   await cp(resolve(root, folder), resolve(destination, folder), {
     recursive: true,
