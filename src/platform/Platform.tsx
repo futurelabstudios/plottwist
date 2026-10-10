@@ -9,7 +9,6 @@ import {
 import "./Platform.css";
 import Brand from "../components/Brand";
 import WorkEntrance from "../WorkEntrance";
-import UtopiaScene from "../components/UtopiaScene";
 
 type IconName = "arrow" | "spark" | "orbit" | "signal" | "play" | "check";
 function Icon({
@@ -526,27 +525,18 @@ export default function Platform({ onStart, onResume, onWork, savedName }: Props
           <div className="plot-how-orb" aria-hidden="true" />
         </section>
       </main>
-      <footer className="plot-footer">
-        <UtopiaScene />
-        <div className="plot-footer-invitation">
-          <div><p className="plot-section-label">YOUR NEXT CHAPTER IS STILL UNWRITTEN</p><h2>Build a world<br /><em>worth stepping into.</em></h2></div>
-          <div className="plot-footer-actions"><a className="plot-button plot-button-lime" href="#play">Direct a story<Icon name="arrow" /></a><a className="plot-button plot-button-glass" href="#work">Learn something new<Icon name="arrow" /></a></div>
+      <footer className="plot-footer plot-footer-minimal">
+        <div className="plot-footer-studio">
+          <a className="plot-logo" href="#top" aria-label="PlotTwist by Futurelab Studios home"><Brand /></a>
+          <p>Created by <a href="https://futurelabstudios.com/" target="_blank" rel="noopener noreferrer">Futurelab Studios</a>, a forward AI deployment studio in Bengaluru, India.</p>
+          <p>We build production AI agents, automations and custom tools, and help teams grow through hands-on AI training.</p>
         </div>
-        <div>
-          <a className="plot-logo" href="#top">
-            <Brand />
-          </a>
-          <p>Stay curious. Keep becoming.</p>
-        </div>
-        <div className="plot-footer-links">
+        <nav className="plot-footer-links" aria-label="Footer navigation">
           <a href="#play">Play</a>
           <a href="#work">Work</a>
-          <a href="#how">The idea</a>
-        </div>
-        <span>MADE FOR YOUR NEXT CHAPTER</span>
-        <div className="plot-footer-word" aria-hidden="true">
-          PLOT TWIST
-        </div>
+          <a href="https://futurelabstudios.com/" target="_blank" rel="noopener noreferrer">Visit the studio ↗</a>
+        </nav>
+        <div className="plot-footer-bottom"><span>© {new Date().getFullYear()} Futurelab Studios</span><span>You control the plot.</span></div>
       </footer>
       <dialog
         className={`plot-dialog ${fantasy ? "plot-dialog-comic" : ""}`}
