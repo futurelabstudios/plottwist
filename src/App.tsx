@@ -424,6 +424,7 @@ export default function App() {
             event.preventDefault();
             clearDecision();
             setScreen("platform");
+            requestAnimationFrame(() => window.scrollTo({ top: 0, behavior: "auto" }));
           }}
         >
           <Brand />
@@ -529,15 +530,15 @@ export default function App() {
             }
             onClick={() => turn(view - 1)}
           >
-            ← Previous page
+            <svg className="control-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m14 6-6 6 6 6" /></svg>Previous page
           </button>
-          <span>{view + 1} of 10</span>
+          <span className="page-position"><span>PAGE</span> {view + 1} <span>/ 10</span></span>
           <button
             className="secondary"
             disabled={latest || !!oldPage || !!busy || voicePhase !== "idle"}
             onClick={() => turn(view + 1)}
           >
-            Next page →
+            Next page<svg className="control-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m10 6 6 6-6 6" /></svg>
           </button>
         </nav>
         {!latest && (

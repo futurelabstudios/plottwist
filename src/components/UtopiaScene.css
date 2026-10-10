@@ -1,0 +1,9 @@
+.plot-utopia { width: 100%; height: clamp(380px, 35vw, 550px); position: relative; overflow: hidden; background: radial-gradient(ellipse at 65% 60%, #b7a4ff08, transparent 65%), #09090f; }
+.plot-utopia canvas { display: block; width: 100%; height: 100%; mask-image: linear-gradient(transparent, #000 12%, #000 78%, transparent); }
+.plot-utopia-caption { position: absolute; inset: 0; padding: 22px 0; display: flex; justify-content: space-between; align-items: flex-start; pointer-events: none; }
+.plot-utopia-caption > span { display: flex; align-items: center; gap: 9px; color: #a9a0bc; font-size: 8px; letter-spacing: 2px; }
+.plot-utopia-caption i { width: 4px; height: 4px; background: #d8fb8d; border-radius: 50%; }
+.plot-platform .plot-scene-toggle { pointer-events: auto; display: flex; gap: 9px; align-items: center; background: #191620; border: 1px solid #ffffff24; padding: 10px 13px; font-size: 10px; font-weight: 450; color: #c5bbd7; border-radius: 20px; box-shadow: 0 3px 0 #060509, inset 0 1px #ffffff0b; }
+.plot-scene-toggle > span { color: #d8fb8d; }
+@media (max-width: 900px) { .plot-utopia { display: none; } }
+@media print { .plot-utopia { display: none; } }

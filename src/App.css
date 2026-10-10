@@ -1143,6 +1143,112 @@ select {
 @media (prefers-reduced-motion: reduce) {
   .comic-main :is(.secondary, .voice-button, .reset, .choice), .comic-main .voice-controls > button { transition: none; }
 }
+
+/* One PlotTwist palette across the portal and the comic reader. */
+.comic-main {
+  --reader-lime: #d8fb8d;
+  --reader-violet: #b7a4ff;
+  --reader-ink: #f2f1f7;
+  --reader-muted: #aaa8bc;
+  min-height: 100svh;
+  color: var(--reader-ink);
+  background: radial-gradient(ellipse at 80% 0%, #b7a4ff0b, transparent 45%), #09090f;
+}
+.comic-navbar { border-color: #ffffff18; }
+.comic-main .badge, .comic-main .mode label { color: var(--reader-muted); }
+.comic-main .badge > span { background: var(--reader-lime); box-shadow: 0 0 10px #d8fb8d44; }
+.comic-main .mode input { accent-color: var(--reader-lime); }
+.comic-main .avatar { border-color: var(--reader-violet); box-shadow: 0 0 0 4px #b7a4ff0c; }
+.comic-main .captain-info strong { font-weight: 600; }
+.comic-main .captain-info span { color: var(--reader-muted); }
+.comic-main .progress { gap: 6px; }
+.comic-main .progress i { background: #342d43; height: 5px; }
+.comic-main .progress .active { background: var(--reader-lime); box-shadow: 0 0 8px #d8fb8d33; }
+.comic-main .book-title { color: var(--reader-ink); font-weight: 600; letter-spacing: -.045em; }
+.comic-main .book-tools .text-button { background: linear-gradient(180deg, #282132, #1b1724); border: 1px solid #ffffff24; border-radius: 9px; padding: 10px 14px; color: #ded4ef; box-shadow: 0 3px 0 #08060d, inset 0 1px #ffffff10; min-height: 40px; }
+.comic-main .book-tools .text-button:active:not(:disabled) { transform: translateY(2px); box-shadow: 0 1px 0 #08060d; }
+.comic-main .book-tools > span, .comic-main .note, .comic-main .voice-select { color: var(--reader-muted); }
+.comic-main .paper { color: var(--reader-ink); background: linear-gradient(90deg, #292032, #18141f 3%, #18141f 97%, #241c2e); border: 1px solid #7d698633; padding: 20px; border-radius: 12px 12px 4px 4px; }
+.comic-main .paper-heading, .comic-main .paper-bottom { color: #b8a5c9; }
+.comic-main .paper > h2 { font-weight: 550; letter-spacing: -.035em; }
+.comic-main .paper .panel { border-color: #8e7b9f66; border-radius: 7px; }
+.comic-main .book-stage::before { background: #352c40; border-color: #6a597b; border-radius: 10px; }
+.comic-main .book-stage::after { background: #231a2c; border-color: #5d496e; border-radius: 10px; }
+.comic-main .bubble { background: #f2edf9; color: #191321; border-color: #251b32; }
+.comic-main .bubble::after { border-top-color: #f2edf9; }
+.comic-main .caption { color: #ece5f3; background: linear-gradient(transparent, #0f0b19f2 30%); }
+.comic-main .panel-number { color: #eee7f7; background: #171020c9; }
+.comic-main .decision { padding-top: 34px; }
+.comic-main .decision .eyebrow { color: var(--reader-violet); }
+.comic-main .decision h2 { font-weight: 600; letter-spacing: -.045em; color: var(--reader-ink); }
+.comic-main .choices { gap: 16px; margin-bottom: 28px; }
+.comic-main .choices > button.choice {
+  --control-base: #100b19;
+  background: radial-gradient(ellipse at 50% 0%, #b7a4ff14, transparent 75%), linear-gradient(180deg, #30263f, #21192e);
+  border: 1px solid #756087;
+  color: #f1eaf9;
+  padding: 24px 16px;
+  gap: 15px;
+  border-radius: 18px;
+  box-shadow: 0 7px 0 #100b19, 0 12px 22px #0005, inset 0 1px #ffffff35, inset 0 -1px #b7a4ff22;
+}
+.comic-main .choices > button.choice > span { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 14px; color: var(--reader-lime); background: linear-gradient(145deg, #44344f, #2e243d); border: 1px solid #a992bb44; box-shadow: 0 3px 0 #160f21, inset 0 1px #ffffff15; }
+.comic-main .choice strong { font-weight: 600; font-size: 15px; }
+.comic-main .choice small { color: #b9acc9; }
+.comic-main .choices > button.choice:hover:not(:disabled) { border-color: #c4acdf; transform: translateY(-3px); box-shadow: 0 10px 0 #100b19, 0 16px 26px #0006, inset 0 1px #ffffff40; }
+.comic-main .choices > button.choice:active:not(:disabled) { transform: translateY(5px); box-shadow: 0 2px 0 #100b19, 0 4px 10px #0004, inset 0 1px #ffffff20; }
+.comic-main .choices > button.choice.selected { border-color: var(--reader-lime); background: radial-gradient(ellipse at top, #d8fb8d18, transparent), linear-gradient(180deg, #373047, #231c30); }
+.comic-main .order-editor { background: linear-gradient(145deg, #211a2c, #14111d); border-color: #b7a4ff30; padding: 24px; box-shadow: inset 0 1px #ffffff08; }
+.comic-main .order-editor > label { color: #cbbddb; font-size: 13px; }
+.comic-main textarea, .comic-main select { background: #0e0b15; border-color: #6d587a; color: #f0e9f8; }
+.comic-main textarea::placeholder { color: #8e819d; }
+.comic-main :is(button, a, textarea, select):focus-visible { outline-color: var(--reader-lime); outline-offset: 5px; }
+.comic-main .text-button { color: var(--reader-lime); }
+.comic-main .page-navigation { padding: 18px 0; border-bottom: 1px solid #ffffff12; }
+.comic-main .page-navigation > button.secondary, .comic-main .reset,
+.comic-main button.secondary {
+  --control-base: #181023;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  background: linear-gradient(180deg, #45344f, #2b2039); border-color: #9b80ad; color: #f0e7fa;
+  box-shadow: 0 5px 0 var(--control-base), 0 9px 16px #0005, inset 0 1px #ffffff30;
+}
+.comic-main .page-navigation .control-icon { width: 16px; height: 16px; }
+.comic-main .page-navigation > button.secondary:disabled { opacity: .5; box-shadow: 0 3px 0 #181023, inset 0 1px #ffffff20; }
+.comic-main .page-position { display: flex; align-items: center; gap: 8px; color: var(--reader-lime); font-size: 16px; font-weight: 600; }
+.comic-main .page-position > span { font-size: 10px; color: var(--reader-muted); font-weight: 400; }
+.comic-main .voice-controls > button.voice-button, .comic-main .voice-controls > button:last-child,
+.comic-main .confirmation > button:not(.secondary), .comic-main .modal > button:not(.secondary),
+.comic-main .ending > button {
+  --control-base: #738d43;
+  background: linear-gradient(180deg, #edffba, #c4e884); border-color: #eeffc9; color: #19220e;
+  box-shadow: 0 6px 0 var(--control-base), 0 11px 20px #0005, inset 0 1px #ffffff70;
+}
+.comic-main .voice-controls > button.voice-button:hover:not(:disabled), .comic-main .voice-controls > button:last-child:hover:not(:disabled) { box-shadow: 0 8px 0 #738d43, 0 14px 25px #0005, inset 0 1px #ffffff70; }
+.comic-main .voice-controls > button.voice-button:active:not(:disabled), .comic-main .voice-controls > button:last-child:active:not(:disabled) { transform: translateY(5px); box-shadow: 0 1px 0 #738d43, 0 3px 8px #0004, inset 0 1px #ffffff40; }
+.comic-main .voice-controls > button.voice-button.recording { --control-base: #683346; background: linear-gradient(180deg, #ffc0ce, #e37b9c); border-color: #ffd9e4; color: #381524; box-shadow: 0 6px 0 #683346, 0 10px 20px #0004, inset 0 1px #ffffff40; }
+.comic-main .voice-controls > button:disabled { opacity: .48; box-shadow: 0 3px 0 var(--control-base), inset 0 1px #ffffff30; }
+.comic-main .confirmation, .comic-main .ending, .comic-main .busy, .comic-main .modal { background: #21192d; border-color: #9b80ad66; color: var(--reader-ink); }
+.comic-main .confirmation > strong, .comic-main .ending h2 { color: var(--reader-ink); }
+.comic-main .confirmation p, .comic-main .ending p, .comic-main .modal p, .comic-main .reading-history { color: #baaccb; }
+.comic-main .consequences { color: #b4a3c7; }
+.comic-main .consequences strong { color: var(--reader-lime); }
+.comic-main .journey-step { background: #231b30; border-color: #6d587a; color: #d0c2df; }
+.comic-main .journey-step > span { color: var(--reader-lime); }
+.comic-main .spinner { border-color: #645173; border-top-color: var(--reader-lime); }
+.comic-main footer { color: var(--reader-muted); border-color: #ffffff18; align-items: center; }
+.comic-main .comic-footer-brand .pt-brand img { width: 32px; height: 32px; }
+.comic-main .comic-footer-brand .pt-brand-name { font-size: 20px; }
+.comic-main .comic-footer-brand .pt-brand-credit { font-size: 6px; }
+@media (max-width: 720px) {
+  .comic-main .paper { padding: 12px 8px; }
+  .comic-main .order-editor { padding: 18px 14px; }
+  .comic-main .choices { gap: 14px; }
+  .comic-main .choices > button.choice { padding: 18px 12px; gap: 12px; }
+  .comic-main .choice strong { font-size: 14px; }
+  .comic-main .page-position { gap: 5px; font-size: 14px; }
+  .comic-main .page-position > span:first-child { display: none; }
+  .comic-main .page-navigation > button.secondary { padding: 12px 10px; }
+}
 @media print {
   body {
     background: white;
@@ -1168,6 +1274,8 @@ select {
     letter-spacing: 0;
   }
   .print-book .paper {
+    background: #ede3ce;
+    color: #1d2a31;
     break-before: page;
     break-inside: avoid;
     padding: 10mm;

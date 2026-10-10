@@ -8,6 +8,7 @@ import {
 } from "./content";
 import "./Platform.css";
 import Brand from "../components/Brand";
+import UtopiaScene from "../components/UtopiaScene";
 
 type IconName = "arrow" | "spark" | "orbit" | "signal" | "play" | "check";
 function Icon({
@@ -523,13 +524,18 @@ export default function Platform({ onStart, onResume, savedName }: Props) {
         </section>
       </main>
       <footer className="plot-footer">
+        <UtopiaScene />
+        <div className="plot-footer-invitation">
+          <div><p className="plot-section-label">YOUR NEXT CHAPTER IS STILL UNWRITTEN</p><h2>Build a world<br /><em>worth stepping into.</em></h2></div>
+          <div className="plot-footer-actions"><a className="plot-button plot-button-lime" href="#play">Direct a story<Icon name="arrow" /></a><a className="plot-button plot-button-glass" href="#work">Learn something new<Icon name="arrow" /></a></div>
+        </div>
         <div>
           <a className="plot-logo" href="#top">
             <Brand />
           </a>
           <p>Stay curious. Keep becoming.</p>
         </div>
-        <div>
+        <div className="plot-footer-links">
           <a href="#play">Play</a>
           <a href="#work">Work</a>
           <a href="#how">The idea</a>
