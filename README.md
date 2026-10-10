@@ -1,10 +1,22 @@
-# PlotTwist
+# PlotTwist by Futurelab
 
-### Stories you direct. Skills you learn. Your next chapter.
+**Blurb:** *PlotTwist by Futurelab: Every choice opens a new chapter. Play to explore. Work to grow.*
 
-Lumiclinik is a platform for **personalized, interactive storytelling and learning**. You enter a story, make a decision, see its consequences, and choose what happens next. Your role grows with the experience: you can be the Captain of a spaceship, the person who changes a fantasy world, or a learner solving a situation from real life.
+**Project:** PlotTwist by Futurelab is a personalized storytelling and learning platform. **Play** offers interactive sci-fi and fantasy adventures; **Work** helps students and professionals upskill through story-based experiences.
 
-The platform has two experiences built around that same loop:
+**Solution:** Users direct what happens next through voice, text, or guided choices—shaping their stories and learning through decisions, consequences, and practice.
+
+**Tech stack:** React, TypeScript, Vite, Tailwind CSS, Netlify Functions, Zod, and OpenAI APIs for stories, decisions, voice, and images. GitHub Actions handles checks; Netlify and ChatGPT Sites provide hosting.
+
+**Explore PlotTwist:**
+
+- **Netlify:** [plottwistbyfuturelab.netlify.app](https://plottwistbyfuturelab.netlify.app/)
+- **GitHub:** [futurelabstudios/plottwist](https://github.com/futurelabstudios/plottwist)
+- **ChatGPT Site:** [PlotTwist](https://plottwist-borrowed-stars.futurelabstudios.chatgpt.site/)
+- **YouTube:** Coming soon
+- **Slide deck:** [PlotTwist explainer deck](https://docs.google.com/presentation/d/12D6AWENRo8JqOl7xpxU8AYufs0dQ3YHyqOUTDjoo7Hg/edit?usp=sharing)
+
+## Play and Work
 
 |                | **Play**                                                               | **Work**                                                       |
 | -------------- | ---------------------------------------------------------------------- | -------------------------------------------------------------- |
@@ -14,8 +26,6 @@ The platform has two experiences built around that same loop:
 | Who it is for  | Curious readers, storytellers and people who enjoy interactive fiction | Students, creators and professionals who want to upskill       |
 
 **Play gives your imagination somewhere to go. Work gives your ambition something to build.**
-
-[Open the live platform](https://plottwist-borrowed-stars.netlify.app) · [ChatGPT Sites version](https://plottwist-borrowed-stars.futurelabstudios.chatgpt.site) _(owner-private)_
 
 ## How the experience works
 
@@ -75,13 +85,13 @@ These are authored starter scenarios. Longer learning paths, open-ended answers,
 
 ## The platform experience
 
-The landing page introduces both sides of Lumiclinik with a cinematic portal connecting sci-fi and fantasy worlds. It includes pointer-responsive depth, animated orbits, floating labels, stars, scroll reveals, moving typography and interactive cards. Work’s visual language uses orbiting learning icons and clear scenario progression.
+The landing page introduces both sides of PlotTwist by Futurelab with a cinematic portal connecting sci-fi and fantasy worlds. It includes pointer-responsive depth, animated orbits, floating labels, stars, scroll reveals, moving typography and interactive cards. Work’s visual language uses orbiting learning icons and clear scenario progression.
 
 The experience supports desktop and mobile layouts, keyboard navigation, native dialogs and reduced-motion preferences. The sci-fi comic keeps its established paper-and-panel visual language when launched from the platform. Existing saved books can be resumed from the Play section.
 
 ## What is implemented today
 
-- The Lumiclinik landing page, Play and Work catalog, and working experience launchers.
+- The PlotTwist by Futurelab landing page, Play and Work catalog, and working experience launchers.
 - The complete ten-page sci-fi comic and three-page fantasy short.
 - Three courses with nine decision-led chapters, consequences, debriefs and exercises.
 - Server-only OpenAI integration for the sci-fi story’s decisions, dialogue, recorded voice, Realtime transcription signaling and optional images.
@@ -137,11 +147,7 @@ Sci-fi JSON exports contain the story text and decisions, not generated image da
 
 ## Deployment
 
-- **Netlify:** https://plottwist-borrowed-stars.netlify.app
-- **ChatGPT Sites:** https://plottwist-borrowed-stars.futurelabstudios.chatgpt.site _(owner-private)_
-- **GitHub:** https://github.com/futurelabstudios/plottwist
-
-The repository started as PlotTwist, the comic engine now used inside Lumiclinik’s Play experience. Its repository name and deployment addresses retain that original name.
+Live application, source code, video and explainer deck links are listed at the top of this README. PlotTwist by Futurelab is the platform and project name; the repository is maintained by Futurelab Studios.
 
 Netlify serves the built React frontend and the API. After authenticating and linking the Netlify CLI:
 
@@ -169,7 +175,7 @@ node scripts/smoke-local.mjs # exercises configured local live APIs
 Tests cover sci-fi routes and saves, fantasy branches and name continuity, learning-content decision invariants, API boundaries and schema failures, decision confidence, audio/image endpoints and microphone cleanup.
 
 ```text
-src/platform/Platform.tsx   Lumiclinik entrance, catalog, fantasy reader and learning player
+src/platform/Platform.tsx   PlotTwist by Futurelab landing page, catalog, fantasy reader and learning player
 src/platform/Platform.css  Hero, motion, responsive layouts and dialogs
 src/platform/content.ts    Fantasy story and authored learning scenarios
 src/App.tsx                Existing sci-fi comic and its interaction state
@@ -182,4 +188,4 @@ public/art/                Portal artwork and comic illustration atlases
 scripts/                   Local development, smoke checks and hosting helpers
 ```
 
-See [the comic’s visual direction](docs/visual-direction.md) and [Lumiclinik’s hero artwork](docs/lumiclinik-art.md) for the illustration system and generation prompt.
+See [the comic’s visual direction](docs/visual-direction.md) and [the platform’s hero artwork](docs/lumiclinik-art.md) for the illustration system and generation prompt.
