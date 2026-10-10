@@ -97,7 +97,7 @@ A city sleeps beneath two moons. A dragon guards a fading ember, and the legend 
 - Four endings, with the first decision remembered in the resolution.
 - Authored, local interactions; click to direct the story and replay a different path.
 
-The fantasy short is the second example of the shared format. Its current illustrations use different crops of the portal artwork; a dedicated scene library can expand with the story catalog.
+The fantasy short uses its own anime illustration atlas, with scene changes across its three four-panel pages.
 
 ## 🧠 Work: learn by deciding what happens next
 
@@ -105,7 +105,9 @@ Work brings the same storytelling format into upskilling. Each course places you
 
 For example, an AI productivity scenario begins with a team that needs a presentation draft. You decide how to brief the AI assistant, how to check an unsupported claim, and how to improve the draft. Each step teaches a skill as the scenario moves forward.
 
-The current course library contains three short learning journeys:
+**The Assistant You Build** adds a 12-page AI engineering comic to Work. A named student builds a campus assistant, discovers failures, and directs the repairs. Four choices at each of eleven turning points teach RAG, ingestion and chunking, embeddings and retrieval, grounded answers, context engineering, agent loops, tool contracts, prompt injection, evaluations, and production hardening. Every page has four panels, classic manga illustrations and expandable blue-and-brown concept diagrams, a practical exercise, and personal field notes. Decisions carry consequences into the next page; readers can rewind, save on the device, and download their notes. It works without an API key. See the [curriculum and technical sources](docs/ai-engineering-curriculum.md).
+
+The course library also contains three short learning journeys:
 
 | Course                            | Scenario and skills                                                                                         | Format                        |
 | --------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------- |
@@ -247,4 +249,6 @@ See [the comic’s visual direction](docs/visual-direction.md) and [the platform
 - **Play — The Last Signal:** a five-page sci-fi comic with four panels per page. Four approaches branch into a shared transmitter crisis, then diverge into four endings. Earlier decisions leave resources and costs that remain visible after the paths merge. The reader’s captain name follows the entire journey, and progress is saved on the device.
 - **Work — The Life You Make:** ten four-panel pages following a young graduate through a master’s, a startup or a first job. Thirty route-specific scenarios cover funding, customer validation, family expectations, setbacks, collaboration, evidence, mentoring and changing direction. Each page pairs a decision with its consequences and a practical learning prompt. Rewriting a choice replaces its dependent future.
 
-These authored comics use anime illustration atlases for Play, the original illustrated cast for Work, proportional panel framing and folding page transitions. They work without an API key; the existing OpenAI features remain available in The Borrowed Stars.
+- **Work — The Assistant You Build:** twelve four-panel pages teaching AI engineering through a campus-assistant project. Eleven decisions each offer four variations, explain consequences and repairs, and carry continuity forward. Classic manga scenes and live SVG diagrams use three blues and a warm brown; field notes turn the narrative into applied exercises. Open the direct reader with `?mode=engineering`.
+
+These authored comics use anime illustration atlases for Play, the original illustrated cast for the career story, geometric concept illustrations for the AI engineering story, proportional panel framing and folding page transitions. They work without an API key; the existing OpenAI features remain available in The Borrowed Stars.

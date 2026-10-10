@@ -5,3 +5,6 @@
 `signal-anime-atlas.webp` and `ember-anime-atlas.webp` contain eight square scenes each in a 4 × 2 layout. Generated with the built-in image tool, they use fine anime ink lines and a restrained violet wash. `AnimeStoryArt` crops by SVG viewBox and preserves proportions with `meet`; narration remains separate accessible HTML. Work retains `life-crossroads-atlas-v2.png`.
 
 See `docs/anime-art-direction.md` for the generation briefs and tile maps.
+
+
+AI engineering learning comic: `ai-lab-manga-foundations.webp` and `ai-lab-manga-systems.webp` each contain eight square manga scenes (four columns × two rows). Original cast, expressive ink work and restrained blue/brown accents. The renderer preserves proportions; technical diagrams remain live SVG. Full prompts and scene mapping: `docs/ai-manga-art-direction.md`.

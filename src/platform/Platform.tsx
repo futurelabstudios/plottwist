@@ -9,6 +9,7 @@ import {
 import "./Platform.css";
 import Brand from "../components/Brand";
 import WorkEntrance from "../WorkEntrance";
+import { EngineeringEntrance } from "../EngineeringEntrance";
 import SignalComic from "./SignalComic";
 import AnimeStoryArt from "../components/AnimeStoryArt";
 
@@ -91,11 +92,12 @@ function loadLearning(): LearningSave {
 }
 interface Props {
   onWork: () => void;
+  onEngineering: () => void;
   onStart: (name: string) => void;
   onResume: () => void;
   savedName?: string;
 }
-export default function Platform({ onStart, onResume, onWork, savedName }: Props) {
+export default function Platform({ onStart, onResume, onWork, onEngineering, savedName }: Props) {
   const [copyrightYear] = useState(() => new Date().getFullYear());
   const [signalOpen, setSignalOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
@@ -462,6 +464,7 @@ export default function Platform({ onStart, onResume, onWork, savedName }: Props
             </p>
           </div>
           <WorkEntrance onEnter={onWork} />
+          <EngineeringEntrance onEnter={onEngineering} />
           <div className="plot-course-grid">
             {courses.map((c, i) => {
               const done = c.lessons.filter((l) =>

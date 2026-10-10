@@ -82,8 +82,8 @@ function ComicPage({ page, art }: { page: Page; art?: string }) {
 }
 export default function App() {
   const [book, setBook] = useState<Book | null>(loadBook);
-  const [screen, setScreen] = useState<"platform" | "comic" | "work">(() =>
-    ["work", "learn"].includes(new URLSearchParams(window.location.search).get("mode") ?? "") ? "work" : "platform",
+  const [screen, setScreen] = useState<"platform" | "comic" | "work" | "engineering">(() =>
+    new URLSearchParams(window.location.search).get("mode") === "engineering" ? "engineering" : ["work", "learn"].includes(new URLSearchParams(window.location.search).get("mode") ?? "") ? "work" : "platform",
   );
   const [view, setView] = useState(() =>
     Math.max(0, (loadBook()?.pages.length ?? 1) - 1),
@@ -412,7 +412,13 @@ export default function App() {
     a.click();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
-  if (screen === "work") return <WorkScreen onExit={() => {
+  if (screen === "work" || screen === "engineering") return <WorkScreen engineering={screen === "engineering"} onSwitch={engineering => {
+    const url = new URL(window.location.href);
+    url.searchParams.set("mode", engineering ? "engineering" : "work");
+    window.history.replaceState({}, "", url);
+    setScreen(engineering ? "engineering" : "work");
+    window.scrollTo({ top: 0 });
+  }} onExit={() => {
     const url = new URL(window.location.href);
     url.searchParams.delete("mode");
     url.hash = "play";
@@ -423,6 +429,14 @@ export default function App() {
   if (screen === "platform" || !book)
     return (
       <Platform
+        onEngineering={() => {
+          const url = new URL(window.location.href);
+          url.searchParams.set("mode", "engineering");
+          url.hash = "";
+          window.history.replaceState({}, "", url);
+          setScreen("engineering");
+          window.scrollTo({ top: 0 });
+        }}
         onWork={() => {
           const url = new URL(window.location.href);
           url.searchParams.set("mode", "work");

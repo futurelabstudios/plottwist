@@ -94,3 +94,10 @@
 @media (prefers-reduced-motion: reduce) {
   .cinema-work-feature *, .cinema-work-feature *::before, .cinema-work-feature *::after { animation: none !important; transition: none !important; }
 }
+
+.work-library-switch { display:flex; gap:12px; padding:20px clamp(16px,3vw,48px); border-bottom:1px solid var(--color-rule); }
+.work-library-switch button { background:linear-gradient(140deg,#222034,#171524); color:#e1dcef; border:1px solid #494258; border-radius:12px; padding:14px 20px; box-shadow:inset 0 1px #ffffff15,0 4px 0 #0a0912; font:600 .85rem 'DM Sans',sans-serif; text-align:left; min-height:55px; cursor:pointer; }
+.work-library-switch button span { display:block; font-size:.65rem; color:#aaa0bf; margin-top:5px; }
+.work-library-switch button[aria-current] { border-color:#58d3f4; color:#58d3f4; }
+.work-library-switch button:focus-visible { outline:3px solid var(--color-lime); outline-offset:4px; }
+@media(max-width:600px) { .work-library-switch { gap:10px; } .work-library-switch button { flex:1; padding:12px; font-size:.75rem; } }
