@@ -311,3 +311,5 @@
   width:100%; height:auto; aspect-ratio:1; flex:none; transform:none;
 }
 .work-comic .life-four-panels .life-illustrated .life-camera { animation:none; transform:none; }
+.work-comic .life-four-panels > .life-panel { grid-row:auto; }
+.work-comic .life-four-panels > .life-panel > .life-art.life-illustrated { min-height:0; }
