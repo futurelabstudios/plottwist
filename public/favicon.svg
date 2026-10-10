@@ -1,8 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-labelledby="title">
+  <title id="title">PlotTwist branching tile emblem</title>
   <g fill="#39e4d2">
-    <rect x="6" y="19" width="12" height="12" rx="2.5"/><rect x="21" y="19" width="12" height="12" rx="2.5"/><rect x="36" y="19" width="12" height="12" rx="2.5"/>
-    <rect x="6" y="34" width="12" height="12" rx="2.5"/><rect x="21" y="34" width="12" height="12" rx="2.5"/><rect x="36" y="34" width="12" height="12" rx="2.5"/>
-    <rect x="6" y="49" width="12" height="12" rx="2.5"/><rect x="21" y="49" width="12" height="12" rx="2.5"/><rect x="36" y="49" width="12" height="12" rx="2.5"/>
+    <rect x="6" y="19" width="12" height="12" rx="2.5"/>
+    <rect x="21" y="19" width="12" height="12" rx="2.5"/>
+    <rect x="36" y="19" width="12" height="12" rx="2.5"/>
+    <rect x="6" y="34" width="12" height="12" rx="2.5"/>
+    <rect x="21" y="34" width="12" height="12" rx="2.5"/>
+    <rect x="36" y="34" width="12" height="12" rx="2.5"/>
+    <rect x="6" y="49" width="12" height="12" rx="2.5"/>
+    <rect x="21" y="49" width="12" height="12" rx="2.5"/>
+    <rect x="36" y="49" width="12" height="12" rx="2.5"/>
   </g>
   <rect x="45" y="4" width="12" height="12" rx="3" fill="#d8fb8d"/>
 </svg>
