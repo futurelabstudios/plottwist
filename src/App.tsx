@@ -99,10 +99,12 @@ export default function App() {
   const [fallback, setFallback] = useState(false);
   const [voiceMode, setVoiceMode] = useState<VoiceMode>("recorded");
   const [voicePhase, setVoicePhase] = useState<VoicePhase>("idle");
+  const [opening, setOpening] = useState(false);
   const [oldPage, setOldPage] = useState<{
     page: Page;
     art?: string;
     backwards: boolean;
+    height: number;
   } | null>(null);
   const [artCache, setArtCache] = useState<{ key: string; value?: string }>({
     key: "",
@@ -115,6 +117,7 @@ export default function App() {
     undefined,
   );
   const titleRef = useRef<HTMLHeadingElement>(null);
+  const bookStage = useRef<HTMLDivElement>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const voice = useRef<VoiceSession | null>(null);
   const page = book?.pages[view];
@@ -200,15 +203,27 @@ export default function App() {
     setPending(null);
     setFallback(false);
   }
+  useEffect(() => {
+    if (!opening) return;
+    const timer = setTimeout(() => setOpening(false), window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 1200);
+    return () => clearTimeout(timer);
+  }, [opening]);
+  function finishTurn() {
+    clearTimeout(turnTimer.current);
+    setOldPage(null);
+  }
   function turn(next: number, nextBook = book) {
     if (!nextBook || next < 0 || next >= nextBook.pages.length || oldPage)
       return;
     clearDecision();
-    if (page) setOldPage({ page, art: customArt, backwards: next < view });
+    setOpening(false);
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (page && !reduced) setOldPage({ page, art: customArt, backwards: next < view, height: bookStage.current?.getBoundingClientRect().height ?? 0 });
     setView(next);
     setBook(nextBook);
     clearTimeout(turnTimer.current);
-    turnTimer.current = setTimeout(() => setOldPage(null), 720);
+    // The CSS animation owns completion; this recovers if the browser cancels it.
+    turnTimer.current = setTimeout(finishTurn, 1300);
   }
   function choose(branch: Branch) {
     if (busy || voicePhase !== "idle") return;
@@ -401,6 +416,7 @@ export default function App() {
         onResume={() => {
           clearDecision();
           setView(Math.max(0, (book?.pages.length ?? 1) - 1));
+          setOpening(true);
           setScreen("comic");
           window.scrollTo({ top: 0 });
         }}
@@ -410,6 +426,7 @@ export default function App() {
           clearTimeout(turnTimer.current);
           setBook(createBook(captain));
           setView(0);
+          setOpening(true);
           setScreen("comic");
         }}
       />
@@ -509,16 +526,25 @@ export default function App() {
           </span>
         </div>
         <div
-          className={`book-stage ${view === 0 ? "book-opening" : ""}`}
+          ref={bookStage}
+          className={`book-stage ${opening ? "book-opening" : ""} ${oldPage ? "book-turning" : ""}`}
+          style={oldPage ? { minHeight: oldPage.height } : undefined}
           aria-busy={!!oldPage}
         >
           {page && <ComicPage page={page} art={customArt} />}
+          <div className="book-spine" aria-hidden="true" />
+          <div className={`page-reveal-shadow ${oldPage?.backwards ? "backwards" : ""}`} aria-hidden="true" />
+          {opening && <div className="book-cover" aria-hidden="true" onAnimationEnd={(event) => { if (event.target === event.currentTarget) setOpening(false); }}>
+            <div className="book-cover-content"><Brand /><span>AN INTERACTIVE COMIC</span><h2>The Borrowed<br />Stars</h2><p>A story shaped by Captain {book.name}</p><i>✦</i></div>
+          </div>}
           {oldPage && (
             <div
               className={`turn-sheet ${oldPage.backwards ? "backwards" : ""}`}
               aria-hidden="true"
+              onAnimationEnd={(event) => { if (event.target === event.currentTarget) finishTurn(); }}
             >
-              <ComicPage page={oldPage.page} art={oldPage.art} />
+              <div className="turn-face turn-front"><ComicPage page={oldPage.page} art={oldPage.art} /><div className="page-curl" /></div>
+              <div className="turn-face turn-back"><div className="turn-back-imprint">PLOT TWIST<span>YOUR NEXT CHAPTER</span></div></div>
             </div>
           )}
         </div>
