@@ -4,6 +4,8 @@
   </a>
 </p>
 
+<p align="center"><img src="./public/brand/plottwist-mark.svg" alt="PlotTwist branching page emblem" width="72" /></p>
+
 <h1 align="center">PlotTwist by Futurelab Studios</h1>
 
 <p align="center"><strong>Every choice opens a new chapter. Play to explore. Work to grow.</strong></p>

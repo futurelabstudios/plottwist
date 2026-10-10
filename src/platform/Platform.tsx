@@ -7,6 +7,7 @@ import {
   type FantasyChoice,
 } from "./content";
 import "./Platform.css";
+import Brand from "../components/Brand";
 
 type IconName = "arrow" | "spark" | "orbit" | "signal" | "play" | "check";
 function Icon({
@@ -91,6 +92,7 @@ interface Props {
   savedName?: string;
 }
 export default function Platform({ onStart, onResume, savedName }: Props) {
+  const [activeSection, setActiveSection] = useState("");
   const root = useRef<HTMLDivElement>(null);
   const hero = useRef<HTMLElement>(null);
   const dialog = useRef<HTMLDialogElement>(null);
@@ -126,6 +128,15 @@ export default function Platform({ onStart, onResume, savedName }: Props) {
       ?.querySelectorAll("[data-reveal]")
       .forEach((el) => observer.observe(el));
     return () => observer.disconnect();
+  }, []);
+  useEffect(() => {
+    const sections = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) setActiveSection(entry.target.id === "top" ? "" : entry.target.id);
+      }
+    }, { rootMargin: "-20% 0px -60% 0px" });
+    root.current?.querySelectorAll("main > section[id]").forEach((section) => sections.observe(section));
+    return () => sections.disconnect();
   }, []);
   useEffect(() => {
     if (selection) dialog.current?.showModal();
@@ -217,18 +228,17 @@ export default function Platform({ onStart, onResume, savedName }: Props) {
       </a>
       <header className="plot-nav">
         <a className="plot-logo" href="#top" aria-label="PlotTwist by Futurelab Studios home">
-          <span className="plot-logomark">
-            <Icon name="spark" />
-          </span>
-          PlotTwist<span className="plot-logo-dot">.</span><span className="plot-logo-byline">by Futurelab Studios</span>
+          <Brand />
         </a>
         <nav aria-label="Main navigation">
-          <a href="#play">Play</a>
-          <a href="#work">Work</a>
-          <a href="#how">The idea</a>
+          {[["play", "Play"], ["work", "Work"], ["how", "The idea"]].map(([id, label]) => (
+            <a key={id} href={`#${id}`} aria-current={activeSection === id ? "location" : undefined}>
+              {label}<span aria-hidden="true">{id === "play" ? "01" : id === "work" ? "02" : "03"}</span>
+            </a>
+          ))}
         </nav>
         <a className="plot-nav-cta" href="#play">
-          Find your next chapter <Icon name="arrow" />
+          Start your story <Icon name="arrow" />
         </a>
       </header>
       <main className="plot-main">
@@ -515,8 +525,7 @@ export default function Platform({ onStart, onResume, savedName }: Props) {
       <footer className="plot-footer">
         <div>
           <a className="plot-logo" href="#top">
-            <Icon name="spark" />
-            PlotTwist<span className="plot-logo-dot">.</span><span className="plot-logo-byline">by Futurelab Studios</span>
+            <Brand />
           </a>
           <p>Stay curious. Keep becoming.</p>
         </div>

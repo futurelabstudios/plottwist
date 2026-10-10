@@ -23,6 +23,7 @@ import { VoiceSession, type VoiceMode, type VoicePhase } from "./lib/voice";
 import { readArt, saveArt } from "./lib/art-cache";
 import "./App.css";
 import Platform from "./platform/Platform";
+import Brand from "./components/Brand";
 
 const SAVE_KEY = "plottwist-book-v2";
 function loadBook(): Book | null {
@@ -38,16 +39,6 @@ const defaultConfig: ServiceConfig = {
   images: false,
   reason: "Offline edition",
 };
-function Mark() {
-  return (
-    <span className="mark" aria-hidden="true">
-      <i />
-      <i />
-      <i />
-      <i />
-    </span>
-  );
-}
 function artStyle(art: number, custom?: string, index = 0): CSSProperties {
   const cols = custom ? 2 : 4,
     rows = custom ? 2 : art < 8 ? 2 : 4,
@@ -424,8 +415,8 @@ export default function App() {
       />
     );
   return (
-    <main>
-      <header>
+    <main className="comic-main">
+      <header className="comic-navbar">
         <a
           href="/"
           className="brand"
@@ -435,8 +426,7 @@ export default function App() {
             setScreen("platform");
           }}
         >
-          <Mark />
-          PlotTwist by Futurelab Studios
+          <Brand />
         </a>
         <div className="mode">
           <span className="badge">
@@ -598,6 +588,7 @@ export default function App() {
               />
               <div className="voice-controls">
                 <button
+                  aria-pressed={voicePhase === "recording"}
                   className={`voice-button ${voicePhase === "recording" ? "recording" : ""}`}
                   disabled={
                     !config.live ||
@@ -616,13 +607,14 @@ export default function App() {
                     }
                   }}
                 >
+                  <svg className="control-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true"><rect x="9" y="2" width="6" height="13" rx="3" /><path d="M5 10v2a7 7 0 0 0 14 0v-2M12 19v3m-4 0h8" /></svg>
                   {voicePhase === "recording"
                     ? "■ Stop recording"
                     : voicePhase === "connecting"
                       ? "Connecting microphone…"
                       : voicePhase === "transcribing"
                         ? "Transcribing…"
-                        : "♩ Speak your order"}
+                        : "Speak your order"}
                 </button>
                 {voicePhase !== "idle" && (
                   <button

@@ -1787,3 +1787,102 @@ main.plot-main {
 .plot-logo-byline { color: #aaa8bc; font-size: 10px; font-weight: 450; letter-spacing: 0; margin-left: 2px; padding-left: 10px; border-left: 1px solid #ffffff24; }
 .plot-footer .plot-logo-byline { font-size: 9px; }
 @media (max-width: 380px) { .plot-logo-byline { font-size: 8px; padding-left: 6px; } }
+
+/* Full-bleed spaces and the PlotTwist navigation shell. */
+.plot-nav {
+  position: fixed;
+  width: 100%;
+  padding: 16px clamp(14px, 3vw, 48px);
+  min-height: 82px;
+  background: linear-gradient(180deg, #15121bef, #0c0a13dd);
+  border-bottom: 1px solid #e2d5ff1c;
+  box-shadow: 0 8px 32px #0003, inset 0 1px #ffffff08;
+  backdrop-filter: blur(24px) saturate(145%);
+  gap: 24px;
+}
+.plot-nav .plot-logo, .plot-footer .plot-logo { letter-spacing: normal; }
+.plot-nav nav {
+  gap: 6px;
+  padding: 5px;
+  border: 1px solid #ffffff14;
+  border-radius: 100px;
+  background: #07060e66;
+}
+.plot-nav nav a {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 11px 20px;
+  border-radius: 100px;
+  transition: background .2s, color .2s;
+}
+.plot-nav nav a::after { display: none; }
+.plot-nav nav a > span { font-size: 8px; color: #8b829c; }
+.plot-nav nav a:hover { color: #fff; background: #ffffff0b; }
+.plot-nav nav a[aria-current] { background: #d8fb8d14; color: #d8fb8d; box-shadow: inset 0 1px #d8fb8d15; }
+.plot-nav nav a[aria-current] > span { color: #d8fb8d88; }
+.plot-section, .plot-footer { width: 100%; padding-inline: clamp(14px, 3vw, 48px); }
+.plot-section { scroll-margin-top: 90px; }
+.plot-hero { min-height: 100svh; height: max(840px, 100svh); }
+.plot-dialog { width: calc(100% - 48px); max-width: none; }
+.plot-dialog:has(.plot-story-entry) { max-width: 620px; }
+.plot-dialog-comic { width: calc(100% - 48px); max-width: none; }
+
+/* Solid faces, a machined rim, and a short extrusion beneath each control. */
+.plot-button, .plot-nav-cta, .plot-story-button {
+  --button-base: #23202e;
+  border: 1px solid #756887;
+  background: linear-gradient(180deg, #36303f, #211d2b);
+  box-shadow: 0 5px 0 var(--button-base), 0 9px 16px #0005, inset 0 1px 0 #ffffff25;
+  transition: transform .18s, box-shadow .18s, background .18s;
+  color: #f3edf9;
+}
+.plot-button-lime, .plot-nav-cta {
+  --button-base: #738d43;
+  background: linear-gradient(180deg, #ebffb9, #c3e882);
+  color: #18200e;
+  border-color: #eeffc9;
+}
+.plot-nav-cta { min-height: 43px; font-weight: 650; }
+.plot-button-glass { backdrop-filter: none; }
+.plot-button:hover, .plot-nav-cta:hover, .plot-story-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 0 var(--button-base), 0 13px 24px #0005, inset 0 1px 0 #ffffff30;
+  background: linear-gradient(180deg, #433a50, #292334);
+}
+.plot-button-lime:hover, .plot-nav-cta:hover { background: linear-gradient(180deg, #f0ffc9, #d4f294); }
+.plot-button:active, .plot-nav-cta:active, .plot-story-button:active {
+  transform: translateY(4px);
+  box-shadow: 0 1px 0 var(--button-base), 0 3px 8px #0005, inset 0 1px 0 #ffffff20;
+}
+.plot-button:disabled { transform: none; box-shadow: 0 2px 0 var(--button-base); }
+.plot-fantasy-decisions button {
+  background: linear-gradient(180deg, #2e263e, #1d172b);
+  border-color: #756089;
+  box-shadow: 0 4px 0 #100c1b, inset 0 1px #ffffff18, 0 8px 14px #0003;
+  transition: transform .18s, box-shadow .18s;
+}
+.plot-fantasy-decisions button:active { transform: translateY(3px); box-shadow: 0 1px 0 #100c1b, inset 0 1px #ffffff18; }
+@media (max-width: 1000px) { .plot-nav nav a { padding: 11px 16px; } }
+@media (max-width: 720px) {
+  .plot-nav { flex-wrap: wrap; justify-content: center; gap: 12px; padding: 12px 14px; }
+  .plot-nav .plot-logo { margin-right: auto; }
+  .plot-nav nav { gap: 2px; }
+  .plot-nav nav a { padding: 11px 12px; gap: 0; font-size: 12px; }
+  .plot-nav nav a > span { display: none; }
+  .plot-nav nav a:last-child { display: flex; }
+  .plot-hero { height: max(790px, 100svh); min-height: 100svh; padding-inline: 14px; }
+  .plot-section { scroll-margin-top: 135px; }
+  .plot-dialog, .plot-dialog-comic { width: calc(100% - 16px); max-height: 96svh; border-radius: 14px; }
+  .plot-footer .pt-brand-name { font-size: 24px; }
+}
+@media (max-width: 470px) {
+  .plot-nav .plot-logo { margin: 0; }
+  .plot-nav nav { width: 100%; justify-content: center; }
+  .plot-nav nav a { flex: 1; justify-content: center; }
+  .plot-hero { padding-top: 174px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .plot-button, .plot-nav-cta, .plot-story-button, .plot-fantasy-decisions button { transition: none; }
+}
+@media print { .plot-nav { display: none; } }

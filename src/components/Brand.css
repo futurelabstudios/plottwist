@@ -1,0 +1,8 @@
+.pt-brand { display: inline-flex; align-items: center; gap: 11px; white-space: nowrap; }
+.pt-brand img { width: 44px; height: 44px; flex: none; filter: drop-shadow(0 4px 8px #0005); }
+.pt-brand-type { display: flex; flex-direction: column; align-items: flex-start; gap: 5px; }
+.pt-brand-name { font-family: "Avenir Next", Inter, Arial, sans-serif; color: #f5f2ff; font-size: 26px; font-weight: 800; letter-spacing: -1.2px; line-height: 1; }
+.pt-brand-name > span { font-weight: 500; }
+.pt-brand-name i { color: #d8fb8d; font-style: normal; }
+.pt-brand-credit { color: #aaa3bd; font-size: 7px; font-weight: 600; letter-spacing: 1.55px; line-height: 1; }
+@media (max-width: 720px) { .pt-brand img { width: 38px; height: 38px; } .pt-brand-name { font-size: 24px; } .pt-brand-credit { font-size: 6px; letter-spacing: 1.35px; } }

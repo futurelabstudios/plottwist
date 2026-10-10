@@ -28,3 +28,6 @@ dist-ssr
 !.env.example
 .netlify/
 hosting/chatgpt/
+
+# Browser verification artifacts
+output/playwright/

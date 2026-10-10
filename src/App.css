@@ -1,7 +1,7 @@
 main {
-  max-width: 1120px;
+  max-width: none;
   margin: auto;
-  padding: 24px 32px;
+  padding: 24px clamp(14px, 3vw, 48px);
 }
 header {
   display: flex;
@@ -1077,6 +1077,71 @@ select {
   * {
     scroll-behavior: auto !important;
   }
+}
+
+/* The reader uses the available viewport, with tactile physical controls. */
+.comic-main { width: 100%; padding: 20px clamp(12px, 3vw, 48px); }
+.comic-navbar { padding-bottom: 18px; border-bottom: 1px solid #a9c7dd25; }
+.comic-navbar .brand { letter-spacing: normal; }
+.comic-main .paper .panel { aspect-ratio: 1.18; }
+.comic-main :is(.secondary, .voice-button, .reset, .choice),
+.comic-main .voice-controls > button:not(.text-button),
+.comic-main .confirmation > button:not(.secondary),
+.comic-main .modal > button:not(.secondary) {
+  --control-base: #04151e;
+  min-height: 44px;
+  border: 1px solid #4d8792;
+  background: linear-gradient(180deg, #183b48, #0c2632);
+  color: #e5f4f6;
+  box-shadow: 0 5px 0 var(--control-base), 0 9px 18px #0004, inset 0 1px #ffffff20;
+  transition: transform .16s, box-shadow .16s, filter .16s;
+}
+.comic-main .voice-button,
+.comic-main .voice-controls > button:last-child,
+.comic-main .confirmation > button:not(.secondary) {
+  --control-base: #147c7c;
+  background: linear-gradient(180deg, #88fff1, #37d4c9);
+  border-color: #b3fff7;
+  color: #06252c;
+}
+.comic-main .voice-button { display: inline-flex; align-items: center; justify-content: center; gap: 11px; font-weight: 800; padding: 14px 22px; }
+.control-icon { width: 22px; height: 22px; flex: none; }
+.comic-main .voice-button.recording {
+  --control-base: #702736;
+  background: linear-gradient(180deg, #ffb5c0, #f46f8d);
+  color: #37101b;
+  border-color: #ffd9df;
+}
+.comic-main .choice.selected { border-color: #9affef; background: linear-gradient(180deg, #24616a, #103e49); }
+.comic-main :is(.secondary, .voice-button, .reset, .choice):hover:not(:disabled),
+.comic-main .voice-controls > button:not(.text-button):hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 0 var(--control-base), 0 12px 22px #0005, inset 0 1px #ffffff30;
+}
+.comic-main :is(.secondary, .voice-button, .reset, .choice):active:not(:disabled),
+.comic-main .voice-controls > button:not(.text-button):active:not(:disabled),
+.comic-main .confirmation > button:active:not(:disabled) {
+  transform: translateY(4px);
+  box-shadow: 0 1px 0 var(--control-base), 0 3px 8px #0004, inset 0 1px #ffffff20;
+}
+.comic-main :is(.secondary, .voice-button, .reset, .choice):disabled,
+.comic-main .voice-controls > button:disabled { box-shadow: 0 2px 0 var(--control-base); transform: none; }
+.comic-main .voice-controls { gap: 16px; padding-bottom: 8px; }
+.comic-main .page-navigation { margin-block: 28px 34px; }
+@media (max-width: 720px) {
+  .comic-main { padding: 14px 12px; }
+  .comic-navbar { align-items: flex-start; gap: 12px; flex-wrap: wrap; }
+  .comic-navbar .mode { margin-left: auto; flex-direction: column; align-items: flex-end; gap: 8px; }
+  .comic-main .paper { padding: 12px 8px; }
+  .comic-main .paper .panel { aspect-ratio: 1; }
+  .comic-main .voice-button { flex: 1 1 100%; min-height: 54px; font-size: 15px; }
+  .comic-main .voice-select { flex: 1; }
+  .comic-main .page-navigation { gap: 8px; }
+  .comic-main .page-navigation button { padding: 12px 14px; }
+  .comic-main .choice { padding: 14px 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .comic-main :is(.secondary, .voice-button, .reset, .choice), .comic-main .voice-controls > button { transition: none; }
 }
 @media print {
   body {
