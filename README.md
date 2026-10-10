@@ -1,33 +1,63 @@
-# PlotTwist by Futurelab
+<p align="center">
+  <a href="https://plottwistbyfuturelab.netlify.app/">
+    <img src="./public/art/lumiclinik-portal.webp" alt="A traveler stands before a glowing portal between a futuristic space station and a fantasy castle" width="100%" />
+  </a>
+</p>
 
-**Blurb:** *PlotTwist by Futurelab: Every choice opens a new chapter. Play to explore. Work to grow.*
+<h1 align="center">PlotTwist by Futurelab</h1>
 
-**Project:** PlotTwist by Futurelab is a personalized storytelling and learning platform. **Play** offers interactive sci-fi and fantasy adventures; **Work** helps students and professionals upskill through story-based experiences.
+<p align="center"><strong>Every choice opens a new chapter. Play to explore. Work to grow.</strong></p>
 
-**Solution:** Users direct what happens next through voice, text, or guided choices—shaping their stories and learning through decisions, consequences, and practice.
+<p align="center"><em>A personalized storytelling and learning platform where your decisions move the story—and your skills—forward.</em></p>
 
-**Tech stack:** React, TypeScript, Vite, Tailwind CSS, Netlify Functions, Zod, and OpenAI APIs for stories, decisions, voice, and images. GitHub Actions handles checks; Netlify and ChatGPT Sites provide hosting.
+<p align="center">
+  <a href="https://plottwistbyfuturelab.netlify.app/"><img alt="Open Play" src="https://img.shields.io/badge/OPEN_PLAY-171522?style=for-the-badge&logo=rocket&logoColor=d8fb8d" /></a>
+  <a href="https://plottwistbyfuturelab.netlify.app/#work"><img alt="Explore Work" src="https://img.shields.io/badge/EXPLORE_WORK-171522?style=for-the-badge&logo=target&logoColor=b7a4ff" /></a>
+  <a href="https://plottwist-borrowed-stars.futurelabstudios.chatgpt.site/"><img alt="Open the ChatGPT Site" src="https://img.shields.io/badge/CHATGPT_SITE-171522?style=for-the-badge&logo=openai&logoColor=white" /></a>
+</p>
 
-**Explore PlotTwist:**
+<p align="center">
+  <img alt="React" src="https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black" />
+  <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-6-3178C6?logo=typescript&logoColor=white" />
+  <img alt="Vite" src="https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white" />
+  <img alt="Tailwind CSS" src="https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white" />
+  <img alt="Netlify" src="https://img.shields.io/badge/Netlify-Functions-00C7B7?logo=netlify&logoColor=white" />
+  <img alt="OpenAI" src="https://img.shields.io/badge/OpenAI-APIs-412991?logo=openai&logoColor=white" />
+</p>
 
-- **Netlify:** [plottwistbyfuturelab.netlify.app](https://plottwistbyfuturelab.netlify.app/)
-- **GitHub:** [futurelabstudios/plottwist](https://github.com/futurelabstudios/plottwist)
-- **ChatGPT Site:** [PlotTwist](https://plottwist-borrowed-stars.futurelabstudios.chatgpt.site/)
-- **YouTube:** Coming soon
-- **Slide deck:** [PlotTwist explainer deck](https://docs.google.com/presentation/d/12D6AWENRo8JqOl7xpxU8AYufs0dQ3YHyqOUTDjoo7Hg/edit?usp=sharing)
+<p align="center"><a href="https://github.com/futurelabstudios/plottwist/actions"><img alt="GitHub Actions" src="https://img.shields.io/badge/GitHub_Actions-CI-2088FF?logo=githubactions&logoColor=white" /></a> &nbsp; <a href="https://github.com/futurelabstudios/plottwist"><img alt="GitHub repository" src="https://img.shields.io/badge/Built_by-Futurelab-f3a712" /></a></p>
 
-## Play and Work
+---
 
-|                | **Play**                                                               | **Work**                                                       |
-| -------------- | ---------------------------------------------------------------------- | -------------------------------------------------------------- |
-| What you enter | Illustrated sci-fi and fantasy worlds                                  | Scenarios that teach practical skills                          |
-| What you do    | Direct the story through your choices                                  | Decide the next step, see its outcome and learn why it matters |
-| What changes   | Relationships, resources, plot twists and endings                      | Your understanding, practice and progress through the course   |
-| Who it is for  | Curious readers, storytellers and people who enjoy interactive fiction | Students, creators and professionals who want to upskill       |
+## ✨ What is PlotTwist?
 
-**Play gives your imagination somewhere to go. Work gives your ambition something to build.**
+**PlotTwist by Futurelab** is a personalized storytelling and learning platform. **Play** offers interactive sci-fi and fantasy adventures; **Work** helps students and professionals upskill through story-based experiences.
 
-## How the experience works
+### The solution
+
+Users direct what happens next through voice, text, or guided choices—shaping their stories and learning through decisions, consequences, and practice.
+
+### Two ways to grow
+
+| 🚀 **PLAY** | 🧠 **WORK** |
+| --- | --- |
+| Explore illustrated sci-fi and fantasy worlds. Make choices, shift the plot, and discover a different ending. | Build practical skills through short, guided scenarios. Make a decision, see its effect, and practise what you learned. |
+| **For curious readers and storytellers** | **For students and professionals** |
+
+### The story loop
+
+**Step into a situation** → **Choose your next move** → **See what changes** → **Learn, continue, or try another path**
+
+## 🧭 Jump to a section
+
+- [How it works](#how-the-experience-works)
+- [Play: sci-fi and fantasy stories](#play-become-part-of-the-story)
+- [Work: practical learning journeys](#work-learn-by-deciding-what-happens-next)
+- [Run it locally](#run-locally)
+- [OpenAI integrations](#openai-integration)
+- [Project links](#project-links)
+
+## 🎲 How the experience works
 
 1. **Choose a world or a skill.** Enter Play for a story, or Work for a learning scenario.
 2. **Step into the situation.** Read the scene, understand the stakes and take a role in it.
@@ -37,7 +67,7 @@
 
 The wider product vision is to make reading and upskilling feel like participating in a story. The initial release demonstrates that format with authored branching stories, OpenAI-assisted comic dialogue, and short decision-led learning scenarios.
 
-## Play: become part of the story
+## 🚀 Play: become part of the story
 
 Play contains illustrated stories that readers can direct. The reader’s name becomes part of the narrative, and choices carry consequences into later scenes.
 
@@ -65,7 +95,7 @@ A city sleeps beneath two moons. A dragon guards a fading ember, and the legend 
 
 The fantasy short is the second example of the shared format. Its current illustrations use different crops of the portal artwork; a dedicated scene library can expand with the story catalog.
 
-## Work: learn by deciding what happens next
+## 🧠 Work: learn by deciding what happens next
 
 Work brings the same storytelling format into upskilling. Each course places you in a practical situation, asks for your next move and shows a consequence. A debrief explains the skill behind that decision, and an exercise lets you apply it to your own work.
 
@@ -83,13 +113,13 @@ Each chapter contains a situation, three decisions with distinct consequences, a
 
 These are authored starter scenarios. Longer learning paths, open-ended answers, AI coaching, formal assessments and certificates are future scope.
 
-## The platform experience
+## ✨ The platform experience
 
 The landing page introduces both sides of PlotTwist by Futurelab with a cinematic portal connecting sci-fi and fantasy worlds. It includes pointer-responsive depth, animated orbits, floating labels, stars, scroll reveals, moving typography and interactive cards. Work’s visual language uses orbiting learning icons and clear scenario progression.
 
 The experience supports desktop and mobile layouts, keyboard navigation, native dialogs and reduced-motion preferences. The sci-fi comic keeps its established paper-and-panel visual language when launched from the platform. Existing saved books can be resumed from the Play section.
 
-## What is implemented today
+## ✅ What is implemented today
 
 - The PlotTwist by Futurelab landing page, Play and Work catalog, and working experience launchers.
 - The complete ten-page sci-fi comic and three-page fantasy short.
@@ -100,7 +130,7 @@ The experience supports desktop and mobile layouts, keyboard navigation, native 
 
 Accounts, cross-device saves, a content-authoring studio, paid enrollment, classroom management, certificates, a large story/course catalog and AI coaching in Work are planned extensions. They are not part of the current release.
 
-## Run locally
+## 🛠️ Run locally
 
 Requires Node.js 24 and npm.
 
@@ -117,7 +147,7 @@ Open **http://localhost:8888** for the frontend and backend together. Restart th
 
 The actual local `.env` is ignored by Git. Never put the API key in a `VITE_` variable or frontend code.
 
-## OpenAI integration
+## 🤖 OpenAI integration
 
 The shared handler in `server/api.ts` runs locally and in Netlify Functions. The browser receives feature availability and results; the API key remains on the server.
 
@@ -136,7 +166,7 @@ Netlify applies a limit of 20 API requests per minute per IP/domain. The handler
 
 Recorded voice sends up to 15 seconds of audio to OpenAI. Transcripts are editable before confirmation. Live smoke checks have exercised Decisions, Responses, recorded transcription and image generation. Realtime signaling is implemented and covered by mocked tests; a real browser microphone/WebRTC session still needs device validation.
 
-## Persistence
+## 💾 Persistence
 
 - **Sci-fi book:** localStorage on the current browser, with schema validation when restoring.
 - **Generated illustrations:** IndexedDB on the current browser.
@@ -145,9 +175,17 @@ Recorded voice sends up to 15 seconds of audio to OpenAI. Transcripts are editab
 
 Sci-fi JSON exports contain the story text and decisions, not generated image data. There is no cloud account or cross-device synchronization in this release.
 
-## Deployment
+## 🌐 Project links and deployment
 
-Live application, source code, video and explainer deck links are listed at the top of this README. PlotTwist by Futurelab is the platform and project name; the repository is maintained by Futurelab Studios.
+| Resource | Link |
+| --- | --- |
+| 🌐 **Live app** | [plottwistbyfuturelab.netlify.app](https://plottwistbyfuturelab.netlify.app/) |
+| 💬 **ChatGPT Site** | [Open PlotTwist](https://plottwist-borrowed-stars.futurelabstudios.chatgpt.site/) |
+| 💻 **Source code** | [github.com/futurelabstudios/plottwist](https://github.com/futurelabstudios/plottwist) |
+| 🎥 **YouTube** | Coming soon |
+| 📊 **Explainer deck** | [PlotTwist-explainer-deck](https://docs.google.com/presentation/d/12D6AWENRo8JqOl7xpxU8AYufs0dQ3YHyqOUTDjoo7Hg/edit?usp=sharing) |
+
+**Project:** PlotTwist by Futurelab · **Built by:** Futurelab Studios
 
 Netlify serves the built React frontend and the API. After authenticating and linking the Netlify CLI:
 
@@ -162,7 +200,7 @@ ChatGPT Sites uses a separate, ignored Vinext checkout in `hosting/chatgpt`. Its
 
 Both hosts are manually published. GitHub Actions validates pushes; it does not automatically redeploy either host.
 
-## Development and checks
+## 🧪 Development and checks
 
 ```sh
 npm run typecheck
@@ -189,3 +227,7 @@ scripts/                   Local development, smoke checks and hosting helpers
 ```
 
 See [the comic’s visual direction](docs/visual-direction.md) and [the platform’s hero artwork](docs/lumiclinik-art.md) for the illustration system and generation prompt.
+
+---
+
+<p align="center"><strong>PlotTwist by Futurelab</strong><br/><em>Your next chapter starts with you.</em></p>
