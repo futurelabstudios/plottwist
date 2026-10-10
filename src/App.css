@@ -1096,7 +1096,7 @@ select {
   box-shadow: 0 5px 0 var(--control-base), 0 9px 18px #0004, inset 0 1px #ffffff20;
   transition: transform .16s, box-shadow .16s, filter .16s;
 }
-.comic-main .voice-button,
+.comic-main .voice-controls > button.voice-button,
 .comic-main .voice-controls > button:last-child,
 .comic-main .confirmation > button:not(.secondary) {
   --control-base: #147c7c;
@@ -1106,7 +1106,7 @@ select {
 }
 .comic-main .voice-button { display: inline-flex; align-items: center; justify-content: center; gap: 11px; font-weight: 800; padding: 14px 22px; }
 .control-icon { width: 22px; height: 22px; flex: none; }
-.comic-main .voice-button.recording {
+.comic-main .voice-controls > button.voice-button.recording {
   --control-base: #702736;
   background: linear-gradient(180deg, #ffb5c0, #f46f8d);
   color: #37101b;
