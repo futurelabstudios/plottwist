@@ -13,7 +13,7 @@ export default function SignalComic({ onExit }: {onExit:()=>void}) {
   const [storageError,setStorageError]=useState(false)
   const heading=useRef<HTMLHeadingElement>(null)
   const page=signalPage(save?.name??name,save?.history.slice(0,view)??[])
-  useEffect(()=>{heading.current?.focus({preventScroll:true});window.scrollTo({top:0,behavior:'instant'})},[view])
+  useEffect(()=>{heading.current?.focus({preventScroll:true});window.scrollTo({top:0,behavior:'instant'})},[view,save?.name])
   function navigate(page:number) { setChosen(null); setView(page) }
   function persist(next:{name:string;history:SignalChoice[]}) {setSave(next);try{localStorage.setItem(SIGNAL_KEY,JSON.stringify(next));setStorageError(false)}catch{setStorageError(true)}}
   function start(event:FormEvent) {event.preventDefault();if(name.trim()){persist({name:name.trim().slice(0,30),history:[]});navigate(0)}}

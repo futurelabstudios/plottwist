@@ -6,7 +6,7 @@ export const signalChoices = [
 ] as const
 export type SignalChoice = typeof signalChoices[number]['id']
 export interface SignalPanel { scene:string; caption:string; speech:string }
-export interface SignalPage { title:string; subtitle:string; panels:SignalPanel[]; choices:typeof signalChoices; question:string; ending?:string }
+export interface SignalPage { title:string; subtitle:string; panels:SignalPanel[]; choices:readonly {id:SignalChoice;title:string;note:string}[]; question:string; ending?:string }
 export const SIGNAL_KEY = 'plottwist-last-signal-v1'
 export function restoreSignal(raw:string|null): {name:string;history:SignalChoice[]} | null {
   try { const s=JSON.parse(raw??'null'); return s && typeof s.name==='string' && s.name.trim() && s.name.length<=30 && Array.isArray(s.history) && s.history.length<=4 && s.history.every((c:unknown)=>signalChoices.some(x=>x.id===c)) ? {name:s.name,history:s.history} : null } catch { return null }
@@ -16,7 +16,28 @@ const assets:Record<SignalChoice,string>={listen:'a shared command phrase',rescu
 export function signalPage(name:string,history:SignalChoice[]):SignalPage {
   const index=history.length, first=history[0]??'listen', last=history.at(-1)??first
   const panel=(scene:string,caption:string,speech:string):SignalPanel=>({scene,caption,speech})
-  const common={choices:signalChoices}
+  const stageChoices: readonly {id:SignalChoice;title:string;note:string}[][] = [
+    [...signalChoices],
+    [
+      {id:'listen',title:'Ask Ren for the full record',note:'Hear his account; expose your bridge to the signal.'},
+      {id:'rescue',title:'Reach Ren in person',note:'Help him aboard; spend another pod charge.'},
+      {id:'decode',title:'Inspect the buried transmitter',note:'Learn how the warning works; spend precious minutes.'},
+      {id:'shield',title:'Keep the crew behind cover',note:'Limit exposure; leave Ren waiting for contact.'},
+    ],
+    [
+      {id:'listen',title:'Send Ren’s confession',note:'Build trust through the truth; leave the repair to your crew.'},
+      {id:'rescue',title:'Send the evacuation route',note:'Give the earlier crew a way out; leave the core unstable.'},
+      {id:'decode',title:'Send a verified repair map',note:'Change the experiment; trust the earlier crew to follow it.'},
+      {id:'shield',title:'Send the corridor timing',note:'Protect an escape; accept damage to the shield.'},
+    ],
+    [
+      {id:'listen',title:'Coordinate a shared departure',note:'Trust everyone with an override; leave slowly together.'},
+      {id:'rescue',title:'Tow the lifeboat home',note:'Save every person; sacrifice the courier delivery.'},
+      {id:'decode',title:'Repair on the beacon pulse',note:'Use the evidence; accept one carefully timed risk.'},
+      {id:'shield',title:'Hold the escape corridor',note:'Protect the lifeboat; return with a damaged ship.'},
+    ],
+  ]
+  const common={choices:stageChoices[Math.min(index,3)]}
   if(index===0) return {...common,title:'A voice from tomorrow',subtitle:'PAGE 01 / THE DISTRESS CALL',question:`${name}, how do you answer?`,panels:[
     panel('signal','The courier ship Morrow crosses a violet storm. One station remains lit on the far side.',`Captain ${name}, a distress call is repeating your name.`),
     panel('ship','Engineer Imani checks the timestamp. It is seventeen minutes in the future.','“We have never been here. How does someone know who is coming?”'),

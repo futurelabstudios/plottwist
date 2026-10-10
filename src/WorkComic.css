@@ -299,3 +299,6 @@
 .work-comic .life-four-panels .life-panel-signature { position:relative; margin-top:auto; }
 .work-comic .life-four-panels .life-dialogue { position:relative; inset:auto; margin:14px; }
 .work-comic .life-four-panels .life-dialogue p { font-size:.95rem; }
+.work-comic .life-four-panels > .life-panel { background:#191324; border-color:#69517f; }
+.work-comic .life-four-panels .life-narration, .work-comic .life-four-panels .life-dialogue, .work-comic .life-four-panels .life-thought { background:#21192d; color:#f2edf7; border-color:#66517d; }
+.work-comic .life-four-panels .life-panel-signature { background:#21192d; color:#b9a7d5; border-color:#66517d; }
