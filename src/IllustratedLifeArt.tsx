@@ -15,9 +15,9 @@ export function IllustratedLifeArt({ scene = 'crossroads', close = false, celebr
   const y = Math.floor(tile / 4) * atlas.tile
   const crop = `${x + atlas.inset} ${y + atlas.inset} ${atlas.tile - atlas.inset * 2} ${atlas.tile - atlas.inset * 2}`
   return <svg className={`life-art life-illustrated scene-${scene} ${close ? 'art-close' : ''}`}
-    viewBox={crop} preserveAspectRatio="xMidYMin slice" aria-hidden="true" focusable="false" data-art-tile={tile}>
+    viewBox={crop} preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false" data-art-tile={tile}>
       <g className="life-camera" style={{ transformOrigin: `${x + atlas.tile / 2}px ${y + atlas.tile / 2}px` }}>
-        <image href="/art/life-crossroads-atlas-v2.png" width={atlas.width} height={atlas.height} />
+        <image href="/art/life-crossroads-atlas-v2.png" width={atlas.width} height={atlas.height} preserveAspectRatio="xMinYMin meet" />
       </g>
     <svg x={x} y={y} width={atlas.tile} height={atlas.tile} viewBox="0 0 640 380" preserveAspectRatio="none" overflow="hidden">
     {scene === 'setback' && !close ? <g className="life-weather" aria-hidden="true">

@@ -10,6 +10,7 @@ import "./Platform.css";
 import Brand from "../components/Brand";
 import WorkEntrance from "../WorkEntrance";
 import SignalComic from "./SignalComic";
+import AnimeStoryArt from "../components/AnimeStoryArt";
 
 type IconName = "arrow" | "spark" | "orbit" | "signal" | "play" | "check";
 function Icon({
@@ -395,13 +396,13 @@ export default function Platform({ onStart, onResume, onWork, savedName }: Props
               <div className="plot-card-orbit" aria-hidden="true" />
             </article>
             <article className="plot-story-card plot-scifi plot-signal-card" data-reveal>
-              <div className="plot-story-art" aria-hidden="true" />
+              <AnimeStoryArt kind="signal" tile={0} className="plot-story-art" />
               <div className="plot-card-top"><span className="plot-tag">SCI-FI</span><span className="plot-card-number">002</span></div>
               <div className="plot-story-content"><p className="plot-story-meta">5 PAGES · 4 ENDINGS · MERGING PATHS</p><h3>The Last<br />Signal</h3><p>A distress call from tomorrow.<br />A warning only you can change.</p><button className="plot-story-button" onClick={() => setSignalOpen(true)}>Follow the signal<Icon name="arrow" /></button></div>
               <div className="plot-card-orbit" aria-hidden="true" />
             </article>
             <article className="plot-story-card plot-fantasy" data-reveal>
-              <div className="plot-story-art" aria-hidden="true" />
+              <AnimeStoryArt kind="ember" tile={1} className="plot-story-art" />
               <div className="plot-card-top">
                 <span className="plot-tag">FANTASY</span>
                 <span className="plot-card-number">003</span>
@@ -713,10 +714,7 @@ export default function Platform({ onStart, onResume, onWork, savedName }: Props
             <div className="plot-fantasy-panels">
               {fantasy.panels.map(([caption, dialogue], i) => (
                 <article key={`${fantasyHistory.length}-${i}`}>
-                  <div
-                    className={`plot-fantasy-panel-art fantasy-angle-${i}`}
-                    aria-hidden="true"
-                  />
+                  <AnimeStoryArt kind="ember" tile={[[0,1,2,3],[4,5,2,6],[6,5,7,4]][fantasyHistory.length][i]} />
                   <span className="plot-fantasy-caption">{caption}</span>
                   <p>{dialogue}</p>
                 </article>

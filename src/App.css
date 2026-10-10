@@ -1290,3 +1290,5 @@ dialog.modal::backdrop {
 /* Keep a turning leaf from creating a horizontal scrollbar. */
 .comic-main { overflow-x: clip; }
 @media print { .book-cover, .book-spine, .page-reveal-shadow, .turn-sheet { display: none; } }
+/* Authored and generated atlases contain square cells; retain their proportions. */
+.comic-main .paper .panel { aspect-ratio:1; }

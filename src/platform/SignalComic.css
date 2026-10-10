@@ -37,3 +37,5 @@
 .signal-reader footer { border-top:1px solid #ffffff16; padding:25px 0; font-size:9px; color:#9384a7; text-align:center; letter-spacing:.12em; }
 @media(max-width:720px) { .signal-panels { gap:10px; } .signal-panels article > div { padding:14px; } .signal-choices { grid-template-columns:repeat(2,minmax(0,1fr)); } .signal-reader header > span { display:none; } }
 @media(max-width:480px) { .signal-panels { grid-template-columns:1fr; } .signal-reader .pt-brand-name { font-size:24px; } .signal-page-nav .signal-small { font-size:10px; padding:12px; } }
+.signal-panels article > .anime-story-art { width:100%; height:auto; max-height:none; aspect-ratio:1; }
+.signal-cover > .anime-story-art { width:min(100%,560px); height:auto; max-height:none; aspect-ratio:1; border-radius:18px; margin:24px auto; }

@@ -1,7 +1,7 @@
 import { useEffect, useReducer, useRef, useState, type FormEvent, type CSSProperties } from 'react'
 import { Icon } from './components'
 import Brand from './components/Brand'
-import LifeArt from './components/MinimalStoryArt'
+import { IllustratedLifeArt as LifeArt } from './IllustratedLifeArt'
 import BookFrame from './components/BookFrame'
 import { chaptersFor, dreams, emptyLife, endingFor, LIFE_KEY, lifeReducer, qualities, qualitiesFor, restoreLife, type Dream, type LifeAction } from './careerStory'
 import './WorkComic.css'
