@@ -1,0 +1,1784 @@
+/* Lumiclinik's entrance is scoped so the paper comic keeps its own visual language. */
+.lumi-platform {
+  --lumi-bg: #09090f;
+  --lumi-ink: #f2f1f7;
+  --lumi-muted: #aaa8bc;
+  --lumi-lime: #d8fb8d;
+  --lumi-violet: #b7a4ff;
+  background: var(--lumi-bg);
+  color: var(--lumi-ink);
+  overflow: clip;
+  font-family: Inter, "Avenir Next", Arial, sans-serif;
+}
+.lumi-platform button,
+.lumi-platform input,
+.lumi-platform textarea {
+  font: inherit;
+}
+.lumi-platform button {
+  filter: none;
+  cursor: pointer;
+}
+.lumi-platform button:disabled {
+  cursor: default;
+  opacity: 0.4;
+}
+.lumi-platform a:focus-visible,
+.lumi-platform button:focus-visible,
+.lumi-platform textarea:focus-visible,
+.lumi-platform input:focus-visible {
+  outline: 2px solid var(--lumi-lime);
+  outline-offset: 5px;
+}
+.lumi-platform a {
+  text-decoration: none;
+}
+.lumi-platform p {
+  line-height: 1.7;
+}
+.lumi-skip {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  transform: translateY(-180%);
+  z-index: 200;
+  background: var(--lumi-lime);
+  color: #10130a;
+  padding: 12px 20px;
+  border-radius: 8px;
+}
+.lumi-skip:focus {
+  transform: none;
+}
+.lumi-nav {
+  position: absolute;
+  z-index: 30;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: min(1320px, 100%);
+  margin: auto;
+  padding: 28px 48px;
+  gap: 30px;
+}
+.lumi-logo {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 27px;
+  font-weight: 750;
+  letter-spacing: -1.4px;
+}
+.lumi-logomark {
+  display: grid;
+  place-items: center;
+  width: 33px;
+  height: 33px;
+  color: var(--lumi-lime);
+}
+.lumi-logo-dot {
+  color: var(--lumi-lime);
+  margin-left: -7px;
+}
+.lumi-nav nav {
+  display: flex;
+  gap: 34px;
+  font-size: 14px;
+  color: #d5d1e3;
+}
+.lumi-nav nav a {
+  position: relative;
+  padding: 9px 0;
+}
+.lumi-nav nav a:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--lumi-lime);
+  transition: width 0.25s;
+}
+.lumi-nav nav a:hover:after {
+  width: 100%;
+}
+.lumi-nav-cta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border: 1px solid #ffffff28;
+  border-radius: 30px;
+  padding: 12px 17px;
+  font-size: 12px;
+  background: #13121b65;
+  transition: background 0.2s;
+}
+.lumi-nav-cta svg {
+  width: 17px;
+  height: 17px;
+}
+.lumi-nav-cta:hover {
+  background: #ffffff12;
+}
+main.lumi-main {
+  max-width: none;
+  padding: 0;
+  margin: 0;
+}
+.lumi-hero {
+  position: relative;
+  isolation: isolate;
+  min-height: 840px;
+  height: min(950px, 100svh + 80px);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 152px 28px 160px;
+  --pointer-x: 0px;
+  --pointer-y: 0px;
+}
+.lumi-hero-scene {
+  position: absolute;
+  z-index: -4;
+  inset: 85px -16px 0;
+  background: url("/art/lumiclinik-portal.webp") center 58% / cover;
+  transform: translate(var(--pointer-x), var(--pointer-y)) scale(1.045);
+  transition: transform 0.65s ease-out;
+  opacity: 0.8;
+}
+.lumi-hero-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  background:
+    linear-gradient(
+      #09090f 0%,
+      #09090fbb 12%,
+      #09090f65 36%,
+      #09090f15 63%,
+      #09090f 100%
+    ),
+    radial-gradient(ellipse at 50% 20%, #09090f50, transparent 70%);
+}
+.lumi-hero-copy {
+  text-align: center;
+  max-width: 1000px;
+  position: relative;
+}
+.lumi-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 10px;
+  font-weight: 550;
+  letter-spacing: 2px;
+  color: #cbc6de;
+  padding: 8px 13px;
+  border: 1px solid #e4dcff24;
+  border-radius: 30px;
+  background: #11101a70;
+  animation: lumi-enter 0.8s both;
+}
+.lumi-live-dot {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 5px;
+  height: 5px;
+  background: var(--lumi-lime);
+  border-radius: 50%;
+  box-shadow: 0 0 12px #d8fb8d85;
+  animation: lumi-dot 3s ease-in-out infinite;
+}
+.lumi-hero h1 {
+  font-size: clamp(60px, 7.1vw, 102px);
+  line-height: 1.01;
+  font-weight: 600;
+  letter-spacing: -5px;
+  margin: 30px 0 25px;
+  color: #fff;
+  text-shadow: 0 3px 45px #0009;
+  animation: lumi-enter 0.9s 0.12s both;
+}
+.lumi-hero h1 > span {
+  color: var(--lumi-lime);
+  position: relative;
+}
+.lumi-title-star {
+  display: inline-block;
+  margin-left: 14px;
+  font-size: 0.55em;
+  vertical-align: top;
+  margin-top: 13px;
+  animation: lumi-star-turn 16s linear infinite;
+}
+.lumi-hero-copy > p {
+  color: #d1ccdf;
+  font-size: 17px;
+  line-height: 1.75;
+  font-weight: 400;
+  margin: 0 0 28px;
+  animation: lumi-enter 0.9s 0.22s both;
+}
+.lumi-hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  animation: lumi-enter 0.9s 0.32s both;
+}
+.lumi-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  min-height: 52px;
+  border-radius: 30px;
+  padding: 14px 23px;
+  font-size: 13px;
+  font-weight: 650;
+  border: 1px solid transparent;
+  transition:
+    transform 0.25s,
+    box-shadow 0.25s,
+    background 0.25s;
+}
+.lumi-button svg {
+  width: 18px;
+  height: 18px;
+}
+.lumi-button-lime {
+  background: var(--lumi-lime);
+  border-color: var(--lumi-lime);
+  color: #15200b;
+  box-shadow: 0 0 0 #d8fb8d00;
+}
+.lumi-button-lime:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 7px 30px #d8fb8d26;
+  background: #e5ffb2;
+}
+.lumi-button-glass {
+  background: #17142180;
+  border-color: #ffffff35;
+  color: #f4f0ff;
+  backdrop-filter: blur(14px);
+}
+.lumi-button-glass:hover {
+  transform: translateY(-3px);
+  background: #ffffff15;
+}
+.lumi-hero-footnote {
+  margin-top: 23px;
+  color: #b1abbf;
+  font-size: 11px;
+  animation: lumi-enter 0.9s 0.4s both;
+}
+.lumi-hero-footnote span {
+  display: inline-block;
+  height: 1px;
+  width: 22px;
+  background: #b7a4ff;
+  vertical-align: middle;
+  margin-right: 9px;
+}
+.lumi-orbit {
+  position: absolute;
+  pointer-events: none;
+  width: 540px;
+  height: 540px;
+  border: 1px solid #d8c2ff1c;
+  border-radius: 50%;
+  z-index: -2;
+  top: 310px;
+  left: calc(61% - 270px);
+  transform: rotateX(68deg) rotateZ(-28deg);
+  animation: lumi-orbit-turn 24s linear infinite;
+}
+.orbit-two {
+  width: 700px;
+  height: 700px;
+  left: calc(61% - 350px);
+  top: 240px;
+  border-style: dashed;
+  animation-duration: 35s;
+  animation-direction: reverse;
+}
+.lumi-orbit:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -4px;
+  height: 7px;
+  width: 7px;
+  border-radius: 50%;
+  background: var(--lumi-violet);
+  box-shadow: 0 0 20px #d6c4ff;
+}
+.lumi-stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+.lumi-stars i {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: #fff;
+  animation: lumi-twinkle 5s ease-in-out infinite;
+  box-shadow: 0 0 6px #fff9;
+}
+.lumi-float-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: absolute;
+  bottom: 170px;
+  background: #11101b85;
+  border: 1px solid #ffffff1c;
+  border-radius: 12px;
+  padding: 13px 16px;
+  backdrop-filter: blur(16px);
+  animation: lumi-float 7s ease-in-out infinite;
+}
+.lumi-float-left {
+  left: max(7%, calc(50% - 510px));
+  transform: rotate(-5deg);
+}
+.lumi-float-right {
+  right: max(8%, calc(50% - 490px));
+  bottom: 240px;
+  animation-delay: -3s;
+}
+.lumi-label-icon {
+  display: grid;
+  place-items: center;
+  width: 35px;
+  height: 35px;
+  border: 1px solid #b7a4ff40;
+  border-radius: 9px;
+  font-size: 25px;
+  color: var(--lumi-violet);
+  background: #b7a4ff0d;
+}
+.lumi-float-right .lumi-label-icon {
+  color: var(--lumi-lime);
+  border-color: #d8fb8d30;
+  background: #d8fb8d0d;
+}
+.lumi-float-label small {
+  display: block;
+  font-size: 8px;
+  letter-spacing: 1.3px;
+  color: #b5aec6;
+  margin-bottom: 4px;
+}
+.lumi-float-label strong {
+  font-size: 13px;
+  font-weight: 500;
+}
+.lumi-scroll {
+  position: absolute;
+  bottom: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 13px;
+  font-size: 8px;
+  letter-spacing: 2px;
+  color: #a7a0b7;
+}
+.lumi-scroll span {
+  font-size: 24px;
+  animation: lumi-scroll-bob 2.3s infinite;
+}
+.lumi-ticker {
+  border-block: 1px solid #ffffff13;
+  padding: 20px 0;
+  overflow: hidden;
+  background: #0c0b12;
+}
+.lumi-ticker > div {
+  display: flex;
+  width: max-content;
+  animation: lumi-ticker-run 48s linear infinite;
+}
+.lumi-ticker span {
+  white-space: nowrap;
+  display: inline-block;
+  color: #888196;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 3px;
+}
+.lumi-ticker b {
+  font-size: 15px;
+  color: #b7a4ff;
+  padding: 0 45px;
+}
+.lumi-section {
+  width: min(1240px, 100%);
+  margin: 0 auto;
+  padding: 105px 48px 70px;
+  scroll-margin-top: 35px;
+}
+.lumi-section-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  align-items: flex-end;
+  margin-bottom: 40px;
+}
+.lumi-section-label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.6px;
+  color: #aaa0bc;
+  margin: 0 0 23px;
+}
+.lumi-section-label > span {
+  display: inline-block;
+  color: var(--lumi-violet);
+  border: 1px solid #b7a4ff40;
+  border-radius: 50%;
+  padding: 4px 6px;
+  font-size: 8px;
+  letter-spacing: 0;
+}
+.lumi-section h2 {
+  font-size: clamp(32px, 4vw, 53px);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -2px;
+  margin: 0;
+}
+.lumi-section h2 em {
+  color: var(--lumi-violet);
+  font-style: normal;
+}
+.lumi-section-heading > p {
+  color: #a29aac;
+  font-size: 13px;
+  margin: 0 0 3px;
+  max-width: 360px;
+}
+.lumi-stories {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.lumi-story-card {
+  min-height: 515px;
+  position: relative;
+  isolation: isolate;
+  border: 1px solid #ffffff20;
+  border-radius: 18px;
+  overflow: hidden;
+  padding: 25px 30px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition:
+    box-shadow 0.4s,
+    border-color 0.4s;
+}
+.lumi-story-card:hover {
+  border-color: #b7a4ff60;
+  box-shadow: 0 20px 70px #0009;
+}
+.lumi-story-art {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  transition: transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.lumi-story-card:hover .lumi-story-art {
+  transform: scale(1.07);
+}
+.lumi-scifi .lumi-story-art {
+  background: url("/art/borrowed-stars-atlas.png") 0 0/400% 200%;
+}
+.lumi-fantasy .lumi-story-art {
+  background: url("/art/lumiclinik-portal.webp") 82% 65% / auto 110%;
+}
+.lumi-story-card:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: linear-gradient(
+    #05071125,
+    #08081220 25%,
+    #090911ba 52%,
+    #08080efa 98%
+  );
+}
+.lumi-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.lumi-tag {
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  border: 1px solid #ffffff50;
+  padding: 7px 12px;
+  border-radius: 20px;
+  background: #08081050;
+  backdrop-filter: blur(10px);
+}
+.lumi-card-number {
+  color: #ffffff80;
+  font-size: 10px;
+}
+.lumi-story-meta {
+  color: #ded5e7;
+  font-size: 8px;
+  letter-spacing: 1.5px;
+  margin: 0 0 13px;
+}
+.lumi-story-meta span {
+  padding: 0 6px;
+}
+.lumi-story-content h3 {
+  font-size: 48px;
+  line-height: 1.02;
+  letter-spacing: -2px;
+  font-weight: 550;
+  margin: 0 0 17px;
+}
+.lumi-story-content > p:not(.lumi-story-meta) {
+  font-size: 12px;
+  color: #bbb5cd;
+  line-height: 1.7;
+  margin: 0 0 22px;
+}
+.lumi-story-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #f5efff;
+  background: #ffffff09;
+  border: 1px solid #ffffff35;
+  border-radius: 8px;
+  padding: 14px 18px;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  transition: background 0.25s;
+}
+.lumi-story-button:hover {
+  background: #ffffff17;
+}
+.lumi-story-button svg {
+  width: 19px;
+  height: 19px;
+}
+.lumi-resume {
+  border: none;
+  background: none;
+  font-size: 10px !important;
+  color: #d8fb8d;
+  padding: 13px 0 0;
+  font-weight: 400 !important;
+  text-align: left;
+}
+.lumi-card-orbit {
+  position: absolute;
+  right: -80px;
+  top: 0;
+  width: 230px;
+  height: 230px;
+  border: 1px solid #ffffff10;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.lumi-play-note {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 29px 0 0;
+}
+.lumi-play-note > svg {
+  color: var(--lumi-violet);
+  width: 28px;
+  height: 28px;
+}
+.lumi-play-note p {
+  color: #8f889e;
+  font-size: 11px;
+  margin: 0;
+}
+.lumi-play-note strong {
+  color: #bcb4ce;
+  font-weight: 400;
+}
+.lumi-play-note > span {
+  margin-left: auto;
+  font-size: 8px;
+  letter-spacing: 1.3px;
+  color: #9990ac;
+}
+.lumi-work {
+  position: relative;
+}
+.lumi-work .lumi-section-label > span {
+  color: var(--lumi-lime);
+  border-color: #d8fb8d40;
+}
+.lumi-work h2 em {
+  color: var(--lumi-lime);
+}
+.lumi-course-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+.lumi-course-card {
+  --course-accent: #b5e9c4;
+  border: 1px solid #ffffff15;
+  border-radius: 15px;
+  overflow: hidden;
+  background: #101017;
+  transition:
+    border-color 0.3s,
+    transform 0.3s;
+}
+.course-violet {
+  --course-accent: #baa9ef;
+}
+.course-amber {
+  --course-accent: #e9c9a2;
+}
+.lumi-course-card:hover {
+  border-color: #ffffff45;
+  transform: translateY(-5px);
+}
+.lumi-course-visual {
+  height: 180px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+  overflow: hidden;
+  color: var(--course-accent);
+  background: radial-gradient(
+    ellipse at 50% 65%,
+    color-mix(in srgb, var(--course-accent) 12%, #101017),
+    #0f0f16 75%
+  );
+  border-bottom: 1px solid #ffffff10;
+}
+.lumi-course-visual > svg {
+  width: 48px;
+  height: 48px;
+  stroke-width: 1;
+  filter: drop-shadow(0 0 20px var(--course-accent));
+  animation: lumi-float 8s ease-in-out infinite;
+}
+.lumi-course-ring {
+  position: absolute;
+  width: 110px;
+  height: 110px;
+  border: 1px solid color-mix(in srgb, var(--course-accent) 23%, transparent);
+  border-radius: 50%;
+  z-index: -1;
+  animation: lumi-course-spin 26s linear infinite;
+}
+.ring-b {
+  width: 156px;
+  height: 156px;
+  border-style: dashed;
+  animation-direction: reverse;
+  animation-duration: 38s;
+}
+.ring-c {
+  width: 208px;
+  height: 208px;
+  opacity: 0.45;
+  animation-duration: 48s;
+}
+.lumi-course-ring:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: -2px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--course-accent);
+  box-shadow: 0 0 13px var(--course-accent);
+}
+.lumi-course-index {
+  position: absolute;
+  top: 19px;
+  left: 22px;
+  font-size: 8px;
+  letter-spacing: 2px;
+  opacity: 0.6;
+}
+.lumi-course-visual-label {
+  position: absolute;
+  bottom: 13px;
+  font-size: 8px;
+  letter-spacing: 2px;
+  opacity: 0.6;
+}
+.lumi-course-content {
+  padding: 24px;
+}
+.lumi-course-meta {
+  display: flex;
+  justify-content: space-between;
+  color: #857c97;
+  font-size: 9px;
+  margin-bottom: 16px;
+}
+.lumi-course-content h3 {
+  font-size: 23px;
+  font-weight: 500;
+  letter-spacing: -0.6px;
+  line-height: 1.25;
+  margin: 0 0 13px;
+  min-height: 58px;
+}
+.lumi-course-content > p {
+  color: #9891a5;
+  font-size: 11px;
+  line-height: 1.75;
+  min-height: 59px;
+  margin: 0 0 25px;
+}
+.lumi-course-bottom {
+  border-top: 1px solid #ffffff13;
+  padding-top: 19px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+.lumi-course-bottom button {
+  background: none;
+  border: none;
+  color: var(--course-accent);
+  border-radius: 0;
+  font-size: 10px;
+  font-weight: 500;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.lumi-course-bottom svg {
+  width: 16px;
+  height: 16px;
+}
+.lumi-course-bottom > span {
+  font-size: 8px;
+  color: #6f677e;
+}
+.lumi-work-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  color: #90869e;
+  font-size: 10px;
+  margin: 27px 0 0;
+}
+.lumi-how {
+  text-align: center;
+  padding-top: 120px;
+  padding-bottom: 120px;
+  position: relative;
+  isolation: isolate;
+}
+.lumi-how .lumi-section-label {
+  justify-content: center;
+}
+.lumi-how > p:not(.lumi-section-label) {
+  font-size: 14px;
+  color: #9b92aa;
+  line-height: 1.85;
+  margin: 25px 0 31px;
+}
+.lumi-how h2 em {
+  color: var(--lumi-lime);
+}
+.lumi-how-orb {
+  position: absolute;
+  z-index: -1;
+  width: 500px;
+  height: 500px;
+  left: calc(50% - 250px);
+  top: calc(50% - 250px);
+  border: 1px solid #b7a4ff12;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, #b7a4ff09, transparent 70%);
+}
+.lumi-how-orb:before,
+.lumi-how-orb:after {
+  content: "";
+  position: absolute;
+  border: 1px solid #b7a4ff10;
+  border-radius: 50%;
+  inset: 35px -30px;
+  transform: rotate(30deg);
+}
+.lumi-how-orb:after {
+  inset: -30px 70px;
+  transform: rotate(-30deg);
+}
+.lumi-footer {
+  width: min(1320px, 100%);
+  margin: 0 auto;
+  padding: 38px 48px 0;
+  border-top: 1px solid #ffffff15;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 25px;
+  flex-wrap: wrap;
+  color: #a19aaf;
+  font-size: 12px;
+}
+.lumi-footer .lumi-logo {
+  color: #f2f1f7;
+  font-size: 23px;
+}
+.lumi-footer .lumi-logo svg {
+  width: 20px;
+  height: 20px;
+  color: var(--lumi-lime);
+}
+.lumi-footer p {
+  font-size: 10px;
+  margin: 9px 0 0;
+}
+.lumi-footer > div:nth-child(2) {
+  display: flex;
+  gap: 28px;
+  padding-top: 9px;
+  font-size: 11px;
+}
+.lumi-footer > span {
+  font-size: 8px;
+  letter-spacing: 1.5px;
+  padding-top: 11px;
+}
+.lumi-footer-word {
+  width: 100%;
+  text-align: center;
+  font-size: clamp(70px, 15.5vw, 210px);
+  line-height: 1;
+  letter-spacing: -0.055em;
+  font-weight: 700;
+  margin-top: 35px;
+  color: #ffffff06;
+  user-select: none;
+}
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(35px);
+  transition:
+    opacity 0.8s,
+    transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.lumi-story-card:nth-child(2),
+.lumi-course-card:nth-child(2) {
+  transition-delay: 0.09s;
+}
+.lumi-course-card:nth-child(3) {
+  transition-delay: 0.18s;
+}
+/* Native dialogs retain keyboard focus and restore it to the card that opened them. */
+.lumi-dialog {
+  color: var(--lumi-ink);
+  background: #111018;
+  border: 1px solid #ffffff30;
+  border-radius: 20px;
+  padding: 0;
+  width: min(980px, calc(100% - 32px));
+  max-height: 90svh;
+  margin: auto;
+  box-shadow: 0 30px 100px #0009;
+  overflow: auto;
+}
+.lumi-dialog:not([open]) {
+  display: none;
+}
+.lumi-dialog[open] {
+  animation: lumi-dialog-in 0.3s ease-out;
+}
+.lumi-dialog::backdrop {
+  background: #030308c9;
+  backdrop-filter: blur(12px);
+}
+.lumi-dialog-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 3;
+  border: 1px solid #ffffff22;
+  background: #191723;
+  color: #ede6fa;
+  font-weight: 400 !important;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  padding: 0 !important;
+  font-size: 24px !important;
+  line-height: 1;
+}
+.lumi-story-entry {
+  padding: 65px;
+  max-width: 650px;
+  margin: auto;
+}
+.lumi-story-entry h2 {
+  font-size: 42px;
+  line-height: 1.1;
+  letter-spacing: -1.5px;
+  font-weight: 500;
+  margin: 0 0 20px;
+}
+.lumi-story-entry > p:not(.lumi-section-label) {
+  color: #afa7bc;
+  font-size: 14px;
+}
+.lumi-story-entry form {
+  margin-top: 30px;
+}
+.lumi-story-entry label {
+  font-size: 11px;
+  color: #b4a9c2;
+  display: block;
+}
+.lumi-story-entry input {
+  display: block;
+  border: 1px solid #ffffff25;
+  border-radius: 10px;
+  padding: 16px;
+  margin: 9px 0 20px;
+  color: #f5f1ff;
+  background: #ffffff03;
+  font-size: 20px;
+  font-weight: 400;
+}
+.lumi-note {
+  color: #92869e;
+  font-size: 11px;
+  line-height: 1.7;
+}
+.lumi-inline-button {
+  border: none !important;
+  background: none !important;
+  color: var(--lumi-lime) !important;
+  padding: 4px !important;
+  font-size: inherit !important;
+  font-weight: 400 !important;
+}
+.lumi-course-player {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+}
+.lumi-course-player aside {
+  padding: 40px 25px;
+  border-right: 1px solid #ffffff15;
+  background: #0d0c13;
+}
+.lumi-course-player aside h2 {
+  font-size: 28px;
+  line-height: 1.15;
+  letter-spacing: -1px;
+  font-weight: 500;
+  margin: 0 0 20px;
+}
+.lumi-course-player aside nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 32px 0;
+}
+.lumi-course-player aside nav button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+  border: 1px solid transparent;
+  background: none;
+  color: #a59ab5;
+  border-radius: 9px;
+  padding: 12px;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+.lumi-course-player aside nav button.active {
+  color: var(--lumi-lime);
+  background: #d8fb8d07;
+  border-color: #d8fb8d30;
+}
+.lumi-course-player aside nav button span {
+  flex-shrink: 0;
+  font-size: 9px;
+}
+.lumi-course-player aside nav svg {
+  width: 14px;
+  height: 14px;
+}
+.lumi-lesson {
+  padding: 45px 40px;
+}
+.lumi-lesson h3 {
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 1.2;
+  letter-spacing: -0.7px;
+  margin: 0 0 22px;
+}
+.lumi-lesson > p {
+  color: #b0a5bf;
+  font-size: 13px;
+  line-height: 1.8;
+}
+.lumi-exercise {
+  display: block;
+  margin: 26px 0;
+}
+.lumi-exercise > span {
+  display: block;
+  color: var(--lumi-lime);
+  font-size: 8px;
+  letter-spacing: 1.5px;
+  margin-bottom: 9px;
+}
+.lumi-exercise strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 450;
+  line-height: 1.7;
+  color: #d6ccdf;
+}
+.lumi-exercise textarea {
+  width: 100%;
+  background: #08080f;
+  border: 1px solid #ffffff20;
+  border-radius: 9px;
+  color: #ebe2f7;
+  font-size: 12px;
+  line-height: 1.7;
+  padding: 13px;
+  margin-top: 12px;
+  resize: vertical;
+}
+.lumi-checkpoint {
+  border: none;
+  padding: 0;
+  margin: 25px 0;
+}
+.lumi-checkpoint legend {
+  font-size: 12px;
+  color: #e1d8ee;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+.lumi-checkpoint label {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 11px 12px;
+  margin-bottom: 7px;
+  background: #ffffff03;
+  border: 1px solid #ffffff16;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.lumi-checkpoint input {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  accent-color: var(--lumi-lime);
+  margin: 3px 0 0;
+}
+.lumi-checkpoint label span {
+  font-size: 11px;
+  color: #afa2bf;
+  line-height: 1.6;
+}
+.lumi-feedback {
+  color: #efb49e !important;
+  font-size: 12px;
+  padding: 12px;
+  border-left: 2px solid #d08c79;
+  background: #d08c7907;
+  line-height: 1.7;
+}
+.lumi-feedback.correct {
+  color: #c1dfa4 !important;
+  border-color: var(--lumi-lime);
+  background: #d8fb8d07;
+}
+.lumi-lesson-next {
+  border-top: 1px solid #ffffff15;
+  padding-top: 18px;
+  margin-top: 20px;
+  font-size: 12px;
+  color: #bcafc9;
+}
+.lumi-dialog-comic {
+  width: min(1050px, calc(100% - 24px));
+}
+.lumi-fantasy-reader {
+  padding: 35px;
+}
+.lumi-fantasy-reader > h2 {
+  font-size: 34px;
+  font-weight: 500;
+  letter-spacing: -1px;
+  margin: 0 0 6px;
+}
+.lumi-fantasy-panels {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 26px;
+}
+.lumi-fantasy-panels article {
+  position: relative;
+  isolation: isolate;
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 18px;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid #e5d3ad50;
+}
+.lumi-fantasy-panel-art {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: url("/art/lumiclinik-portal.webp") 83% 60% / auto 150%;
+}
+.fantasy-angle-1 {
+  background-position: 65% 70%;
+  background-size: auto 200%;
+}
+.fantasy-angle-2 {
+  background-position: 100% 50%;
+  background-size: auto 210%;
+}
+.fantasy-angle-3 {
+  background-position: 25% 60%;
+  background-size: auto 130%;
+}
+.lumi-fantasy-panels article:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(#0d092d15, #0d0c19ba);
+}
+.lumi-fantasy-caption {
+  background: #f4e9d9;
+  color: #29202d;
+  padding: 8px 12px;
+  border-radius: 3px;
+  font-size: 11px;
+  line-height: 1.5;
+  align-self: flex-start;
+  max-width: 95%;
+}
+.lumi-fantasy-panels article p {
+  background: #faf0df;
+  color: #28222b;
+  padding: 10px 13px;
+  border-radius: 14px 14px 2px 14px;
+  font-size: 12px;
+  line-height: 1.5;
+  align-self: flex-end;
+  max-width: 92%;
+  margin: 30px 0 0;
+}
+.lumi-fantasy-decisions > h3 {
+  font-size: 23px;
+  font-weight: 500;
+  margin: 30px 0 15px;
+}
+.lumi-fantasy-decisions > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.lumi-fantasy-decisions button {
+  text-align: left;
+  position: relative;
+  border: 1px solid #b7a4ff35;
+  background: #b7a4ff07;
+  color: #eee6ff;
+  padding: 15px 38px 15px 17px;
+  border-radius: 8px;
+}
+.lumi-fantasy-decisions strong {
+  font-size: 12px;
+  font-weight: 500;
+  display: block;
+}
+.lumi-fantasy-decisions small {
+  font-size: 10px;
+  color: #a495b7;
+  font-weight: 400;
+  margin-top: 5px;
+  display: block;
+}
+.lumi-fantasy-decisions svg {
+  position: absolute;
+  right: 14px;
+  top: 18px;
+  width: 17px;
+}
+.lumi-fantasy-end {
+  text-align: center;
+  margin: 30px 0 10px;
+}
+.lumi-fantasy-end > p {
+  color: #a89aba;
+  font-size: 9px;
+  letter-spacing: 1.4px;
+}
+.is-turning .lumi-fantasy-panels {
+  animation: lumi-fantasy-turn 0.65s ease-out;
+  transform-origin: left center;
+}
+@keyframes lumi-enter {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes lumi-float {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -10px;
+  }
+}
+@keyframes lumi-dot {
+  0%,
+  100% {
+    opacity: 0.65;
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 14px #d8fb8d9a;
+  }
+}
+@keyframes lumi-star-turn {
+  to {
+    rotate: 360deg;
+  }
+}
+@keyframes lumi-orbit-turn {
+  from {
+    transform: rotateX(68deg) rotateZ(-28deg);
+  }
+  to {
+    transform: rotateX(68deg) rotateZ(332deg);
+  }
+}
+@keyframes lumi-course-spin {
+  to {
+    rotate: 360deg;
+  }
+}
+@keyframes lumi-twinkle {
+  0%,
+  100% {
+    opacity: 0.15;
+    scale: 0.7;
+  }
+  50% {
+    opacity: 0.8;
+    scale: 1.4;
+  }
+}
+@keyframes lumi-scroll-bob {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 5px;
+  }
+}
+@keyframes lumi-ticker-run {
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes lumi-dialog-in {
+  from {
+    opacity: 0;
+    translate: 0 16px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+@keyframes lumi-fantasy-turn {
+  from {
+    opacity: 0.15;
+    transform: perspective(1200px) rotateY(-12deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (min-width: 1500px) {
+  .lumi-hero {
+    max-height: 970px;
+  }
+  .lumi-hero-scene {
+    background-position: center 65%;
+  }
+}
+@media (max-width: 1000px) {
+  .lumi-nav {
+    padding: 25px 30px;
+  }
+  .lumi-nav-cta {
+    display: none;
+  }
+  .lumi-hero {
+    min-height: 780px;
+    height: 850px;
+  }
+  .lumi-hero h1 {
+    font-size: 80px;
+    letter-spacing: -4px;
+  }
+  .lumi-float-left {
+    left: 5%;
+    bottom: 130px;
+  }
+  .lumi-float-right {
+    right: 5%;
+    bottom: 170px;
+  }
+  .lumi-section {
+    padding: 85px 30px 55px;
+  }
+  .lumi-section-heading > p {
+    font-size: 12px;
+  }
+  .lumi-story-content h3 {
+    font-size: 40px;
+  }
+  .lumi-story-card {
+    min-height: 480px;
+    padding: 23px;
+  }
+  .lumi-course-grid {
+    gap: 14px;
+  }
+  .lumi-course-content {
+    padding: 20px;
+  }
+  .lumi-course-content h3 {
+    font-size: 21px;
+  }
+  .lumi-course-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+@media (max-width: 720px) {
+  .lumi-nav {
+    padding: 23px 22px;
+    gap: 12px;
+  }
+  .lumi-logo {
+    font-size: 23px;
+  }
+  .lumi-nav nav {
+    gap: 20px;
+    font-size: 12px;
+  }
+  .lumi-nav nav a:last-child {
+    display: none;
+  }
+  .lumi-logomark {
+    width: 25px;
+  }
+  .lumi-hero {
+    min-height: 730px;
+    height: 790px;
+    padding: 143px 20px 180px;
+  }
+  .lumi-hero h1 {
+    font-size: clamp(52px, 10.3vw, 76px);
+    letter-spacing: -3px;
+    line-height: 1.06;
+    margin: 24px 0;
+  }
+  .lumi-kicker {
+    font-size: 7px;
+    letter-spacing: 1.4px;
+    gap: 7px;
+  }
+  .lumi-hero-copy > p {
+    font-size: 13px;
+    max-width: 330px;
+    margin: 0 auto 25px;
+  }
+  .lumi-hero-scene {
+    inset: 250px -85px 0;
+    opacity: 0.8;
+    background-position: 62% 50%;
+  }
+  .lumi-hero-vignette {
+    background: linear-gradient(
+      #09090f,
+      #09090fa0 35%,
+      #09090f10 65%,
+      #09090f 100%
+    );
+  }
+  .lumi-float-label {
+    bottom: 85px;
+    padding: 10px;
+    gap: 8px;
+    border-radius: 10px;
+  }
+  .lumi-float-left {
+    left: 20px;
+  }
+  .lumi-float-right {
+    right: 20px;
+    bottom: 130px;
+  }
+  .lumi-float-label strong {
+    font-size: 10px;
+  }
+  .lumi-float-label small {
+    font-size: 6px;
+  }
+  .lumi-label-icon {
+    width: 27px;
+    height: 27px;
+    font-size: 20px;
+  }
+  .lumi-hero-actions {
+    gap: 9px;
+  }
+  .lumi-button {
+    min-height: 46px;
+    padding: 12px 17px;
+    font-size: 11px;
+    gap: 12px;
+  }
+  .lumi-hero-footnote {
+    font-size: 9px;
+  }
+  .lumi-orbit {
+    scale: 0.7;
+    top: 300px;
+  }
+  .orbit-two {
+    top: 230px;
+  }
+  .lumi-title-star {
+    margin-left: 8px;
+    margin-top: 8px;
+  }
+  .lumi-ticker {
+    padding: 16px 0;
+  }
+  .lumi-ticker span {
+    font-size: 8px;
+    letter-spacing: 2px;
+  }
+  .lumi-ticker b {
+    padding: 0 25px;
+  }
+  .lumi-section {
+    padding: 70px 22px 40px;
+  }
+  .lumi-section-heading {
+    display: block;
+    margin-bottom: 28px;
+  }
+  .lumi-section-label {
+    font-size: 8px;
+    margin-bottom: 18px;
+    gap: 10px;
+  }
+  .lumi-section h2 {
+    font-size: 37px;
+    letter-spacing: -1.5px;
+  }
+  .lumi-section-heading > p {
+    margin: 20px 0 0;
+    font-size: 12px;
+  }
+  .lumi-stories {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .lumi-story-card {
+    min-height: 490px;
+    padding: 24px;
+  }
+  .lumi-story-content h3 {
+    font-size: 47px;
+  }
+  .lumi-play-note {
+    gap: 12px;
+    padding-top: 22px;
+  }
+  .lumi-play-note > span {
+    display: none;
+  }
+  .lumi-play-note p {
+    font-size: 10px;
+  }
+  .lumi-course-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .lumi-course-visual {
+    height: 175px;
+  }
+  .lumi-course-content {
+    padding: 24px;
+  }
+  .lumi-course-content h3 {
+    font-size: 24px;
+    min-height: 0;
+  }
+  .lumi-course-content > p {
+    font-size: 12px;
+    min-height: 0;
+  }
+  .lumi-course-bottom {
+    flex-direction: row;
+    align-items: center;
+  }
+  .lumi-course-bottom button {
+    font-size: 12px;
+  }
+  .lumi-course-bottom > span {
+    font-size: 9px;
+  }
+  .lumi-work-note {
+    font-size: 9px;
+    text-align: center;
+  }
+  .lumi-how {
+    padding-top: 85px;
+    padding-bottom: 90px;
+  }
+  .lumi-how h2 {
+    font-size: 35px;
+  }
+  .lumi-how > p:not(.lumi-section-label) {
+    font-size: 12px;
+  }
+  .lumi-footer {
+    padding: 30px 22px 0;
+    gap: 20px;
+  }
+  .lumi-footer > span {
+    width: 100%;
+  }
+  .lumi-footer-word {
+    margin-top: 5px;
+  }
+  .lumi-story-entry {
+    padding: 55px 25px 30px;
+  }
+  .lumi-story-entry h2 {
+    font-size: 34px;
+  }
+  .lumi-course-player {
+    grid-template-columns: 1fr;
+  }
+  .lumi-course-player aside {
+    border-right: 0;
+    border-bottom: 1px solid #ffffff15;
+    padding: 35px 23px 18px;
+  }
+  .lumi-course-player aside h2 {
+    padding-right: 20px;
+    font-size: 25px;
+  }
+  .lumi-course-player aside nav {
+    flex-direction: row;
+    margin: 18px 0;
+    gap: 5px;
+  }
+  .lumi-course-player aside nav button {
+    flex: 1;
+    font-size: 9px;
+    padding: 8px;
+    gap: 5px;
+    align-items: flex-start;
+  }
+  .lumi-course-player aside nav span {
+    font-size: 8px;
+  }
+  .lumi-lesson {
+    padding: 27px 23px;
+  }
+  .lumi-fantasy-reader {
+    padding: 48px 18px 25px;
+  }
+  .lumi-fantasy-reader > h2 {
+    font-size: 27px;
+  }
+  .lumi-fantasy-panels {
+    gap: 8px;
+  }
+  .lumi-fantasy-panels article {
+    min-height: 235px;
+    padding: 10px;
+  }
+  .lumi-fantasy-caption {
+    font-size: 9px;
+    padding: 6px 8px;
+  }
+  .lumi-fantasy-panels article p {
+    font-size: 10px;
+    padding: 8px;
+    max-width: 100%;
+  }
+  .lumi-fantasy-decisions > div {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 380px) {
+  .lumi-logo {
+    font-size: 20px;
+  }
+  .lumi-nav nav {
+    gap: 15px;
+  }
+  .lumi-kicker {
+    font-size: 6px;
+    letter-spacing: 1px;
+  }
+  .lumi-hero h1 {
+    font-size: 48px;
+  }
+  .lumi-float-right {
+    right: 12px;
+  }
+  .lumi-float-left {
+    left: 12px;
+  }
+  .lumi-fantasy-panels {
+    grid-template-columns: 1fr;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lumi-platform *,
+  .lumi-platform *:before,
+  .lumi-platform *:after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+  .lumi-hero-scene {
+    transform: none;
+  }
+}
+@media print {
+  .lumi-platform {
+    background: white;
+    color: black;
+  }
+  .lumi-hero {
+    min-height: 0;
+    height: auto;
+    padding: 40px;
+  }
+  .lumi-hero h1,
+  .lumi-section h2,
+  .lumi-story-content h3 {
+    color: black;
+  }
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+  .lumi-nav,
+  .lumi-orbit,
+  .lumi-stars,
+  .lumi-float-label,
+  .lumi-ticker,
+  .lumi-dialog,
+  .lumi-footer-word {
+    display: none;
+  }
+  .lumi-story-card {
+    break-inside: avoid;
+  }
+}
+.lumi-scenario {
+  padding: 20px;
+  margin-bottom: 24px;
+  border: 1px solid #b7a4ff35;
+  background:
+    radial-gradient(ellipse at top right, #b7a4ff0e, transparent), #171221;
+  border-radius: 10px;
+}
+.lumi-scenario > span {
+  font-size: 8px;
+  letter-spacing: 1.5px;
+  color: var(--lumi-violet);
+}
+.lumi-scenario p {
+  font-size: 14px;
+  line-height: 1.85;
+  color: #d5c8e2;
+  margin: 12px 0 0;
+}
+.lumi-debrief {
+  margin: 22px 0;
+  padding: 16px 0;
+  border-block: 1px solid #ffffff15;
+}
+.lumi-debrief summary {
+  color: var(--lumi-lime);
+  font-size: 12px;
+  cursor: pointer;
+}
+.lumi-debrief p {
+  color: #afa1bf;
+  font-size: 12px;
+  line-height: 1.85;
+}
