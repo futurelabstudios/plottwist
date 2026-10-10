@@ -1,4 +1,5 @@
-# Function boundary
+# API function
 
-Future server-only endpoints: `generate-story`, `interpret-decision`, and `transcribe`.
-No live endpoints are implemented in this scaffold. Keep API credentials here on the server, never in frontend code or `VITE_` variables.
+`api.mts` exposes `/api/*` through the shared server handler in `server/api.ts`. It reads server-scoped environment variables with `Netlify.env.get` and applies Netlify's IP/domain rate limit. See the root README for endpoints, local development and deployment.
+
+No API keys belong in frontend code or `VITE_` variables. `.env` is local-only and ignored by Git; production secrets must be configured in Netlify Functions.

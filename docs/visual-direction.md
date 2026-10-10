@@ -12,12 +12,16 @@ The user-supplied landing, “Please Don’t Save Us”, and scan continuation i
 
 ## Asset system
 
-`public/art/borrowed-stars-atlas.png` is a clean, pre-rendered 4×2 illustration atlas generated with the built-in imagegen tool using all three references. It is loaded once and addressed by the `tile-0` through `tile-7` CSS classes. No runtime image generation or API key is needed.
+`public/art/borrowed-stars-atlas.png` is a clean, pre-rendered 4×2 illustration atlas generated with the built-in imagegen tool using all three references. Its eight scenes are indexed 0–7 by the comic renderer. The authored illustrations need no API key.
 
 Top row: station/Wayfarer; Imani/Senn studying station; child behind glass; Captain/station core.
 Bottom row: gentle scan; returning light strands; lifeform detection; child on bridge.
 
-The first and scan pages use dedicated matching art. Negotiation and rescue currently reuse this illustration library as storyboard compositions; branch-specific locations and action art should be added before final production. The UI accurately labels this as a two-page offline example. Voice and follow-up choices are future functionality.
+The ten-page story also uses `public/art/borrowed-stars-chapters.png`, a 4×4 atlas containing scenes 8–23. In reading order: the seed, a hidden map, station in a storm, station corridor, memory archive, living core, failing archive, reactor, protective shield, seed bridge, evacuation bridge, family reunion, the Collector, memory beacon, sunrise, and the next adventure.
+
+All 24 scenes are illustration-only. The app overlays editable, accessible HTML dialogue and captions, including the Captain’s name. Each page remains exactly four panels. Some scenes are reused across branches with different framing and narrative. The optional Images API action creates a fresh 2×2 atlas from the current page's four panel descriptions and stores it in the browser.
+
+The cover opens into an ivory paper comic, with dark gutters and a perspective page-fold overlay. Reduced-motion preferences disable the animation; printing lays out the visited pages with four panels each.
 
 ## Generation prompt
 
@@ -25,4 +29,4 @@ Use case: illustration-story. Create a production illustration sprite sheet for 
 
 ## Continue this style
 
-Generate illustration-only assets with consistent character references. Register approved assets and attach appropriate art to each story beat. Use captions and bubbles for narrative and accessible text. Keep controls honest about implemented capabilities; add voice interaction when its recording and transcription flow is available.
+Generate illustration-only assets with consistent character references. Register approved assets and attach appropriate art to each story beat. Use captions and bubbles for narrative and accessible text. Keep the cast, station geometry, cyan holograms and warm gold light consistent. Generated images contain no lettering; narrative text stays in HTML.

@@ -1,39 +1,889 @@
-import { useEffect, useReducer, useState } from 'react'
-import { initialState, reducer, choices, opening, continuation, type Branch } from './story'
-import './App.css'
+import { useEffect, useRef, useState, type CSSProperties } from "react";
+import {
+  advance,
+  createBook,
+  fixture,
+  choicesFor,
+  worldFor,
+  labels,
+  icons,
+  interpretOffline,
+  validBook,
+  NameSchema,
+  PageSchema,
+  type Book,
+  type Branch,
+  type Page,
+} from "./lib/story";
+import {
+  ConfigSchema,
+  InterpretationSchema,
+  type ServiceConfig,
+} from "./lib/contracts";
+import { VoiceSession, type VoiceMode, type VoicePhase } from "./lib/voice";
+import { readArt, saveArt } from "./lib/art-cache";
+import "./App.css";
 
-const titles: Record<Branch, string> = { scan: 'The Scan That Answered', rescue: 'The Shifting Corridors', negotiate: 'Two Sides of a Memory' }
-const illustrations: Record<Branch, number[]> = { scan: [4, 5, 6, 7], rescue: [4, 0, 1, 3], negotiate: [1, 2, 3, 4] }
-function Mark() { return <span className="mark" aria-hidden="true"><i /><i /><i /><i /></span> }
-function App() {
-  const [state, dispatch] = useReducer(reducer, initialState)
-  useEffect(() => { window.scrollTo({ top: 0, behavior: 'instant' }) }, [state.page])
-  const [name, setName] = useState('')
-  const [pending, setPending] = useState<Branch | null>(null)
-  const [showHelp, setShowHelp] = useState(false)
-  const panels = state.page === 1 ? opening : continuation(state.branch ?? 'scan')
-  const art = state.page === 1 ? [0, 1, 2, 3] : illustrations[state.branch ?? 'scan']
-  const reset = () => { dispatch({ type: 'reset' }); setPending(null) }
-  return <main>
-    <header><a href="/" className="brand"><Mark />PlotTwist</a><span className="badge"><span /> Offline storyboard</span></header>
-    {state.page === 0 ? <section className="landing">
-      <div className="hero-copy"><p className="eyebrow">A VOICE-DRIVEN SPACE ADVENTURE</p><h1>The Borrowed<br />Stars</h1><p className="tagline">Your voice. Your choices. Your universe.</p></div>
-      <div className="hero-art illustration tile-0" role="img" aria-label="The Wayfarer approaches a luminous flower-shaped alien station above a planet." />
-      <div className="mission"><h2>Become the captain. Choose your next move.</h2><form onSubmit={e => { e.preventDefault(); if (name.trim()) dispatch({ type: 'start', name: name.trim() }) }}>
-        <label htmlFor="captain">Your captain’s name<input id="captain" required maxLength={40} value={name} onChange={e => setName(e.target.value)} placeholder="Enter your name" autoComplete="given-name" /></label>
-        <button className="primary">Begin your mission <span aria-hidden="true">→</span></button>
-      </form><button className="help-button" onClick={() => setShowHelp(!showHelp)} aria-expanded={showHelp}><span aria-hidden="true">▷</span> See how it works</button>
-      {showHelp && <p className="help">Read four illustrated panels, choose an order, then confirm to reveal its consequences. Replay to try another path. Voice is planned; this example works with choice buttons.</p>}
-      <div className="features"><div><Mark /><strong>4-panel chapters</strong></div><div><span aria-hidden="true">⌁</span><strong>Captain’s choices</strong></div><div><span aria-hidden="true">⑂</span><strong>A changing story</strong></div></div><p className="tagline small">Every decision opens a new possibility.</p></div>
-    </section> : <section className="episode">
-      <div className="captain-bar"><div className="avatar illustration tile-3" aria-hidden="true" /><div className="captain-info"><div><strong>Captain {state.name}</strong><span>PAGE {state.page} / 2</span></div><div className="progress" aria-label={`Page ${state.page} of 2`}><i className="active" /><i className={state.page === 2 ? 'active' : ''} /></div></div><button className="reset" onClick={reset}>Reset</button></div>
-      <div className="episode-heading"><h1>The Borrowed Stars</h1><h2>{state.page === 1 ? 'Please Don’t Save Us' : titles[state.branch!]}</h2>{state.page === 2 && <p className="order-pill">✓ {choices.find(c => c.id === state.branch)?.label}</p>}</div>
-      <div className="panels">{panels.map((panel, i) => <article className={`panel panel-${i}`} key={panel.caption}><div className={`illustration tile-${art[i]}`} role="img" aria-label={panel.caption} /><span className="panel-number">0{i + 1}</span><p className="bubble">{panel.dialogue}</p><p className={`caption ${state.page === 1 && i === 3 ? 'warning' : ''}`}>{panel.caption}</p></article>)}</div>
-      <section className="decision" aria-labelledby="decision-title"><h2 id="decision-title">{state.page === 1 ? 'What’s your order, Captain?' : 'Your orders, Captain?'}</h2>
-      {state.page === 1 ? <><p className="voice-preview"><span aria-hidden="true">♩</span> Your next move shapes the story <span className="wave" aria-hidden="true">▂▅▇▃▆▅▂</span></p><div className="choices">{choices.map((choice,i) => <button className="secondary" onClick={() => setPending(choice.id)} key={choice.id}><span aria-hidden="true">{['◯','♟','◎'][i]}</span>{choice.label}</button>)}</div>{pending && <div className="confirmation" role="status"><p>Confirm order: <strong>{choices.find(c => c.id === pending)?.label}</strong></p><button onClick={() => { dispatch({ type: 'choose', branch: pending }); setPending(null) }}>Confirm command →</button><button className="secondary" onClick={() => setPending(null)}>Cancel</button></div>}<p className="decision-note">Your decision shapes the next four panels.</p></> : <><p className="decision-note">The next chapter is yours to imagine.</p><div className="next-choices" aria-label="Preview of future choices">{(state.branch === 'scan' ? ['Talk to the child','Check the ship','Contact the station'] : ['Hear their story','Protect the crew','Contact the station']).map(label => <span key={label}>{label}</span>)}</div><p className="note">End of the two-page storyboard example. Next-chapter choices and voice are coming later.</p><button className="primary replay" onClick={reset}>Replay another path ↻</button></>}
-      </section><div className="consequences"><span>Crew trust <strong>{state.crewTrust}</strong></span><span>Ship energy <strong>{state.shipEnergy}</strong></span><span>Alien relationship <strong>{state.alienRelationship > 0 ? '+' : ''}{state.alienRelationship}</strong></span></div>
-    </section>}
-    <footer><span>THE BORROWED STARS · A PLOTTWIST ORIGINAL</span><span>Illustrated offline example · Voice coming later</span></footer>
-  </main>
+const SAVE_KEY = "plottwist-book-v2";
+function loadBook(): Book | null {
+  try {
+    return validBook(JSON.parse(localStorage.getItem(SAVE_KEY) || "null"));
+  } catch {
+    return null;
+  }
 }
-export default App
+const defaultConfig: ServiceConfig = {
+  live: false,
+  realtime: false,
+  images: false,
+  reason: "Offline edition",
+};
+function Mark() {
+  return (
+    <span className="mark" aria-hidden="true">
+      <i />
+      <i />
+      <i />
+      <i />
+    </span>
+  );
+}
+function artStyle(art: number, custom?: string, index = 0): CSSProperties {
+  const cols = custom ? 2 : 4,
+    rows = custom ? 2 : art < 8 ? 2 : 4,
+    tile = custom ? index : art < 8 ? art : art - 8;
+  return {
+    backgroundImage: `url("${custom || (art < 8 ? "/art/borrowed-stars-atlas.png" : "/art/borrowed-stars-chapters.png")}")`,
+    backgroundSize: `${cols * 100}% ${rows * 100}%`,
+    backgroundPosition: `${((tile % cols) * 100) / (cols - 1)}% ${(Math.floor(tile / cols) * 100) / (rows - 1)}%`,
+  };
+}
+function ComicPage({ page, art }: { page: Page; art?: string }) {
+  return (
+    <div className="paper">
+      <div className="paper-heading">
+        <span>THE BORROWED STARS</span>
+        <span>{String(page.number).padStart(2, "0")} / 10</span>
+      </div>
+      <h2>{page.title}</h2>
+      <div className="panels">
+        {page.panels.map((panel, i) => (
+          <article className={`panel panel-${i}`} key={i}>
+            <div
+              className="illustration"
+              style={artStyle(panel.art, art, i)}
+              role="img"
+              aria-label={panel.caption}
+            />
+            <span className="panel-number">{i + 1}</span>
+            <p className="bubble">{panel.dialogue}</p>
+            <p className="caption">{panel.caption}</p>
+          </article>
+        ))}
+      </div>
+      <div className="paper-bottom">
+        <span>✧ A STORY SHAPED BY YOU</span>
+        <span>{page.number}</span>
+      </div>
+    </div>
+  );
+}
+export default function App() {
+  const [book, setBook] = useState<Book | null>(loadBook);
+  const [name, setName] = useState("");
+  const [view, setView] = useState(() =>
+    Math.max(0, (loadBook()?.pages.length ?? 1) - 1),
+  );
+  const [config, setConfig] = useState(defaultConfig);
+  const [live, setLive] = useState(false);
+  const [text, setText] = useState("");
+  const [pending, setPending] = useState<{
+    branch: Branch;
+    order: string;
+    confirmation: string;
+  } | null>(null);
+  const [busy, setBusy] = useState("");
+  const [error, setError] = useState("");
+  const [storageError, setStorageError] = useState("");
+  const [fallback, setFallback] = useState(false);
+  const [voiceMode, setVoiceMode] = useState<VoiceMode>("recorded");
+  const [voicePhase, setVoicePhase] = useState<VoicePhase>("idle");
+  const [oldPage, setOldPage] = useState<{
+    page: Page;
+    art?: string;
+    backwards: boolean;
+  } | null>(null);
+  const [artCache, setArtCache] = useState<{ key: string; value?: string }>({
+    key: "",
+  });
+  const [help, setHelp] = useState(false);
+  const [resetting, setResetting] = useState(false);
+  const controller = useRef<AbortController | null>(null);
+  const inFlight = useRef(false);
+  const requestId = useRef(0);
+  const turnTimer = useRef<ReturnType<typeof setTimeout> | undefined>(
+    undefined,
+  );
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const voice = useRef<VoiceSession | null>(null);
+  const page = book?.pages[view];
+  const world = book ? worldFor(book.history) : null;
+  const latest = !!book && view === book.pages.length - 1;
+  const completed = book?.pages.length === 10;
+  const choices = page ? choicesFor(page.number) : [];
+  const artKey =
+    book && page
+      ? JSON.stringify([book.name, book.history.slice(0, view), page])
+      : "";
+
+  const customArt = artCache.key === artKey ? artCache.value : undefined;
+  const hasBook = !!book;
+  useEffect(() => {
+    if (resetting) dialogRef.current?.showModal();
+    else dialogRef.current?.close();
+  }, [resetting]);
+
+  useEffect(() => {
+    const abort = new AbortController();
+    fetch("/api/config", { signal: abort.signal })
+      .then((r) => r.json())
+      .then((value) => {
+        const c = ConfigSchema.parse(value);
+        setConfig(c);
+        setLive(c.live);
+      })
+      .catch(() => {});
+    return () => abort.abort();
+  }, []);
+  useEffect(() => {
+    try {
+      if (book) localStorage.setItem(SAVE_KEY, JSON.stringify(book));
+      else localStorage.removeItem(SAVE_KEY);
+    } catch {
+      queueMicrotask(() =>
+        setStorageError(
+          "Browser storage is unavailable. Keep this tab open or download your book to preserve it.",
+        ),
+      );
+    }
+  }, [book]);
+  useEffect(() => {
+    let active = true;
+    if (artKey)
+      void readArt(artKey).then((value) => {
+        if (active) setArtCache({ key: artKey, value });
+      });
+    return () => {
+      active = false;
+    };
+  }, [artKey]);
+  useEffect(() => {
+    voice.current = new VoiceSession({
+      phase: setVoicePhase,
+      transcript: (value) => {
+        setText(value);
+        setPending(null);
+        setFallback(false);
+      },
+      error: setError,
+    });
+    return () => {
+      voice.current?.cancel();
+      controller.current?.abort();
+      clearTimeout(turnTimer.current);
+    };
+  }, []);
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+    titleRef.current?.focus({ preventScroll: true });
+  }, [view, hasBook]);
+
+  function clearDecision() {
+    requestId.current++;
+    voice.current?.cancel();
+    controller.current?.abort();
+    inFlight.current = false;
+    setBusy("");
+    setError("");
+    setText("");
+    setPending(null);
+    setFallback(false);
+  }
+  function turn(next: number, nextBook = book) {
+    if (!nextBook || next < 0 || next >= nextBook.pages.length || oldPage)
+      return;
+    clearDecision();
+    if (page) setOldPage({ page, art: customArt, backwards: next < view });
+    setView(next);
+    setBook(nextBook);
+    clearTimeout(turnTimer.current);
+    turnTimer.current = setTimeout(() => setOldPage(null), 720);
+  }
+  function choose(branch: Branch) {
+    if (busy || voicePhase !== "idle") return;
+    setError("");
+    setFallback(false);
+    const label = choices.find((c) => c.id === branch)!.label;
+    setPending({ branch, order: label, confirmation: label });
+    setText(label);
+  }
+  async function request(path: string, body: unknown) {
+    const abort = new AbortController();
+    controller.current = abort;
+    const response = await fetch(`/api/${path}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+      signal: AbortSignal.any([abort.signal, AbortSignal.timeout(55_000)]),
+    });
+    const data = await response.json();
+    if (!response.ok)
+      throw new Error(data.error || "The request failed. Please try again.");
+    return data;
+  }
+  async function interpret() {
+    if (
+      !book ||
+      !page ||
+      !text.trim() ||
+      inFlight.current ||
+      voicePhase !== "idle"
+    )
+      return;
+    setError("");
+    setPending(null);
+    setFallback(false);
+    if (!live) {
+      const branch = interpretOffline(text, page.number);
+      if (!branch)
+        return setError(
+          "Please choose one of the four approaches, or describe one clear action such as “scan the station”.",
+        );
+      return setPending({
+        branch,
+        order: text,
+        confirmation: choices.find((c) => c.id === branch)!.label,
+      });
+    }
+    const op = ++requestId.current;
+    inFlight.current = true;
+    setBusy("Understanding your order…");
+    try {
+      const data = InterpretationSchema.parse(
+        await request("interpret-decision", {
+          name: book.name,
+          history: book.history,
+          order: text,
+        }),
+      );
+      if (op !== requestId.current || controller.current?.signal.aborted)
+        return;
+      if (data.branch)
+        setPending({
+          branch: data.branch,
+          order: text,
+          confirmation: data.confirmation,
+        });
+      else setError(data.clarification || "Please clarify your order.");
+    } catch (e) {
+      if (op === requestId.current && !controller.current?.signal.aborted)
+        setError(
+          e instanceof Error ? e.message : "Could not interpret that order.",
+        );
+    } finally {
+      if (op === requestId.current && !controller.current?.signal.aborted) {
+        inFlight.current = false;
+        setBusy("");
+      }
+    }
+  }
+  async function confirm(useFixture = false) {
+    if (
+      !book ||
+      !pending ||
+      !latest ||
+      completed ||
+      inFlight.current ||
+      oldPage
+    )
+      return;
+    const nextHistory = [...book.history, pending.branch];
+    if (!live || useFixture) {
+      turn(
+        view + 1,
+        advance(
+          book,
+          pending.branch,
+          pending.order,
+          fixture(book.name, nextHistory),
+        ),
+      );
+      return;
+    }
+    const op = ++requestId.current;
+    inFlight.current = true;
+    setBusy("Writing the next four panels…");
+    setError("");
+    setFallback(false);
+    try {
+      const result = await request("generate-story", {
+        name: book.name,
+        history: book.history,
+        branch: pending.branch,
+        order: pending.order,
+        previousPages: book.pages,
+      });
+      if (op !== requestId.current || controller.current?.signal.aborted)
+        return;
+      const generated = PageSchema.parse(result.page);
+      if (
+        !generated.panels.some((p) =>
+          (p.caption + p.dialogue).includes(book.name),
+        )
+      )
+        throw new Error("The response lost your Captain’s name.");
+      turn(view + 1, advance(book, pending.branch, pending.order, generated));
+    } catch (e) {
+      if (op === requestId.current && !controller.current?.signal.aborted) {
+        setError(
+          e instanceof Error ? e.message : "The page could not be generated.",
+        );
+        setFallback(true);
+      }
+    } finally {
+      if (op === requestId.current && !controller.current?.signal.aborted) {
+        inFlight.current = false;
+        setBusy("");
+      }
+    }
+  }
+  async function illustrate() {
+    if (!book || !page || inFlight.current) return;
+    const op = ++requestId.current;
+    inFlight.current = true;
+    setBusy("Painting four new illustrations…");
+    setError("");
+    try {
+      const result = await request("generate-art", {
+        name: book.name,
+        history: book.history.slice(0, view),
+        page,
+      });
+      if (op !== requestId.current || controller.current?.signal.aborted)
+        return;
+      if (
+        typeof result.dataUrl !== "string" ||
+        !result.dataUrl.startsWith("data:image/webp;base64,")
+      )
+        throw new Error("The illustration response was invalid.");
+      setArtCache({ key: artKey, value: result.dataUrl });
+      await saveArt(artKey, result.dataUrl).catch(() =>
+        setStorageError(
+          "New art is visible, but this browser could not save it for later.",
+        ),
+      );
+    } catch (e) {
+      if (op === requestId.current && !controller.current?.signal.aborted)
+        setError(e instanceof Error ? e.message : "Image generation failed.");
+    } finally {
+      if (op === requestId.current && !controller.current?.signal.aborted) {
+        inFlight.current = false;
+        setBusy("");
+      }
+    }
+  }
+  function exportBook() {
+    const blob = new Blob([JSON.stringify(book, null, 2)], {
+      type: "application/json",
+    });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "the-borrowed-stars.json";
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+  return (
+    <main>
+      <header>
+        <a href="/" className="brand">
+          <Mark />
+          PlotTwist
+        </a>
+        <div className="mode">
+          <span className="badge">
+            <span />
+            {live ? "OpenAI edition" : "Offline edition"}
+          </span>
+          {config.live && (
+            <label>
+              <input
+                type="checkbox"
+                checked={live}
+                disabled={!!busy || voicePhase !== "idle"}
+                onChange={(e) => {
+                  clearDecision();
+                  setLive(e.target.checked);
+                }}
+              />
+              Live story
+            </label>
+          )}
+        </div>
+      </header>
+      {!book ? (
+        <section className="landing">
+          <div className="hero-copy">
+            <p className="eyebrow">
+              AN INTERACTIVE COMIC · TEN PAGES · YOUR CHOICES
+            </p>
+            <h1>
+              The Borrowed
+              <br />
+              Stars
+            </h1>
+            <p className="tagline">Every order changes the story.</p>
+          </div>
+          <div
+            className="hero-art illustration"
+            style={artStyle(0)}
+            role="img"
+            aria-label="The Wayfarer approaches a flower-shaped station above a planet."
+          />
+          <div className="mission">
+            <h2>Four hundred voices. One impossible rescue.</h2>
+            <p className="intro">
+              A station saved its people as memories. Now they want to leave.
+              Become the Captain who decides what happens next.
+            </p>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                const result = NameSchema.safeParse(name);
+                if (!result.success) {
+                  setError(result.error.issues[0].message);
+                  return;
+                }
+                setBook(createBook(result.data));
+                setView(0);
+                setError("");
+              }}
+            >
+              <label htmlFor="captain">
+                Your Captain’s name
+                <input
+                  id="captain"
+                  required
+                  maxLength={40}
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Enter your name"
+                  autoComplete="given-name"
+                />
+              </label>
+              <button className="primary">
+                Open your comic book <span aria-hidden="true">→</span>
+              </button>
+            </form>
+            {error && (
+              <p role="alert" className="error">
+                {error}
+              </p>
+            )}
+            <button
+              className="help-button"
+              onClick={() => setHelp(!help)}
+              aria-expanded={help}
+            >
+              ▷ How your story unfolds
+            </button>
+            {help && (
+              <p className="help">
+                Read four panels, then speak, type or choose an order. Review it
+                before turning the page. Nine decisions lead to four different
+                endings, shaped by your whole journey. Your name follows you
+                into the dialogue. Progress saves on this device.
+              </p>
+            )}
+            <div className="features">
+              <div>
+                <Mark />
+                <strong>10 illustrated pages</strong>
+              </div>
+              <div>
+                <span aria-hidden="true">⑂</span>
+                <strong>4 approaches</strong>
+              </div>
+              <div>
+                <span aria-hidden="true">⌁</span>
+                <strong>Speak your choices</strong>
+              </div>
+            </div>
+            {!config.live && (
+              <p className="note">
+                Play the complete authored story now. Voice and live creation
+                unlock when OpenAI is configured.
+              </p>
+            )}
+          </div>
+        </section>
+      ) : (
+        <section className="episode">
+          <div className="captain-bar">
+            <div
+              className="avatar illustration"
+              style={artStyle(3)}
+              aria-hidden="true"
+            />
+            <div className="captain-info">
+              <div>
+                <strong>Captain {book.name}</strong>
+                <span>PAGE {view + 1} / 10</span>
+              </div>
+              <div className="progress" aria-label={`Page ${view + 1} of 10`}>
+                {Array.from({ length: 10 }, (_, i) => (
+                  <i key={i} className={i <= view ? "active" : ""} />
+                ))}
+              </div>
+            </div>
+            <button
+              className="reset"
+              disabled={!!busy || voicePhase !== "idle"}
+              onClick={() => setResetting(true)}
+            >
+              New book
+            </button>
+          </div>
+          <h1 className="book-title" ref={titleRef} tabIndex={-1}>
+            The Borrowed Stars
+          </h1>
+          <div className="book-tools">
+            <button
+              className="text-button"
+              disabled={!!busy}
+              onClick={exportBook}
+            >
+              Save story ↓
+            </button>
+            <button
+              className="text-button"
+              disabled={!!busy}
+              onClick={() => window.print()}
+            >
+              Print comic
+            </button>
+            {config.images && (
+              <button
+                className="text-button"
+                disabled={!!busy || voicePhase !== "idle"}
+                onClick={() => void illustrate()}
+              >
+                Illustrate this page with AI
+              </button>
+            )}
+            <span>
+              {page?.source === "openai" ? "AI-written page" : "Authored page"}
+              {customArt ? " · AI illustrations" : ""}
+            </span>
+          </div>
+          <div
+            className={`book-stage ${view === 0 ? "book-opening" : ""}`}
+            aria-busy={!!oldPage}
+          >
+            {page && <ComicPage page={page} art={customArt} />}
+            {oldPage && (
+              <div
+                className={`turn-sheet ${oldPage.backwards ? "backwards" : ""}`}
+                aria-hidden="true"
+              >
+                <ComicPage page={oldPage.page} art={oldPage.art} />
+              </div>
+            )}
+          </div>
+          <nav className="page-navigation" aria-label="Comic pages">
+            <button
+              className="secondary"
+              disabled={
+                view === 0 || !!oldPage || !!busy || voicePhase !== "idle"
+              }
+              onClick={() => turn(view - 1)}
+            >
+              ← Previous page
+            </button>
+            <span>{view + 1} of 10</span>
+            <button
+              className="secondary"
+              disabled={latest || !!oldPage || !!busy || voicePhase !== "idle"}
+              onClick={() => turn(view + 1)}
+            >
+              Next page →
+            </button>
+          </nav>
+          {!latest && (
+            <p className="reading-history">
+              You’re rereading your book.{" "}
+              <button
+                className="text-button"
+                disabled={!!oldPage}
+                onClick={() => turn(book.pages.length - 1)}
+              >
+                Return to your latest page →
+              </button>
+            </p>
+          )}
+          {latest && !completed && (
+            <section className="decision" aria-labelledby="decision-title">
+              <p className="eyebrow">THE NEXT PAGE BEGINS WITH YOU</p>
+              <h2 id="decision-title">Your orders, Captain {book.name}?</h2>
+              <div className="choices">
+                {choices.map((c) => (
+                  <button
+                    disabled={!!busy || !!oldPage || voicePhase !== "idle"}
+                    className={`choice ${pending?.branch === c.id ? "selected" : ""}`}
+                    key={c.id}
+                    onClick={() => choose(c.id)}
+                  >
+                    <span aria-hidden="true">{icons[c.id]}</span>
+                    <strong>{c.label}</strong>
+                    <small>{c.hint}</small>
+                  </button>
+                ))}
+              </div>
+              <div className="order-editor">
+                <label htmlFor="order">Or give your own order</label>
+                <textarea
+                  id="order"
+                  maxLength={600}
+                  rows={2}
+                  value={text}
+                  disabled={!!busy || voicePhase !== "idle"}
+                  placeholder="Scan the station. Find a way to let everyone leave safely."
+                  onChange={(e) => {
+                    setText(e.target.value);
+                    setPending(null);
+                    setFallback(false);
+                    setError("");
+                  }}
+                />
+                <div className="voice-controls">
+                  <button
+                    className={`voice-button ${voicePhase === "recording" ? "recording" : ""}`}
+                    disabled={
+                      !config.live ||
+                      !!busy ||
+                      !!oldPage ||
+                      voicePhase === "connecting" ||
+                      voicePhase === "transcribing"
+                    }
+                    onClick={() => {
+                      setError("");
+                      if (voicePhase === "recording") voice.current?.stop();
+                      else {
+                        setText("");
+                        setPending(null);
+                        void voice.current?.start(voiceMode);
+                      }
+                    }}
+                  >
+                    {voicePhase === "recording"
+                      ? "■ Stop recording"
+                      : voicePhase === "connecting"
+                        ? "Connecting microphone…"
+                        : voicePhase === "transcribing"
+                          ? "Transcribing…"
+                          : "♩ Speak your order"}
+                  </button>
+                  {voicePhase !== "idle" && (
+                    <button
+                      className="text-button"
+                      onClick={() => voice.current?.cancel()}
+                    >
+                      Cancel voice
+                    </button>
+                  )}
+                  <label className="voice-select">
+                    Voice mode
+                    <select
+                      value={voiceMode}
+                      disabled={voicePhase !== "idle" || !!busy || !config.live}
+                      onChange={(e) =>
+                        setVoiceMode(e.target.value as VoiceMode)
+                      }
+                    >
+                      <option value="recorded">Record & transcribe</option>
+                      <option value="realtime" disabled={!config.realtime}>
+                        Realtime transcript
+                      </option>
+                    </select>
+                  </label>
+                  <button
+                    disabled={
+                      !text.trim() ||
+                      !!busy ||
+                      voicePhase !== "idle" ||
+                      !!oldPage
+                    }
+                    onClick={() => void interpret()}
+                  >
+                    Review order →
+                  </button>
+                </div>
+                <p className="note">
+                  {config.live
+                    ? "Voice sends microphone audio to OpenAI, up to 15 seconds. Edit the transcript before reviewing."
+                    : "Voice requires OpenAI configuration. Typed orders and all four choices work offline."}
+                </p>
+              </div>
+              {pending && (
+                <div className="confirmation" role="status">
+                  <span className="eyebrow">CONFIRM YOUR DECISION</span>
+                  <p>“{pending.order}”</p>
+                  <strong>{pending.confirmation}</strong>
+                  <p className="note">
+                    Approach: {labels[pending.branch]}. This decision will shape
+                    page {view + 2}.
+                  </p>
+                  <button
+                    disabled={!!busy || !!oldPage}
+                    onClick={() => void confirm()}
+                  >
+                    Confirm & turn the page →
+                  </button>
+                  <button
+                    className="secondary"
+                    disabled={!!busy}
+                    onClick={() => {
+                      setPending(null);
+                      setFallback(false);
+                    }}
+                  >
+                    Edit order
+                  </button>
+                </div>
+              )}
+            </section>
+          )}
+          {completed && latest && (
+            <section className="ending">
+              <p className="eyebrow">THE END · AND A NEW BEGINNING</p>
+              <h2>Your legacy: {labels[world!.route]}</h2>
+              <p>
+                Nine orders. Four hundred free lives. This is the book Captain{" "}
+                {book.name} helped write.
+              </p>
+              <div className="journey">
+                {book.history.map((b, i) => (
+                  <button
+                    className="journey-step"
+                    key={i}
+                    disabled={!!oldPage}
+                    onClick={() => turn(i)}
+                  >
+                    <span>{i + 1}</span>
+                    {icons[b]} {labels[b]}
+                  </button>
+                ))}
+              </div>
+              <button onClick={() => setResetting(true)}>
+                Open a different future ↻
+              </button>
+            </section>
+          )}
+          <div className="consequences">
+            <span>
+              Crew trust <strong>{world!.trust}</strong>
+            </span>
+            <span>
+              Ship energy <strong>{world!.energy}%</strong>
+            </span>
+            <span>
+              Station bond{" "}
+              <strong>
+                {world!.bond > 0 ? "+" : ""}
+                {world!.bond}
+              </strong>
+            </span>
+          </div>
+          {busy && (
+            <div className="busy" role="status">
+              <span className="spinner" />
+              {busy}
+              <button
+                className="text-button"
+                onClick={() => {
+                  requestId.current++;
+                  controller.current?.abort();
+                  inFlight.current = false;
+                  setBusy("");
+                }}
+              >
+                Cancel
+              </button>
+            </div>
+          )}
+          {error && (
+            <div className="error" role="alert">
+              {error}
+              {fallback && (
+                <button
+                  className="secondary"
+                  disabled={!!busy}
+                  onClick={() => void confirm(true)}
+                >
+                  Continue with matching authored page →
+                </button>
+              )}
+            </div>
+          )}
+        </section>
+      )}
+      {storageError && (
+        <p className="error" role="status">
+          {storageError}
+        </p>
+      )}
+      <dialog
+        ref={dialogRef}
+        onCancel={() => setResetting(false)}
+        aria-labelledby="new-book-title"
+        className="modal"
+      >
+        <h2 id="new-book-title">Begin a new book?</h2>
+        <p>
+          Your current story will be replaced on this device. You can save it
+          first.
+        </p>
+        <button onClick={exportBook}>Save current story</button>
+        <button className="secondary" onClick={() => setResetting(false)}>
+          Keep reading
+        </button>
+        <button
+          onClick={() => {
+            clearDecision();
+            setOldPage(null);
+            clearTimeout(turnTimer.current);
+            setBook(null);
+            setView(0);
+            setResetting(false);
+          }}
+        >
+          Start new book
+        </button>
+      </dialog>
+      <footer>
+        <span>THE BORROWED STARS · A PLOTTWIST ORIGINAL</span>
+        <span>10 pages · 4 paths · Your story</span>
+      </footer>
+      {book && (
+        <div className="print-book">
+          <h1>The Borrowed Stars</h1>
+          <p>A story by Captain {book.name}</p>
+          {book.pages.map((p) => (
+            <ComicPage key={p.number} page={p} />
+          ))}
+        </div>
+      )}
+    </main>
+  );
+}
