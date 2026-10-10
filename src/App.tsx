@@ -436,7 +436,7 @@ export default function App() {
           }}
         >
           <Mark />
-          Lumiclinik
+          PlotTwist by Futurelab Studios
         </a>
         <div className="mode">
           <span className="badge">
@@ -797,7 +797,7 @@ export default function App() {
         </button>
       </dialog>
       <footer>
-        <span>THE BORROWED STARS · A PLOTTWIST ORIGINAL</span>
+        <span>THE BORROWED STARS · PLOTTWIST BY FUTURELAB STUDIOS</span>
         <span>10 pages · 4 paths · Your story</span>
       </footer>
       {book && (

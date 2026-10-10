@@ -59,10 +59,14 @@ interface LearningSave {
   completed: string[];
   notes: Record<string, string>;
 }
-const LEARNING_KEY = "lumiclinik-learning-v1";
+const LEARNING_KEY = "plottwist-learning-v1";
+// Read the previous key once so existing Work progress survives the rebrand.
+const LEGACY_LEARNING_KEY = "lumiclinik-learning-v1";
 function loadLearning(): LearningSave {
   try {
-    const value = JSON.parse(localStorage.getItem(LEARNING_KEY) || "null");
+    const value = JSON.parse(
+      localStorage.getItem(LEARNING_KEY) || localStorage.getItem(LEGACY_LEARNING_KEY) || "null",
+    );
     if (
       value &&
       Array.isArray(value.completed) &&
@@ -130,6 +134,7 @@ export default function Platform({ onStart, onResume, savedName }: Props) {
   useEffect(() => {
     try {
       localStorage.setItem(LEARNING_KEY, JSON.stringify(learning));
+      localStorage.removeItem(LEGACY_LEARNING_KEY);
     } catch {
       /* Keep the current session usable when storage is disabled. */
     }
@@ -206,29 +211,29 @@ export default function Platform({ onStart, onResume, savedName }: Props) {
     setChecked(true);
   }
   return (
-    <div className="lumi-platform" ref={root}>
-      <a className="lumi-skip" href="#play">
+    <div className="plot-platform" ref={root}>
+      <a className="plot-skip" href="#play">
         Skip to experiences
       </a>
-      <header className="lumi-nav">
-        <a className="lumi-logo" href="#top" aria-label="Lumiclinik home">
-          <span className="lumi-logomark">
+      <header className="plot-nav">
+        <a className="plot-logo" href="#top" aria-label="PlotTwist by Futurelab Studios home">
+          <span className="plot-logomark">
             <Icon name="spark" />
           </span>
-          lumiclinik<span className="lumi-logo-dot">.</span>
+          PlotTwist<span className="plot-logo-dot">.</span><span className="plot-logo-byline">by Futurelab Studios</span>
         </a>
         <nav aria-label="Main navigation">
           <a href="#play">Play</a>
           <a href="#work">Work</a>
           <a href="#how">The idea</a>
         </nav>
-        <a className="lumi-nav-cta" href="#play">
+        <a className="plot-nav-cta" href="#play">
           Find your next chapter <Icon name="arrow" />
         </a>
       </header>
-      <main className="lumi-main">
+      <main className="plot-main">
         <section
-          className="lumi-hero"
+          className="plot-hero"
           id="top"
           ref={hero}
           onPointerMove={parallax}
@@ -237,11 +242,11 @@ export default function Platform({ onStart, onResume, savedName }: Props) {
             hero.current?.style.setProperty("--pointer-y", "0px");
           }}
         >
-          <div className="lumi-hero-scene" aria-hidden="true" />
-          <div className="lumi-hero-vignette" aria-hidden="true" />
-          <div className="lumi-orbit orbit-one" aria-hidden="true" />
-          <div className="lumi-orbit orbit-two" aria-hidden="true" />
-          <div className="lumi-stars" aria-hidden="true">
+          <div className="plot-hero-scene" aria-hidden="true" />
+          <div className="plot-hero-vignette" aria-hidden="true" />
+          <div className="plot-orbit orbit-one" aria-hidden="true" />
+          <div className="plot-orbit orbit-two" aria-hidden="true" />
+          <div className="plot-stars" aria-hidden="true">
             {Array.from({ length: 18 }, (_, i) => (
               <i
                 key={i}
@@ -253,9 +258,9 @@ export default function Platform({ onStart, onResume, savedName }: Props) {
               />
             ))}
           </div>
-          <div className="lumi-hero-copy">
-            <div className="lumi-kicker">
-              <span className="lumi-live-dot" />
+          <div className="plot-hero-copy">
+            <div className="plot-kicker">
+              <span className="plot-live-dot" />
               FOR THE CURIOUS. THE CREATORS. THE NEXT YOU.
             </div>
             <h1>
@@ -264,50 +269,50 @@ export default function Platform({ onStart, onResume, savedName }: Props) {
               starts with{" "}
               <span>
                 you
-                <span className="lumi-title-star" aria-hidden="true">
+                <span className="plot-title-star" aria-hidden="true">
                   ✦
                 </span>
               </span>
             </h1>
             <p>
               Enter extraordinary worlds. Build real-world skills.
-              <br className="lumi-desktop-break" /> One place to play, learn,
+              <br className="plot-desktop-break" /> One place to play, learn,
               and become a little more you.
             </p>
-            <div className="lumi-hero-actions">
-              <a className="lumi-button lumi-button-lime" href="#play">
+            <div className="plot-hero-actions">
+              <a className="plot-button plot-button-lime" href="#play">
                 <Icon name="play" />
                 Enter Play
                 <Icon name="arrow" />
               </a>
-              <a className="lumi-button lumi-button-glass" href="#work">
+              <a className="plot-button plot-button-glass" href="#work">
                 Explore Work
                 <Icon name="arrow" />
               </a>
             </div>
-            <div className="lumi-hero-footnote">
+            <div className="plot-hero-footnote">
               <span />A new way to follow your curiosity
             </div>
           </div>
-          <div className="lumi-float-label lumi-float-left">
-            <span className="lumi-label-icon">✦</span>
+          <div className="plot-float-label plot-float-left">
+            <span className="plot-label-icon">✦</span>
             <div>
               <small>IMAGINATION, UNLOCKED</small>
               <strong>You direct the story.</strong>
             </div>
           </div>
-          <div className="lumi-float-label lumi-float-right">
-            <span className="lumi-label-icon">↗</span>
+          <div className="plot-float-label plot-float-right">
+            <span className="plot-label-icon">↗</span>
             <div>
               <small>YOUR NEXT LEVEL</small>
               <strong>Learn by doing.</strong>
             </div>
           </div>
-          <a href="#play" className="lumi-scroll">
+          <a href="#play" className="plot-scroll">
             SCROLL TO DISCOVER <span>↓</span>
           </a>
         </section>
-        <div className="lumi-ticker" aria-hidden="true">
+        <div className="plot-ticker" aria-hidden="true">
           <div>
             {Array.from({ length: 4 }, (_, i) => (
               <span key={i}>
@@ -317,10 +322,10 @@ export default function Platform({ onStart, onResume, savedName }: Props) {
             ))}
           </div>
         </div>
-        <section id="play" className="lumi-section lumi-play">
-          <div className="lumi-section-heading" data-reveal>
+        <section id="play" className="plot-section plot-play">
+          <div className="plot-section-heading" data-reveal>
             <div>
-              <p className="lumi-section-label">
+              <p className="plot-section-label">
                 <span>01</span> PLAY / GO SOMEWHERE ELSE
               </p>
               <h2>
@@ -337,15 +342,15 @@ export default function Platform({ onStart, onResume, savedName }: Props) {
               Become the reason the story changes.
             </p>
           </div>
-          <div className="lumi-stories">
-            <article className="lumi-story-card lumi-scifi" data-reveal>
-              <div className="lumi-story-art" aria-hidden="true" />
-              <div className="lumi-card-top">
-                <span className="lumi-tag">SCI-FI</span>
-                <span className="lumi-card-number">001</span>
+          <div className="plot-stories">
+            <article className="plot-story-card plot-scifi" data-reveal>
+              <div className="plot-story-art" aria-hidden="true" />
+              <div className="plot-card-top">
+                <span className="plot-tag">SCI-FI</span>
+                <span className="plot-card-number">001</span>
               </div>
-              <div className="lumi-story-content">
-                <p className="lumi-story-meta">
+              <div className="plot-story-content">
+                <p className="plot-story-meta">
                   10 PAGES <span>·</span> 4 ENDINGS <span>·</span> VOICE CHOICES
                 </p>
                 <h3>
@@ -359,28 +364,28 @@ export default function Platform({ onStart, onResume, savedName }: Props) {
                   What kind of Captain will you become?
                 </p>
                 <button
-                  className="lumi-story-button"
+                  className="plot-story-button"
                   onClick={() => open("scifi")}
                 >
                   {savedName ? "Start a new mission" : "Direct this story"}
                   <Icon name="arrow" />
                 </button>
                 {savedName && (
-                  <button className="lumi-resume" onClick={onResume}>
+                  <button className="plot-resume" onClick={onResume}>
                     Resume Captain {savedName}’s book ↗
                   </button>
                 )}
               </div>
-              <div className="lumi-card-orbit" aria-hidden="true" />
+              <div className="plot-card-orbit" aria-hidden="true" />
             </article>
-            <article className="lumi-story-card lumi-fantasy" data-reveal>
-              <div className="lumi-story-art" aria-hidden="true" />
-              <div className="lumi-card-top">
-                <span className="lumi-tag">FANTASY</span>
-                <span className="lumi-card-number">002</span>
+            <article className="plot-story-card plot-fantasy" data-reveal>
+              <div className="plot-story-art" aria-hidden="true" />
+              <div className="plot-card-top">
+                <span className="plot-tag">FANTASY</span>
+                <span className="plot-card-number">002</span>
               </div>
-              <div className="lumi-story-content">
-                <p className="lumi-story-meta">
+              <div className="plot-story-content">
+                <p className="plot-story-meta">
                   3 PAGES <span>·</span> 4 ENDINGS <span>·</span> YOUR CHOICES
                 </p>
                 <h3>
@@ -393,17 +398,17 @@ export default function Platform({ onStart, onResume, savedName }: Props) {
                   <br />A dawn only you can bring back.
                 </p>
                 <button
-                  className="lumi-story-button"
+                  className="plot-story-button"
                   onClick={() => open("fantasy")}
                 >
                   Enter the unknown
                   <Icon name="arrow" />
                 </button>
               </div>
-              <div className="lumi-card-orbit" aria-hidden="true" />
+              <div className="plot-card-orbit" aria-hidden="true" />
             </article>
           </div>
-          <div className="lumi-play-note" data-reveal>
+          <div className="plot-play-note" data-reveal>
             <Icon name="orbit" />
             <p>
               Your name in the story. Your decisions in every chapter.
@@ -413,10 +418,10 @@ export default function Platform({ onStart, onResume, savedName }: Props) {
             <span>THE MAIN CHARACTER? YOU. ↗</span>
           </div>
         </section>
-        <section id="work" className="lumi-section lumi-work">
-          <div className="lumi-section-heading" data-reveal>
+        <section id="work" className="plot-section plot-work">
+          <div className="plot-section-heading" data-reveal>
             <div>
-              <p className="lumi-section-label">
+              <p className="plot-section-label">
                 <span>02</span> WORK / GROW INTO WHAT’S NEXT
               </p>
               <h2>
@@ -433,7 +438,7 @@ export default function Platform({ onStart, onResume, savedName }: Props) {
               you can take into your next project.
             </p>
           </div>
-          <div className="lumi-course-grid">
+          <div className="plot-course-grid">
             {courses.map((c, i) => {
               const done = c.lessons.filter((l) =>
                 learning.completed.includes(`${c.id}/${l.id}`),
@@ -441,27 +446,27 @@ export default function Platform({ onStart, onResume, savedName }: Props) {
               return (
                 <article
                   key={c.id}
-                  className={`lumi-course-card course-${c.color}`}
+                  className={`plot-course-card course-${c.color}`}
                   data-reveal
                 >
-                  <div className="lumi-course-visual">
+                  <div className="plot-course-visual">
                     <Icon name={c.symbol as IconName} />
-                    <div className="lumi-course-ring ring-a" />
-                    <div className="lumi-course-ring ring-b" />
-                    <div className="lumi-course-ring ring-c" />
-                    <span className="lumi-course-index">LAB / 0{i + 1}</span>
-                    <span className="lumi-course-visual-label">
+                    <div className="plot-course-ring ring-a" />
+                    <div className="plot-course-ring ring-b" />
+                    <div className="plot-course-ring ring-c" />
+                    <span className="plot-course-index">LAB / 0{i + 1}</span>
+                    <span className="plot-course-visual-label">
                       {c.category}
                     </span>
                   </div>
-                  <div className="lumi-course-content">
-                    <div className="lumi-course-meta">
+                  <div className="plot-course-content">
+                    <div className="plot-course-meta">
                       <span>{c.duration}</span>
                       <span>3 story chapters</span>
                     </div>
                     <h3>{c.title}</h3>
                     <p>{c.description}</p>
-                    <div className="lumi-course-bottom">
+                    <div className="plot-course-bottom">
                       <button onClick={() => open(c.id)}>
                         {done === 3
                           ? "Revisit course"
@@ -479,13 +484,13 @@ export default function Platform({ onStart, onResume, savedName }: Props) {
               );
             })}
           </div>
-          <p className="lumi-work-note" data-reveal>
-            <span className="lumi-live-dot" />
+          <p className="plot-work-note" data-reveal>
+            <span className="plot-live-dot" />
             Story-led learning. Real decisions. Progress saved on this device.
           </p>
         </section>
-        <section id="how" className="lumi-how lumi-section" data-reveal>
-          <p className="lumi-section-label">
+        <section id="how" className="plot-how plot-section" data-reveal>
+          <p className="plot-section-label">
             <span>✦</span> ONE PLATFORM. TWO WAYS TO GROW.
           </p>
           <h2>
@@ -500,18 +505,18 @@ export default function Platform({ onStart, onResume, savedName }: Props) {
             <br />
             Bring your curiosity. We’ll bring the next chapter.
           </p>
-          <a className="lumi-button lumi-button-lime" href="#play">
+          <a className="plot-button plot-button-lime" href="#play">
             Let’s see where you go
             <Icon name="arrow" />
           </a>
-          <div className="lumi-how-orb" aria-hidden="true" />
+          <div className="plot-how-orb" aria-hidden="true" />
         </section>
       </main>
-      <footer className="lumi-footer">
+      <footer className="plot-footer">
         <div>
-          <a className="lumi-logo" href="#top">
+          <a className="plot-logo" href="#top">
             <Icon name="spark" />
-            lumiclinik.
+            PlotTwist<span className="plot-logo-dot">.</span><span className="plot-logo-byline">by Futurelab Studios</span>
           </a>
           <p>Stay curious. Keep becoming.</p>
         </div>
@@ -521,29 +526,29 @@ export default function Platform({ onStart, onResume, savedName }: Props) {
           <a href="#how">The idea</a>
         </div>
         <span>MADE FOR YOUR NEXT CHAPTER</span>
-        <div className="lumi-footer-word" aria-hidden="true">
-          lumiclinik
+        <div className="plot-footer-word" aria-hidden="true">
+          PLOT TWIST
         </div>
       </footer>
       <dialog
-        className={`lumi-dialog ${fantasy ? "lumi-dialog-comic" : ""}`}
+        className={`plot-dialog ${fantasy ? "plot-dialog-comic" : ""}`}
         ref={dialog}
         onCancel={close}
-        aria-labelledby="lumi-dialog-title"
+        aria-labelledby="plot-dialog-title"
       >
         <button
-          className="lumi-dialog-close"
+          className="plot-dialog-close"
           onClick={close}
           aria-label="Close experience"
         >
           ×
         </button>
         {course && lesson ? (
-          <div className="lumi-course-player">
+          <div className="plot-course-player">
             <aside>
-              <p className="lumi-section-label">WORK / {course.category}</p>
-              <h2 id="lumi-dialog-title">{course.title}</h2>
-              <p className="lumi-note">
+              <p className="plot-section-label">WORK / {course.category}</p>
+              <h2 id="plot-dialog-title">{course.title}</h2>
+              <p className="plot-note">
                 {course.duration} · {course.audience}
               </p>
               <nav aria-label="Course lessons">
@@ -571,7 +576,7 @@ export default function Platform({ onStart, onResume, savedName }: Props) {
                   </button>
                 ))}
               </nav>
-              <p className="lumi-note">
+              <p className="plot-note">
                 {
                   course.lessons.filter((l) =>
                     learning.completed.includes(`${course.id}/${l.id}`),
@@ -580,16 +585,16 @@ export default function Platform({ onStart, onResume, savedName }: Props) {
                 of 3 lessons completed
               </p>
             </aside>
-            <div className="lumi-lesson">
-              <p className="lumi-section-label">
+            <div className="plot-lesson">
+              <p className="plot-section-label">
                 STORY CHAPTER 0{lessonIndex + 1}
               </p>
               <h3>{lesson.title}</h3>
-              <div className="lumi-scenario">
+              <div className="plot-scenario">
                 <span>YOU’RE IN THE STORY</span>
                 <p>{lesson.scene}</p>
               </div>
-              <fieldset className="lumi-checkpoint">
+              <fieldset className="plot-checkpoint">
                 <legend>{lesson.question}</legend>
                 {lesson.answers.map((a, i) => (
                   <label key={a}>
@@ -607,7 +612,7 @@ export default function Platform({ onStart, onResume, savedName }: Props) {
                 ))}
               </fieldset>
               <button
-                className="lumi-button lumi-button-lime"
+                className="plot-button plot-button-lime"
                 disabled={answer === null}
                 onClick={() => {
                   setChecked(true);
@@ -620,7 +625,7 @@ export default function Platform({ onStart, onResume, savedName }: Props) {
               {checked && (
                 <p
                   role="status"
-                  className={`lumi-feedback ${answer === lesson.correct ? "correct" : ""}`}
+                  className={`plot-feedback ${answer === lesson.correct ? "correct" : ""}`}
                 >
                   {lesson.consequences[answer!]}{" "}
                   {answer !== lesson.correct
@@ -629,7 +634,7 @@ export default function Platform({ onStart, onResume, savedName }: Props) {
                 </p>
               )}
               {checked && (
-                <details open className="lumi-debrief">
+                <details open className="plot-debrief">
                   <summary>What this decision teaches you</summary>
                   {lesson.body.map((p) => (
                     <p key={p}>{p}</p>
@@ -637,7 +642,7 @@ export default function Platform({ onStart, onResume, savedName }: Props) {
                   <p>{lesson.explanation}</p>
                 </details>
               )}
-              <label className="lumi-exercise" htmlFor="practice">
+              <label className="plot-exercise" htmlFor="practice">
                 <span>TRY IT YOURSELF</span>
                 <strong>{lesson.exercise}</strong>
                 <textarea
@@ -656,10 +661,10 @@ export default function Platform({ onStart, onResume, savedName }: Props) {
                 />
               </label>
               {learning.completed.includes(lessonKey) && (
-                <div className="lumi-lesson-next">
+                <div className="plot-lesson-next">
                   {lessonIndex < 2 ? (
                     <button
-                      className="lumi-button lumi-button-glass"
+                      className="plot-button plot-button-glass"
                       onClick={() => moveLesson(lessonIndex + 1)}
                     >
                       Next chapter
@@ -669,7 +674,7 @@ export default function Platform({ onStart, onResume, savedName }: Props) {
                     <p>
                       Your scenario is complete. Take one idea into your next
                       project.{" "}
-                      <button className="lumi-inline-button" onClick={close}>
+                      <button className="plot-inline-button" onClick={close}>
                         Back to Work ↗
                       </button>
                     </p>
@@ -680,27 +685,27 @@ export default function Platform({ onStart, onResume, savedName }: Props) {
           </div>
         ) : fantasy ? (
           <div
-            className={`lumi-fantasy-reader ${fantasyTurning ? "is-turning" : ""}`}
+            className={`plot-fantasy-reader ${fantasyTurning ? "is-turning" : ""}`}
           >
-            <p className="lumi-section-label">
+            <p className="plot-section-label">
               PLAY / THE LAST EMBER · PAGE {fantasyHistory.length + 1} OF 3
             </p>
-            <h2 id="lumi-dialog-title">{fantasy.title}</h2>
-            <p className="lumi-note">A story shaped by {fantasyName}</p>
-            <div className="lumi-fantasy-panels">
+            <h2 id="plot-dialog-title">{fantasy.title}</h2>
+            <p className="plot-note">A story shaped by {fantasyName}</p>
+            <div className="plot-fantasy-panels">
               {fantasy.panels.map(([caption, dialogue], i) => (
                 <article key={`${fantasyHistory.length}-${i}`}>
                   <div
-                    className={`lumi-fantasy-panel-art fantasy-angle-${i}`}
+                    className={`plot-fantasy-panel-art fantasy-angle-${i}`}
                     aria-hidden="true"
                   />
-                  <span className="lumi-fantasy-caption">{caption}</span>
+                  <span className="plot-fantasy-caption">{caption}</span>
                   <p>{dialogue}</p>
                 </article>
               ))}
             </div>
             {fantasyHistory.length < 2 ? (
-              <div className="lumi-fantasy-decisions">
+              <div className="plot-fantasy-decisions">
                 <h3>Your move, {fantasyName}.</h3>
                 <div>
                   {fantasyChoices.map((c) => (
@@ -717,10 +722,10 @@ export default function Platform({ onStart, onResume, savedName }: Props) {
                 </div>
               </div>
             ) : (
-              <div className="lumi-fantasy-end">
+              <div className="plot-fantasy-end">
                 <p>THE END · A DIFFERENT CHOICE OPENS A DIFFERENT DAWN.</p>
                 <button
-                  className="lumi-button lumi-button-lime"
+                  className="plot-button plot-button-lime"
                   onClick={() => setFantasyHistory([])}
                 >
                   Try another path
@@ -731,11 +736,11 @@ export default function Platform({ onStart, onResume, savedName }: Props) {
           </div>
         ) : (
           selection && (
-            <div className="lumi-story-entry">
-              <p className="lumi-section-label">
+            <div className="plot-story-entry">
+              <p className="plot-section-label">
                 PLAY / {selection === "scifi" ? "SCI-FI" : "FANTASY"}
               </p>
-              <h2 id="lumi-dialog-title">
+              <h2 id="plot-dialog-title">
                 {selection === "scifi"
                   ? "Your ship. Your command."
                   : "Your world. Your magic."}
@@ -751,10 +756,10 @@ export default function Platform({ onStart, onResume, savedName }: Props) {
                   beginStory();
                 }}
               >
-                <label htmlFor="lumi-name">
+                <label htmlFor="plot-name">
                   What should we call you?
                   <input
-                    id="lumi-name"
+                    id="plot-name"
                     required
                     maxLength={40}
                     autoComplete="given-name"
@@ -765,17 +770,17 @@ export default function Platform({ onStart, onResume, savedName }: Props) {
                   />
                 </label>
                 {error && (
-                  <p role="alert" className="lumi-feedback">
+                  <p role="alert" className="plot-feedback">
                     {error}
                   </p>
                 )}
                 {selection === "scifi" && savedName && (
-                  <p className="lumi-note">
+                  <p className="plot-note">
                     Starting replaces Captain {savedName}’s saved book on this
                     device.{" "}
                     <button
                       type="button"
-                      className="lumi-inline-button"
+                      className="plot-inline-button"
                       onClick={() => {
                         close();
                         onResume();
@@ -785,12 +790,12 @@ export default function Platform({ onStart, onResume, savedName }: Props) {
                     </button>
                   </p>
                 )}
-                <button className="lumi-button lumi-button-lime">
+                <button className="plot-button plot-button-lime">
                   Begin your story
                   <Icon name="arrow" />
                 </button>
               </form>
-              <p className="lumi-note">
+              <p className="plot-note">
                 {selection === "scifi"
                   ? "10 pages · Four approaches · Voice & typed orders"
                   : "3 pages · Four approaches · Click to direct the story"}

@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { courses, fantasyChoices, fantasyPage } from "./content";
 
-describe("Lumiclinik Play and Work content", () => {
+describe("PlotTwist Play and Work content", () => {
   it("keeps four panels and the reader’s name throughout every fantasy route", () => {
     for (const first of fantasyChoices)
       for (const last of fantasyChoices) {

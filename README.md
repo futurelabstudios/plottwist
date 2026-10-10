@@ -1,10 +1,10 @@
 <p align="center">
   <a href="https://plottwistbyfuturelab.netlify.app/">
-    <img src="./public/art/lumiclinik-portal.webp" alt="A traveler stands before a glowing portal between a futuristic space station and a fantasy castle" width="100%" />
+    <img src="./public/art/plottwist-portal.webp" alt="A traveler stands before a glowing portal between a futuristic space station and a fantasy castle" width="100%" />
   </a>
 </p>
 
-<h1 align="center">PlotTwist by Futurelab</h1>
+<h1 align="center">PlotTwist by Futurelab Studios</h1>
 
 <p align="center"><strong>Every choice opens a new chapter. Play to explore. Work to grow.</strong></p>
 
@@ -25,13 +25,13 @@
   <img alt="OpenAI" src="https://img.shields.io/badge/OpenAI-APIs-412991?logo=openai&logoColor=white" />
 </p>
 
-<p align="center"><a href="https://github.com/futurelabstudios/plottwist/actions"><img alt="GitHub Actions" src="https://img.shields.io/badge/GitHub_Actions-CI-2088FF?logo=githubactions&logoColor=white" /></a> &nbsp; <a href="https://github.com/futurelabstudios/plottwist"><img alt="GitHub repository" src="https://img.shields.io/badge/Built_by-Futurelab-f3a712" /></a></p>
+<p align="center"><a href="https://github.com/futurelabstudios/plottwist/actions"><img alt="GitHub Actions" src="https://img.shields.io/badge/GitHub_Actions-CI-2088FF?logo=githubactions&logoColor=white" /></a> &nbsp; <a href="https://github.com/futurelabstudios/plottwist"><img alt="GitHub repository" src="https://img.shields.io/badge/Built_by_Futurelab_Studios-f3a712" /></a></p>
 
 ---
 
 ## ✨ What is PlotTwist?
 
-**PlotTwist by Futurelab** is a personalized storytelling and learning platform. **Play** offers interactive sci-fi and fantasy adventures; **Work** helps students and professionals upskill through story-based experiences.
+**PlotTwist by Futurelab Studios** is a personalized storytelling and learning platform. **Play** offers interactive sci-fi and fantasy adventures; **Work** helps students and professionals upskill through story-based experiences.
 
 ### The solution
 
@@ -115,13 +115,13 @@ These are authored starter scenarios. Longer learning paths, open-ended answers,
 
 ## ✨ The platform experience
 
-The landing page introduces both sides of PlotTwist by Futurelab with a cinematic portal connecting sci-fi and fantasy worlds. It includes pointer-responsive depth, animated orbits, floating labels, stars, scroll reveals, moving typography and interactive cards. Work’s visual language uses orbiting learning icons and clear scenario progression.
+The landing page introduces both sides of PlotTwist by Futurelab Studios with a cinematic portal connecting sci-fi and fantasy worlds. It includes pointer-responsive depth, animated orbits, floating labels, stars, scroll reveals, moving typography and interactive cards. Work’s visual language uses orbiting learning icons and clear scenario progression.
 
 The experience supports desktop and mobile layouts, keyboard navigation, native dialogs and reduced-motion preferences. The sci-fi comic keeps its established paper-and-panel visual language when launched from the platform. Existing saved books can be resumed from the Play section.
 
 ## ✅ What is implemented today
 
-- The PlotTwist by Futurelab landing page, Play and Work catalog, and working experience launchers.
+- The PlotTwist by Futurelab Studios landing page, Play and Work catalog, and working experience launchers.
 - The complete ten-page sci-fi comic and three-page fantasy short.
 - Three courses with nine decision-led chapters, consequences, debriefs and exercises.
 - Server-only OpenAI integration for the sci-fi story’s decisions, dialogue, recorded voice, Realtime transcription signaling and optional images.
@@ -185,7 +185,7 @@ Sci-fi JSON exports contain the story text and decisions, not generated image da
 | 🎥 **YouTube** | Coming soon |
 | 📊 **Explainer deck** | [PlotTwist-explainer-deck](https://docs.google.com/presentation/d/12D6AWENRo8JqOl7xpxU8AYufs0dQ3YHyqOUTDjoo7Hg/edit?usp=sharing) |
 
-**Project:** PlotTwist by Futurelab · **Built by:** Futurelab Studios
+**Project:** PlotTwist by Futurelab Studios · **Built by:** Futurelab Studios
 
 Netlify serves the built React frontend and the API. After authenticating and linking the Netlify CLI:
 
@@ -213,7 +213,7 @@ node scripts/smoke-local.mjs # exercises configured local live APIs
 Tests cover sci-fi routes and saves, fantasy branches and name continuity, learning-content decision invariants, API boundaries and schema failures, decision confidence, audio/image endpoints and microphone cleanup.
 
 ```text
-src/platform/Platform.tsx   PlotTwist by Futurelab landing page, catalog, fantasy reader and learning player
+src/platform/Platform.tsx   PlotTwist by Futurelab Studios landing page, catalog, fantasy reader and learning player
 src/platform/Platform.css  Hero, motion, responsive layouts and dialogs
 src/platform/content.ts    Fantasy story and authored learning scenarios
 src/App.tsx                Existing sci-fi comic and its interaction state
@@ -226,8 +226,8 @@ public/art/                Portal artwork and comic illustration atlases
 scripts/                   Local development, smoke checks and hosting helpers
 ```
 
-See [the comic’s visual direction](docs/visual-direction.md) and [the platform’s hero artwork](docs/lumiclinik-art.md) for the illustration system and generation prompt.
+See [the comic’s visual direction](docs/visual-direction.md) and [the platform’s hero artwork](docs/plottwist-art.md) for the illustration system and generation prompt.
 
 ---
 
-<p align="center"><strong>PlotTwist by Futurelab</strong><br/><em>Your next chapter starts with you.</em></p>
+<p align="center"><strong>PlotTwist by Futurelab Studios</strong><br/><em>Your next chapter starts with you.</em></p>
