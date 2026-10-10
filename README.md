@@ -26,11 +26,11 @@ npm run preview
 - React, Vite, strict TypeScript, and Tailwind's Vite plugin.
 - Landing screen, Captain name entry, fixed four-panel opening, and three branching four-panel continuations.
 - Explicit decision confirmation, deterministic state effects, duplicate-order protection, reset and replay.
-- Responsive HTML speech bubbles and captions, with CSS illustration placeholders.
+- Responsive HTML speech bubbles and captions, with reference-inspired illustrated panel art.
 - Reducer/fixture tests and GitHub Actions checks.
 - Netlify build configuration and a reserved server-only functions directory.
 
-This is a basic scaffold, not the completed build described in the supplied planning document. Progress currently lives in memory and resets on refresh. No microphone, OpenAI calls, live endpoints, or deployment are implemented. Reference images were not supplied.
+This is a basic scaffold, not the completed build described in the supplied planning document. Progress currently lives in memory and resets on refresh. No microphone, OpenAI calls, live endpoints, or deployment are implemented. The supplied landing, opening-page and scan-page references guide the visual style. See `docs/visual-direction.md` for the reusable illustration system.
 
 ## Structure
 
@@ -50,7 +50,7 @@ netlify/functions/      Future server endpoints
 1. Complete page 2 decisions and page 3 resolution; add established facts, typed orders and validated localStorage.
 2. Add server-only story generation and decision interpretation, schema validation and fixture fallback.
 3. Add push-to-talk transcription and editable confirmation.
-4. Integrate reference art, test complete desktop/mobile flows and prepare deployment.
+4. Extend the illustration library to match every branch, test complete desktop/mobile flows and prepare deployment.
 
 `netlify.toml` reserves port 8888 for Netlify Dev and 5173 for Vite. Once Netlify CLI is installed, use `netlify dev` to exercise future functions alongside the frontend. No Netlify site has been linked or deployed.
 

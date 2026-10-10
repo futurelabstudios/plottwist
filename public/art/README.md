@@ -1,3 +1,3 @@
 # Panel art
 
-Place illustration-only assets here when available. The scaffold uses CSS placeholders; no reference images were provided. Keep dialogue and captions as accessible HTML.
+`borrowed-stars-atlas.png` contains eight illustration-only scenes generated from the supplied PlotTwist visual references with the built-in imagegen tool. See `docs/visual-direction.md` for tile mapping, character/style guidance and the generation prompt. Dialogue and captions are rendered separately as accessible HTML.
