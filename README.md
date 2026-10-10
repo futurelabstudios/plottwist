@@ -1,8 +1,10 @@
 <p align="center">
-  <a href="https://plottwistbyfuturelab.netlify.app/">
-    <img src="./public/art/plottwist-portal.webp" alt="A traveler stands before a glowing portal between a futuristic space station and a fantasy castle" width="100%" />
+  <a href="https://youtu.be/ErZVbIhhfho">
+    <img src="./docs/media/plottwist-demo.webp" alt="Animated PlotTwist demo: explore a cosmic station, choose your next move, and replay a different story path. Watch the full video on YouTube." width="100%" />
   </a>
 </p>
+
+<p align="center"><a href="https://youtu.be/ErZVbIhhfho"><strong>Watch the 60-second demo with sound on YouTube</strong></a></p>
 
 <p align="center"><img src="./public/brand/plottwist-mark.svg" alt="PlotTwist branching page emblem" width="72" /></p>
 
@@ -184,7 +186,7 @@ Sci-fi JSON exports contain the story text and decisions, not generated image da
 | 🌐 **Live app** | [plottwistbyfuturelab.netlify.app](https://plottwistbyfuturelab.netlify.app/) |
 | 💬 **ChatGPT Site** | [Open PlotTwist](https://plottwist-borrowed-stars.futurelabstudios.chatgpt.site/) |
 | 💻 **Source code** | [github.com/futurelabstudios/plottwist](https://github.com/futurelabstudios/plottwist) |
-| 🎥 **YouTube** | Coming soon |
+| 🎥 **YouTube** | [Watch the PlotTwist cinematic demo](https://youtu.be/ErZVbIhhfho) |
 | 📊 **Explainer deck** | [PlotTwist-explainer-deck](https://docs.google.com/presentation/d/12D6AWENRo8JqOl7xpxU8AYufs0dQ3YHyqOUTDjoo7Hg/edit?usp=sharing) |
 
 **Project:** PlotTwist by Futurelab Studios · **Built by:** Futurelab Studios
@@ -233,3 +235,9 @@ See [the comic’s visual direction](docs/visual-direction.md) and [the platform
 ---
 
 <p align="center"><strong>PlotTwist by Futurelab Studios</strong><br/><em>Your next chapter starts with you.</em></p>
+
+<p align="center">
+  <a href="https://plottwistbyfuturelab.netlify.app/">
+    <img src="./public/art/plottwist-portal.webp" alt="A traveler stands before a glowing portal between a futuristic space station and a fantasy castle" width="100%" />
+  </a>
+</p>
